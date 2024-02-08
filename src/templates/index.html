@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+    <p>Server running</p>
+    {% block content %}
+   
+        <form action="/cadastro" method="POST">
+            <p>Nome Completo<input type="text" name="nome" placeholder="DIGITE AQUI" /></p>
+            <label for="date">Data:</label>
+            <input type="date" name="date" id="date">
+            <p>Telefone/WhatsApp<input type="integer" name="telefone" placeholder="(99)99999-9999" /></p>
+            <p>E-mail<input type="text" name="email" placeholder="DIGITE AQUI" /></p>
+
+            <label for="estado">Estado:</label>
+            <select name="estado" id="estado" style="width: 300px;"> 
+                <option>Selecionar</option>
+                {% if estados %}
+                    {% for estado in estados %}
+                        <option value="{{ estado.UF_ID }}">{{ estado.UF_NOME }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option value="" disabled selected>Nenhum estado disponível</option>
+                {% endif %}
+            </select>
+            
+            
+        
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <select class="form-control" name="cidade" id="cidade">
+                    <option>Selecionar</option>
+                </select>
+            </div>
+        
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" id="sexo">
+                <option value="">selecionar</option>
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
+                <option value="O">Outros</option>
+            </select>
+            <p>confmemail <input type="checkbox" name="confirm" id="confirm"/></p>
+        
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+    {% endblock %}
+            </div>
+
+        </div>
+    </div>
+<script>
+document.getElementById('estado').addEventListener('change', function() {
+        var estadoId = this.value;
+        fetch(`/cidade/${estadoId}`)
+            .then(response => response.json())
+            .then(data => {
+                var cidadeSelect = document.getElementById('cidade');
+                cidadeSelect.innerHTML = ''; // Limpa as opções existentes
+                data.cidadeestado.forEach(function(cidade) {
+                    var option = document.createElement('option');
+                    option.value = cidade.id;
+                    option.text = cidade.name;
+                    cidadeSelect.appendChild(option);
+                });
+            });
+    });
+
+</script>
+</body>
+</html>
