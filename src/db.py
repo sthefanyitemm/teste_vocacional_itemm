@@ -4,7 +4,7 @@ from flask import jsonify, current_app,request
 
 
 def get_mysql_connection():
-    return pymysql.connect(host='localhost', port=3306, user='root', passwd='Itemm@', database='teste_prod')
+    return pymysql.connect(host='localhost', port=3306, user='root', passwd='', database='teste_prod')
 
 
 def get_estados():
