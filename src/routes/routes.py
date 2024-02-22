@@ -7,7 +7,9 @@ from src.db import *
 routes = {
         "home": "/",
         "cadastro": "/cadastro",
-        "perguntas":"/perguntas"
-        
+        "perguntas":"/perguntas",
+        "resultados":"/resultados",
+        "login":"/login",
+        "plogin":"/plogin"      
     }
 

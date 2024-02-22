@@ -2,13 +2,18 @@ from flask import render_template, request, redirect,jsonify
 from flask.views import MethodView
 from src.db import  get_mysql_connection
 from src.db import get_estados
+import mysql.connector
+#from src.rosca import exibir_grafico_rosca
+#from src.routes import *
+#from src.routes.routes import get_routes
+
 #from src.utils import cidadebyestado
 from tkinter import messagebox
 
 class HomeController(MethodView):
     def get(self):
         
-            return ('Heloo')
+            return render_template('home.html')
  
 
 class CadastroController(MethodView):
@@ -34,8 +39,13 @@ class CadastroController(MethodView):
             confirm_int = 1 if confirm_value.lower() == 'on' else 0
 
             with connection.cursor() as cur:
-                cur.execute("INSERT INTO pessoas (nome, email, telefone, sexo, estado, cidade, datanascimento, confirm) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                cur.execute("INSERT INTO cadastro (nome, email, telefone, sexo, estado, cidade, datanascimento, confirm) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                             (name, email, telefone, sexo, estado, cidade, date, confirm_int))
+                connection.commit()
+
+            with connection.cursor() as cur:
+                cur.execute("INSERT INTO login (email) VALUES (%s)",
+                            (email))
                 connection.commit()
 
         except Exception as e:
@@ -46,21 +56,22 @@ class CadastroController(MethodView):
 
         return redirect('/cadastro')
 
-"""
+
+    
+
 class PerguntasController(MethodView):
     def get(self):
-         
-          return render_template('perguntas.html')
+        #exibir_grafico_rosca(soma_respostas=100) 
+        return render_template('perguntas.html')
+     
+class ResultadosController(MethodView):
+    def get(self):
+        return render_template('resultados.html')
 
-def botao_clicado(valor):
-    print(f"Botão {valor} clicado")
-    messagebox.showinfo("Alerta", f"Botão {valor} clicado")
-
-def criar_botoes(root):
-    for i in range(7):
-        botao = tk.Button(root, text=f"Botão {i}", command=lambda i=i: botao_clicado(i))
-        botao.pack()
-
-root = tk.Tk()
-criar_botoes(root)
-"""
+class LoginController(MethodView):
+    def get(self):
+        return render_template('login.html')
+    
+class PloginController(MethodView):
+    def get(self):
+        return render_template('primeirologin.html')

@@ -4,61 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                
-    <p>Server running</p>
-    {% block content %}
-   
-        <form action="/cadastro" method="POST">
-            <p>Nome Completo<input type="text" name="nome" placeholder="DIGITE AQUI" /></p>
-            <label for="date">Data:</label>
-            <input type="date" name="date" id="date">
-            <p>Telefone/WhatsApp<input type="integer" name="telefone" placeholder="(99)99999-9999" /></p>
-            <p>E-mail<input type="text" name="email" placeholder="DIGITE AQUI" /></p>
+                <p>Já tem o e-mail cadastrado? Clique aqui para fazer o login</p>
+                    <button  type="button" class="btn btn-success" onclick="window.location.href = 'login';">Login</button>
+                <div class="form-group">
+                    {% block content %}
+                    <form action="/cadastro" method="POST">
+                        <p>Nome Completo<input type="text" name="nome" placeholder="DIGITE AQUI" /></p>
+                        <label for="date">Data:</label>
+                        <input type="date" name="date" id="date">
+                        <p>Telefone/WhatsApp<input type="integer" name="telefone" placeholder="(99)99999-9999" /></p>
+                        <p>E-mail<input type="text" name="email" placeholder="DIGITE AQUI" /></p>
+                           <!-- Adicione um elemento <span> para exibir a mensagem de erro -->
+                        <span id="error-message" style="color: red;"></span>
 
-            <label for="estado">Estado:</label>
-            <select name="estado" id="estado" style="width: 300px;"> 
-                <option>Selecionar</option>
-                {% if estados %}
-                    {% for estado in estados %}
-                        <option value="{{ estado.UF_ID }}">{{ estado.UF_NOME }}</option>
-                    {% endfor %}
-                {% else %}
-                    <option value="" disabled selected>Nenhum estado disponível</option>
-                {% endif %}
-            </select>
-            
-            
-        
-            <div class="form-group">
-                <label for="cidade">Cidade:</label>
-                <select class="form-control" name="cidade" id="cidade">
-                    <option>Selecionar</option>
-                </select>
-            </div>
-        
-            <label for="sexo">Sexo:</label>
-            <select name="sexo" id="sexo">
-                <option value="">selecionar</option>
-                <option value="F">Feminino</option>
-                <option value="M">Masculino</option>
-                <option value="O">Outros</option>
-            </select>
-            <p>confmemail <input type="checkbox" name="confirm" id="confirm"/></p>
-        
-            <p><input type="submit" value="Submit" /></p>
-        </form>
-    {% endblock %}
-            </div>
+                        <label for="estado">Estado:</label>
+                        <select class="form-control" name="estado" id="estado" style="width: 300px;"> 
+                            <option>Selecionar</option>
+                            {% if estados %}
+                                {% for estado in estados %}
+                                    <option value="{{ estado.UF_ID }}">{{ estado.UF_NOME }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option value="" disabled selected>Nenhum estado disponível</option>
+                            {% endif %}
+                        </select>
 
+                        <div class="form-group">
+                            <label for="cidade">Cidade:</label>
+                            <select class="form-control" name="cidade" id="cidade" style="width: 300px;">
+                                <option>Selecionar</option>
+                            </select>
+                        </div>
+
+                        <label for="sexo">Sexo:</label>
+                        <select class="form-control"  style="width: 300px;" name="sexo" id="sexo">
+                            <option value="">selecionar</option>
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                            <option value="O">Outros</option>
+                        </select>
+                        
+                        <!-- Modal -->
+                        <div><input type="checkbox" id="lgpd" checked="checked" name="lgpd">
+                            <a href="#" id="openModal">Aceite LGPD</a>
+                           
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Documento </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Aqui você pode incluir o conteúdo do seu documento -->
+                                            <iframe src="{{ url_for('static', filename='documento.pdf') }}" style="width:100%;height:500px;"></iframe>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <input type="checkbox" id="lgpd" checked="checked" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fim Modal -->
+
+                        <p> <input type="checkbox" name="confirm" id="confirm"/> confmemail</p>
+                    </div>
+                    <input class="btn btn-success" type="submit" id="submit" value="Submit" disabled />
+                </form>
+                {% endblock %}
+            </div>
         </div>
     </div>
+</div>
+
+  <!-- Script para dropdown  cidade/estado -->  
 <script>
 document.getElementById('estado').addEventListener('change', function() {
         var estadoId = this.value;
@@ -76,6 +105,99 @@ document.getElementById('estado').addEventListener('change', function() {
             });
     });
 
+
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Intercepta o envio do formulário
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Impede o envio padrão do formulário
+            event.preventDefault();
+    
+            // Obtém os dados do formulário
+            var formData = new FormData(this);
+    
+            // Envia os dados para o servidor
+            fetch('/cadastro', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                // Verifica se o envio foi bem-sucedido
+                if (response.ok) {
+                    // Função para recuperar parâmetro da URL
+                    function getParameterByName(name, url) {
+                        if (!url) url = window.location.href;
+                        name = name.replace(/[\[\]]/g, "\\$&");
+                        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                            results = regex.exec(url);
+                        if (!results) return null;
+                        if (!results[2]) return '';
+                        return decodeURIComponent(results[2].replace(/\+/g, " "));
+                    }
+    
+                    // Obtém o parâmetro 'soma' da URL
+                    var somaRespostas = getParameterByName('soma');
+                    
+                    // Se 'somaRespostas' não for nulo, faça algo com ele
+                    if (somaRespostas !== null) {
+                        // Redireciona para a página de resultados
+                        window.location.href = "/resultados?soma=" + somaRespostas;
+                    } else {
+                        console.error('Erro: somaRespostas não definido na URL.');
+                    }
+                } else {
+                    // Exibe uma mensagem de erro caso necessário
+                    console.error('Erro ao enviar formulário:', response.statusText);
+                }
+            })
+            .catch(function(error) {
+                console.error('Erro ao enviar formulário:', error);
+            });
+        });
+    });
+    </script>
+    
+    
+
+  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Script para abrir o modal -->
+<script>
+    $(document).ready(function(){
+      $("#openModal").click(function(){
+        $("#myModal").modal('show');
+      });
+    });
+  </script>
+
+
+
+  <script>
+    
+  // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
+    $(document).ready(function(){
+      $("#openModal").click(function(){
+        $("#myModal").modal('show');
+      });
+
+      // Definir inicialmente o estado do checkbox LGPD como não marcado
+      $("#lgpd").prop("checked", false);
+
+      // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
+      $("#lgpd").change(function(){
+          var isChecked = $(this).prop("checked");
+          $("#submit").prop("disabled", !isChecked);
+      });
+    });
+</script>
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    <div id="resultadoSoma"></div>
+
+    <script>
+        // Função para recuperar parâmetro da URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Obtém o parâmetro 'soma' da URL
+        var soma = getParameterByName('soma');
+
+        // Exibe a soma na div resultadoSoma
+        document.getElementById('resultadoSoma').innerHTML = 'A soma total é: ' + soma;
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    <div id="resultadoSoma">
+        <div>
+            
+            <button  type="button" class="btn btn-success" onclick="window.location.href = 'perguntas';">Refazer o teste</button>
+             
+        </div>
+    </div>
+
+    <script>
+        // montar logica se clicar botão acima vai direto perguntas else botão cadastro/login
+        // Função para recuperar parâmetro da URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Obtém o parâmetro 'soma' da URL
+        var soma = getParameterByName('soma');
+
+        // Exibe a soma na div resultadoSoma
+        document.getElementById('resultadoSoma').innerHTML = 'Resultado: ' + 'interperssoal'//soma;
+    </script>
+</body>
+</html>

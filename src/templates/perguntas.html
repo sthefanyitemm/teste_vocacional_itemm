@@ -1,35 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste Vocacional</title>
+    <title>Avaliação de Respostas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Importar a biblioteca Chart.js -->
+    <script>
+        // Função para exibir o gráfico de rosca
+        function exibir_grafico_rosca(valores) {
+            var perguntas = ['Pergunta 1', 'Pergunta 2', 'Pergunta 3']; // Exemplo de perguntas
+
+            // Selecionar o elemento do gráfico
+            var canvas = document.getElementById('grafico_rosca');
+
+            // Obter o contexto 2D do canvas
+            var ctx = canvas.getContext('2d');
+
+            // Criar o gráfico de rosca
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: perguntas,
+                    datasets: [{
+                        label: 'Respostas',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true, // Impede o redimensionamento responsivo
+                    title: {
+                        display: true,
+                        text: 'Respostas'
+                    }
+                }
+            });
+        }
+
+        // Função para atualizar o gráfico quando uma nova pergunta é respondida
+        function atualizar_grafico() {
+            // Valores de exemplo (substitua pelos valores reais)
+            var valores = [10, 20, 30]; // Exemplo de valores (respostas)
+            exibir_grafico_rosca(valores);
+        }
+
+        // Chamada inicial para exibir o gráfico quando a página é carregada
+        window.onload = atualizar_grafico;
+
+
+        // Lista de perguntas e seus valores
+        var perguntas = [
+            { pergunta: "Eu não gosto de mudanças inesperadas.", valor: 0 },
+            { pergunta: "Eu não gosto de pressão.", valor: 0 },
+            { pergunta: "Eu sou multi-tarefas.", valor: 0 },
+            // Adicione mais perguntas conforme necessário
+        ];
+
+        var perguntaAtualIndex = 0; // Índice da pergunta atual
+        var somaRespostas = 0; // Soma das respostas
+
+        function botao_clicado(resposta) {
+            // Adiciona o valor da resposta à soma
+            somaRespostas += parseInt(resposta);
+
+            // Obtém a pergunta atual
+            var perguntaAtual = perguntas[perguntaAtualIndex];
+
+            // Define o valor da pergunta como a resposta selecionada
+            perguntaAtual.valor = parseInt(resposta);
+
+            console.log("Valor do botão clicado:", resposta);
+            console.log("Soma das Respostas:", somaRespostas);
+
+            // Avançar para a próxima pergunta ou encerrar a avaliação
+            perguntaAtualIndex++;
+            if (perguntaAtualIndex < perguntas.length) {
+                // Exibe a próxima pergunta
+                exibir_pergunta();
+            } else {
+                // Redireciona para a página de resultados com a soma total das respostas como parâmetro
+                window.location.href = "/cadastro?soma=" + somaRespostas;
+            }
+        }
+
+        function votar_pergunta_anterior() {
+            if (perguntaAtualIndex > 0) {
+                // Decrementa o índice da pergunta atual
+                perguntaAtualIndex--;
+
+                // Obtém a pergunta anterior
+                var perguntaAnterior = perguntas[perguntaAtualIndex];
+
+                // Obtém o valor da resposta anterior (que é a soma das respostas)
+                var valorRespostaAnterior = perguntaAnterior.valor;
+
+                console.log("Valor do botão clicado anteriormente:", valorRespostaAnterior);
+                console.log("Soma das Respostas antes da subtração:", somaRespostas);
+
+                // Subtrai o valor da resposta anterior da soma total
+                somaRespostas -= valorRespostaAnterior;
+
+                console.log("Soma das Respostas após a subtração:", somaRespostas);
+
+                // Define o valor da resposta anterior como zero para permitir um novo voto
+                // Como não é possível desmarcar um botão de rádio programaticamente, 
+                // vamos apenas subtrair o valor do botão clicado anteriormente da soma das respostas
+
+                // Exibe a pergunta anterior
+                exibir_pergunta();
+            } else {
+                console.log("Não há perguntas anteriores.");
+            }
+        }
+
+        function exibir_pergunta() {
+            var perguntaAtual = perguntas[perguntaAtualIndex];
+            var somaRespostasTexto = "Soma das Respostas: " + somaRespostas; // Adiciona a soma de respostas ao texto
+
+            document.getElementById("pergunta").innerHTML = `
+                <p>${perguntaAtual.pergunta}</p>
+              
+                <input type="radio" name="resposta" value="0"> 0
+                <input type="radio" name="resposta" value="1"> 1
+                <input type="radio" name="resposta" value="2"> 2
+                <input type="radio" name="resposta" value="3"> 3
+                <input type="radio" name="resposta" value="4"> 4
+                <input type="radio" name="resposta" value="5"> 5
+                <input type="radio" name="resposta" value="6"> 6
+                <br>
+                <button type="button" onclick="votar_pergunta_anterior()">Voltar</button>
+                <button type="button" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
+            `;
+        }
+
+        // Iniciar exibição da primeira pergunta
+        window.onload = exibir_pergunta;
+    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-          
-                <div class="col-md-12">
-                    <button onclick='botao_clicado(0)'>Botão 0</button><br>
-                <button onclick='botao_clicado(1)'>Botão 1</button><br>
-                <button onclick='botao_clicado(2)'>Botão 2</button><br>
-                <button onclick='botao_clicado(3)'>Botão 3</button><br>
-                <button onclick='botao_clicado(4)'>Botão 4</button><br>
-                <button onclick='botao_clicado(5)'>Botão 5</button><br>
-                <button onclick='botao_clicado(6)'>Botão 6</button><br>
-                </div>
-            
-                
-            
-        </div>
+    <!-- Elemento para o gráfico de rosca -->
+    <div>
+        <canvas id="grafico_rosca" width="400" height="400"></canvas>
     </div>
-    <script>
-        function botaoClicado(valor) {
-            alert("Botão " + valor + " clicado");
-        }
-    </script>
 
-    
-    
-</body>
-</html>
+    <!-- Elemento para a avaliação de respostas -->
+    <div id="pergunta">
+        <!-- Este div será preenchido com a pergunta e os botões de resposta -->
+    </div>
