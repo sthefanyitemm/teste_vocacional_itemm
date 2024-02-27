@@ -2,60 +2,8 @@
 <html>
 <head>
     <title>Avaliação de Respostas</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Importar a biblioteca Chart.js -->
+    <script src="//qiao.github.io/ProgressCircle.js/ProgressCircle.min.js"></script> <!-- Importar a biblioteca ProgressCircle.js -->
     <script>
-        // Função para exibir o gráfico de rosca
-        function exibir_grafico_rosca(valores) {
-            var perguntas = ['Pergunta 1', 'Pergunta 2', 'Pergunta 3']; // Exemplo de perguntas
-
-            // Selecionar o elemento do gráfico
-            var canvas = document.getElementById('grafico_rosca');
-
-            // Obter o contexto 2D do canvas
-            var ctx = canvas.getContext('2d');
-
-            // Criar o gráfico de rosca
-            var myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: perguntas,
-                    datasets: [{
-                        label: 'Respostas',
-                        data: valores,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true, // Impede o redimensionamento responsivo
-                    title: {
-                        display: true,
-                        text: 'Respostas'
-                    }
-                }
-            });
-        }
-
-        // Função para atualizar o gráfico quando uma nova pergunta é respondida
-        function atualizar_grafico() {
-            // Valores de exemplo (substitua pelos valores reais)
-            var valores = [10, 20, 30]; // Exemplo de valores (respostas)
-            exibir_grafico_rosca(valores);
-        }
-
-        // Chamada inicial para exibir o gráfico quando a página é carregada
-        window.onload = atualizar_grafico;
-
-
         // Lista de perguntas e seus valores
         var perguntas = [
             { pergunta: "Eu não gosto de mudanças inesperadas.", valor: 0 },
@@ -66,6 +14,9 @@
 
         var perguntaAtualIndex = 0; // Índice da pergunta atual
         var somaRespostas = 0; // Soma das respostas
+        var progresso = 0; // Progresso do círculo
+        var texto = ""; // Texto exibido no círculo
+        var circle = null; // Referência para o objeto ProgressCircle
 
         function botao_clicado(resposta) {
             // Adiciona o valor da resposta à soma
@@ -85,6 +36,9 @@
             if (perguntaAtualIndex < perguntas.length) {
                 // Exibe a próxima pergunta
                 exibir_pergunta();
+
+                // Atualiza o progresso do círculo
+                addProgress();
             } else {
                 // Redireciona para a página de resultados com a soma total das respostas como parâmetro
                 window.location.href = "/cadastro?soma=" + somaRespostas;
@@ -116,6 +70,9 @@
 
                 // Exibe a pergunta anterior
                 exibir_pergunta();
+
+                // Regride o progresso do gráfico
+                regressarProgresso();
             } else {
                 console.log("Não há perguntas anteriores.");
             }
@@ -141,17 +98,80 @@
             `;
         }
 
-        // Iniciar exibição da primeira pergunta
-        window.onload = exibir_pergunta;
+        function criar_grafico_progresso() {
+            var myCanvas = document.getElementById('grafico_progresso');
+
+            // Se o círculo ainda não foi criado, cria-o
+            if (!circle) {
+                circle = new ProgressCircle({
+                    canvas: myCanvas,
+                    minRadius: 30
+                });
+
+                // Adiciona a entrada ao círculo
+                circle.addEntry({
+                    fillColor: 'rgba(152, 155, 225, 1)',
+                    progressListener: function() {
+                        return progresso;
+                    },
+                    infoListener: function() {
+                        return texto;
+                    },
+                });
+                
+                // Inicia o gráfico
+                circle.start(33);
+            }
+        }
+
+        function addProgress() {
+            progresso += 0.33;
+            if (progresso === 0.33) {
+                texto = "1/3";
+            } else if (progresso === 0.66) {
+                texto = "2/3";
+            } else if (progresso === 1) {
+                texto = "3/3";
+            }
+
+            // Atualiza o gráfico de progresso
+            atualizar_grafico_progresso();
+        }
+
+        function regressarProgresso() {
+            progresso -= 0.33;
+            if (progresso === 0.66) {
+                texto = "2/3";
+            } else if (progresso === 0.33) {
+                texto = "1/3";
+            }
+
+            // Atualiza o gráfico de progresso
+            atualizar_grafico_progresso();
+        }
+
+        function atualizar_grafico_progresso() {
+            // Atualiza o progresso do círculo
+            circle.entries[0].progress = progresso;
+            circle.entries[0].info = texto;
+        }
+
+        // Chamada inicial para exibir a primeira pergunta e criar o gráfico de progresso
+        window.onload = function() {
+            exibir_pergunta();
+            criar_grafico_progresso();
+        };
     </script>
 </head>
 <body>
-    <!-- Elemento para o gráfico de rosca -->
+    <!-- Elemento para o gráfico de progresso -->
     <div>
-        <canvas id="grafico_rosca" width="400" height="400"></canvas>
+        <canvas id="grafico_progresso" width="400" height="200"></canvas>
     </div>
 
     <!-- Elemento para a avaliação de respostas -->
     <div id="pergunta">
         <!-- Este div será preenchido com a pergunta e os botões de resposta -->
     </div>
+</body>
+</html>
