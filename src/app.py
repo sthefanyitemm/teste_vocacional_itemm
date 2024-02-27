@@ -14,8 +14,7 @@ app = Flask(__name__,template_folder='templates')
 @app.route('/salvar_respostas', methods=['POST'])
 def salvar_respostas():
     resposta = int(request.json.get('resposta'))
-    # Aqui você pode calcular os valores apropriados para o gráfico de rosca com base na resposta
-    # Por enquanto, usaremos uma lista de valores fixos para demonstração
+    //
     valores = [10, 20, 30]
     perguntas = ['Pergunta 1', 'Pergunta 2', 'Pergunta 3']
     
