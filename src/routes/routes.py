@@ -10,6 +10,6 @@ routes = {
         "perguntas":"/perguntas",
         "resultados":"/resultados",
         "login":"/login",
-        "plogin":"/plogin"      
+        "reset":"/reset"      
     }
 

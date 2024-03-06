@@ -2,76 +2,50 @@
 <html>
 <head>
     <title>Avaliação de Respostas</title>
-    <script src="//qiao.github.io/ProgressCircle.js/ProgressCircle.min.js"></script> <!-- Importar a biblioteca ProgressCircle.js -->
+    <script src="//qiao.github.io/ProgressCircle.js/ProgressCircle.min.js"></script>
+    <style>
+        /* Estilos CSS */
+        #grafico_progresso {
+            width: 400px; /* Definir uma largura para o canvas */
+            height: 400px; /* Definir uma altura para o canvas */
+        }
+    </style>
     <script>
-        // Lista de perguntas e seus valores
         var perguntas = [
             { pergunta: "Eu não gosto de mudanças inesperadas.", valor: 0 },
             { pergunta: "Eu não gosto de pressão.", valor: 0 },
-            { pergunta: "Eu sou multi-tarefas.", valor: 0 },
-            // Adicione mais perguntas conforme necessário
+            { pergunta: "Eu sou multi-tarefas.", valor: 0 }
         ];
 
-        var perguntaAtualIndex = 0; // Índice da pergunta atual
-        var somaRespostas = 0; // Soma das respostas
-        var progresso = 0; // Progresso do círculo
-        var texto = ""; // Texto exibido no círculo
-        var circle = null; // Referência para o objeto ProgressCircle
+        var perguntaAtualIndex = 0;
+        var somaRespostas = 0;
+        var progresso = 0;
+        var texto = "";
+        var circle = null;
 
         function botao_clicado(resposta) {
-            // Adiciona o valor da resposta à soma
             somaRespostas += parseInt(resposta);
 
-            // Obtém a pergunta atual
             var perguntaAtual = perguntas[perguntaAtualIndex];
-
-            // Define o valor da pergunta como a resposta selecionada
             perguntaAtual.valor = parseInt(resposta);
 
-            console.log("Valor do botão clicado:", resposta);
-            console.log("Soma das Respostas:", somaRespostas);
-
-            // Avançar para a próxima pergunta ou encerrar a avaliação
             perguntaAtualIndex++;
             if (perguntaAtualIndex < perguntas.length) {
-                // Exibe a próxima pergunta
                 exibir_pergunta();
-
-                // Atualiza o progresso do círculo
                 addProgress();
             } else {
-                // Redireciona para a página de resultados com a soma total das respostas como parâmetro
-                window.location.href = "/cadastro?soma=" + somaRespostas;
+                window.location.href = "/login?soma=" + somaRespostas;
             }
-        }
+            
+        }// fazer o mesmo aqui para cadastro
 
         function votar_pergunta_anterior() {
             if (perguntaAtualIndex > 0) {
-                // Decrementa o índice da pergunta atual
                 perguntaAtualIndex--;
-
-                // Obtém a pergunta anterior
                 var perguntaAnterior = perguntas[perguntaAtualIndex];
-
-                // Obtém o valor da resposta anterior (que é a soma das respostas)
                 var valorRespostaAnterior = perguntaAnterior.valor;
-
-                console.log("Valor do botão clicado anteriormente:", valorRespostaAnterior);
-                console.log("Soma das Respostas antes da subtração:", somaRespostas);
-
-                // Subtrai o valor da resposta anterior da soma total
                 somaRespostas -= valorRespostaAnterior;
-
-                console.log("Soma das Respostas após a subtração:", somaRespostas);
-
-                // Define o valor da resposta anterior como zero para permitir um novo voto
-                // Como não é possível desmarcar um botão de rádio programaticamente, 
-                // vamos apenas subtrair o valor do botão clicado anteriormente da soma das respostas
-
-                // Exibe a pergunta anterior
                 exibir_pergunta();
-
-                // Regride o progresso do gráfico
                 regressarProgresso();
             } else {
                 console.log("Não há perguntas anteriores.");
@@ -80,11 +54,11 @@
 
         function exibir_pergunta() {
             var perguntaAtual = perguntas[perguntaAtualIndex];
-            var somaRespostasTexto = "Soma das Respostas: " + somaRespostas; // Adiciona a soma de respostas ao texto
+          
 
             document.getElementById("pergunta").innerHTML = `
                 <p>${perguntaAtual.pergunta}</p>
-              
+               
                 <input type="radio" name="resposta" value="0"> 0
                 <input type="radio" name="resposta" value="1"> 1
                 <input type="radio" name="resposta" value="2"> 2
@@ -99,64 +73,54 @@
         }
 
         function criar_grafico_progresso() {
-            var myCanvas = document.getElementById('grafico_progresso');
+    var myCanvas = document.getElementById('grafico_progresso');
 
-            // Se o círculo ainda não foi criado, cria-o
-            if (!circle) {
-                circle = new ProgressCircle({
-                    canvas: myCanvas,
-                    minRadius: 30
-                });
+    if (myCanvas) {
+        circle = new ProgressCircle({
+            canvas: myCanvas,
+            minRadius: 30
+        });
 
-                // Adiciona a entrada ao círculo
-                circle.addEntry({
-                    fillColor: 'rgba(152, 155, 225, 1)',
-                    progressListener: function() {
-                        return progresso;
-                    },
-                    infoListener: function() {
-                        return texto;
-                    },
-                });
-                
-                // Inicia o gráfico
-                circle.start(33);
-            }
-        }
+        circle.addEntry({
+            fillColor: 'rgba(152, 155, 225, 1)',
+            progressListener: function() {
+                return progresso;
+            },
+            infoListener: function() {
+                return texto;
+            },
+        });
 
-        function addProgress() {
-            progresso += 0.33;
-            if (progresso === 0.33) {
-                texto = "1/3";
-            } else if (progresso === 0.66) {
-                texto = "2/3";
-            } else if (progresso === 1) {
-                texto = "3/3";
-            }
+        circle.start(35); // Ajustado para um total de 35 tarefas
+    } else {
+        console.error("O elemento 'grafico_progresso' não foi encontrado.");
+    }
+}
 
-            // Atualiza o gráfico de progresso
-            atualizar_grafico_progresso();
-        }
+function addProgress() {
+    progresso += 0.0286; // Ajustado para um total de 35 tarefas
+    texto ="Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
 
-        function regressarProgresso() {
-            progresso -= 0.33;
-            if (progresso === 0.66) {
-                texto = "2/3";
-            } else if (progresso === 0.33) {
-                texto = "1/3";
-            }
+    atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
+}
 
-            // Atualiza o gráfico de progresso
-            atualizar_grafico_progresso();
-        }
+function regressarProgresso() {
+    progresso -= 0.0286; // Ajustado para um total de 35 tarefas
+    texto = "Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
 
-        function atualizar_grafico_progresso() {
-            // Atualiza o progresso do círculo
-            circle.entries[0].progress = progresso;
-            circle.entries[0].info = texto;
-        }
+    atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
+}
 
-        // Chamada inicial para exibir a primeira pergunta e criar o gráfico de progresso
+function atualizar_grafico_progresso() {
+
+   var somaRespostasTexto = "Respondidas: " + Math.round(progresso * 35) + "/35"; 
+
+   if (circle && circle.entries && circle.entries[0]) {
+       circle.entries[0].progress = progresso;
+       circle.entries[0].info = somaRespostasTexto;
+   }
+}
+
         window.onload = function() {
             exibir_pergunta();
             criar_grafico_progresso();
@@ -164,14 +128,11 @@
     </script>
 </head>
 <body>
-    <!-- Elemento para o gráfico de progresso -->
     <div>
-        <canvas id="grafico_progresso" width="400" height="200"></canvas>
+        <canvas id="grafico_progresso"></canvas>
     </div>
 
-    <!-- Elemento para a avaliação de respostas -->
     <div id="pergunta">
-        <!-- Este div será preenchido com a pergunta e os botões de resposta -->
     </div>
 </body>
 </html>

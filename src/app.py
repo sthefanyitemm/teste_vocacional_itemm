@@ -6,30 +6,11 @@ from src.routes.routes import *
 from src.controler import *
 from src.db import *
 from src.utils.sendmail import send_email
+import pymysql.cursors
 
 
 
 app = Flask(__name__,template_folder='templates')
-
-@app.route('/salvar_respostas', methods=['POST'])
-def salvar_respostas():
-    resposta = int(request.json.get('resposta'))
-    //
-    valores = [10, 20, 30]
-    perguntas = ['Pergunta 1', 'Pergunta 2', 'Pergunta 3']
-    
-    # Exibir o gráfico de rosca
-    fig, ax = plt.subplots()
-    ax.pie(valores, labels=perguntas, autopct='%1.1f%%', startangle=140)
-    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    # Salvar a imagem do gráfico em memória
-    buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    # Converter a imagem em formato base64 para ser exibida no HTML
-    grafico_base64 = base64.b64encode(buffer.read()).decode('utf-8')
-    plt.close(fig)  # Fechar a figura para liberar a memória
-    return 'data:image/png;base64,' + grafico_base64
 
 @app.route('/send_email', methods=['POST'])
 def send_email_route():
@@ -55,7 +36,44 @@ def statebycountry(get_cidade):
     return jsonify({'cidadeestado': cidadeArray})
 
 
+# Rota para verificar a senha
+@app.route('/verificar_senha', methods=['POST'])
+def verificar_senha():
+    # Obter os dados do formulário
+    senha_digitada = request.form['senha']
+    email = request.form['email']
+    
+    # Conectar ao banco de dados
+    connection = pymysql.connect(host='localhost', port=3306, user='root', passwd='Itemm@', database='teste_prod')
 
+    try:
+        with connection.cursor() as cursor:
+        # Consulta SQL para obter a senha armazenada no banco de dados
+            sql = "SELECT senha, email FROM login WHERE email = %s"
+            cursor.execute(sql, (email,))
+            result = cursor.fetchone()
+
+            if result:
+                senha_banco = result[0]  # Acessar a senha pelo índice da coluna na tupla
+
+            # Comparar a senha digitada com a senha do banco de dados
+                if senha_digitada != senha_banco:
+                # Senha incorreta, retornar mensagem de erro
+                    return "Erro: Senha incorreta."
+                else:
+                # Senha correta, conceder acesso
+                    #return "Senha correta. Acesso concedido."
+                 return "Senha correta. Acesso concedido."
+                 
+                
+                
+            else:
+            # Usuário não encontrado, retornar mensagem de erro
+                return "Erro: Usuário não encontrado."
+
+    finally:
+    # Fechar conexão com o banco de dados
+        connection.close()
 
 app.add_url_rule(routes["home"], view_func=HomeController.as_view('home'))
 app.add_url_rule(routes["cadastro"], view_func=CadastroController.as_view('cadastro'))
@@ -63,4 +81,4 @@ app.add_url_rule('/perguntas', view_func=PerguntasController.as_view('perguntas'
 app.add_url_rule('/cidades', view_func=CadastroController.as_view('obter_cidades'))
 app.add_url_rule('/resultados', view_func=ResultadosController.as_view('resultados'))
 app.add_url_rule('/login', view_func=LoginController.as_view('login'))
-app.add_url_rule('/plogin', view_func=PloginController.as_view('plogin'))
+app.add_url_rule('/reset', view_func=ResetController.as_view('reset'))

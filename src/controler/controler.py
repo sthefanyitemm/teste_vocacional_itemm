@@ -30,6 +30,7 @@ class CadastroController(MethodView):
             connection = get_mysql_connection()
             name = request.form.get('nome')
             email = request.form.get('email')
+            senha = request.form.get('senha')
             telefone = request.form.get('telefone')
             sexo = request.form.get('sexo')
             estado = request.form.get('estado')
@@ -44,8 +45,8 @@ class CadastroController(MethodView):
                 connection.commit()
 
             with connection.cursor() as cur:
-                cur.execute("INSERT INTO login (email) VALUES (%s)",
-                            (email))
+                cur.execute("INSERT INTO login (email,senha) VALUES (%s,%s)",
+                            (email,senha))
                 connection.commit()
 
         except Exception as e:
@@ -53,7 +54,8 @@ class CadastroController(MethodView):
         finally:
             if connection:
                 connection.close()
-
+        
+    
         return redirect('/cadastro')
 
 
@@ -66,12 +68,15 @@ class PerguntasController(MethodView):
      
 class ResultadosController(MethodView):
     def get(self):
-        return render_template('resultados.html')
+      soma_respostas = request.args.get('soma')
+    # Renderizar a página de resultados
+      return render_template('resultados.html', soma_respostas=soma_respostas)
 
 class LoginController(MethodView):
     def get(self):
-        return render_template('login.html')
+        soma_respostas = request.args.get('soma', '')
+        return render_template('login.html', soma_respostas=soma_respostas)
     
-class PloginController(MethodView):
+class ResetController(MethodView):
     def get(self):
-        return render_template('primeirologin.html')
+        return render_template('reset.html')

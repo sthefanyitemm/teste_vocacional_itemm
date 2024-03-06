@@ -4,15 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <p>Qual e-mail cadastrado?</p>
-    <p>Primeiro login? <button  type="button" class="btn btn-success" onclick="window.location.href = 'plogin';">Clique aqui</button></p>
     <label>Email:</label>
-    <input type="email">
+    <input type="text" placeholder="Seu email" name="email" id="email">
     <label>Senha:</label>
-    <input type="text">
-    <button  type="button" class="btn btn-success" onclick="window.location.href = 'resultados';">Send</button>
-    <a href="/plogin">Esqueci minha senha</a>
+    <input type="password" placeholder="Exemplo@04" name="senha" id="senha" >
+    <button type="button" class="btn btn-success" onclick="verificarSenha()">Send</button>
+
+    <a href="/reset">Esqueci minha senha</a>
+    <p>Ainda não tem cadastro? <a href="#" id="link_cadastro">Cadastre-se</a></p>
+    
+
+    <script>
+        $(document).ready(function() {
+            // Extrair a somaRespostas da URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var somaRespostas = urlParams.get('soma');
+
+            // Manipulador de evento para o link "Cadastre-se"
+            $('#link_cadastro').on('click', function(event) {
+                event.preventDefault(); // Evita que o link seja seguido imediatamente
+
+                // Redireciona para a página de cadastro com a soma das respostas
+                if (somaRespostas) {
+                    window.location.href = "/cadastro?soma=" + somaRespostas;
+                } else {
+                    console.error("A variável somaRespostas não está definida.");
+                }
+            });
+        });
+
+        function verificarSenha() {
+            var senha = $('#senha').val();
+            var email = $('#email').val();
+            var urlParams = new URLSearchParams(window.location.search);
+            var somaRespostas = urlParams.get('soma');
+            // Enviar solicitação POST para o servidor
+            $.post('/verificar_senha', {senha: senha, email: email}, function(data) {
+                // Verificar se a senha está correta
+                if (data === "Senha correta. Acesso concedido.") {
+                    // Redirecionar para a página de resultados
+                    window.location.href = "/resultados?soma=" + somaRespostas;
+                } else {
+                    // Exibir a mensagem de erro
+                    alert(data);
+                }
+            });
+        }
+
+        
+    </script>
+    
+
 </body>
 </html>

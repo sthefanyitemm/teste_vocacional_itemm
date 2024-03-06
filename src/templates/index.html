@@ -10,8 +10,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>Já tem o e-mail cadastrado? Clique aqui para fazer o login</p>
-                    <button  type="button" class="btn btn-success" onclick="window.location.href = 'login';">Login</button>
                 <div class="form-group">
                     {% block content %}
                     <form action="/cadastro" method="POST">
@@ -22,7 +20,9 @@
                         <p>E-mail<input type="text" name="email" placeholder="DIGITE AQUI" /></p>
                            <!-- Adicione um elemento <span> para exibir a mensagem de erro -->
                         <span id="error-message" style="color: red;"></span>
-
+                        <p>Senha<input type="text" name="senha" placeholder="DIGITE AQUI" /></p>
+                        <!-- Adicione um elemento <span> para exibir a mensagem de erro -->
+                     <span id="error-message" style="color: red;"></span>
                         <label for="estado">Estado:</label>
                         <select class="form-control" name="estado" id="estado" style="width: 300px;"> 
                             <option>Selecionar</option>
