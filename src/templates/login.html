@@ -11,42 +11,32 @@
     <input type="text" placeholder="Seu email" name="email" id="email">
     <label>Senha:</label>
     <input type="password" placeholder="Exemplo@04" name="senha" id="senha" >
-    <button type="button" class="btn btn-success" onclick="verificarSenha()">Send</button>
+    <button type="button" class="btn btn-success" onclick="verificarSenha()">enviar</button>
 
     <a href="/reset">Esqueci minha senha</a>
     <p>Ainda não tem cadastro? <a href="#" id="link_cadastro">Cadastre-se</a></p>
-    
 
     <script>
         $(document).ready(function() {
-            // Extrair a somaRespostas da URL
-            var urlParams = new URLSearchParams(window.location.search);
-            var somaRespostas = urlParams.get('soma');
-
             // Manipulador de evento para o link "Cadastre-se"
             $('#link_cadastro').on('click', function(event) {
                 event.preventDefault(); // Evita que o link seja seguido imediatamente
-
-                // Redireciona para a página de cadastro com a soma das respostas
-                if (somaRespostas) {
-                    window.location.href = "/cadastro?soma=" + somaRespostas;
-                } else {
-                    console.error("A variável somaRespostas não está definida.");
-                }
+                // Redireciona para a página de cadastro
+                var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+                window.location.href = "/cadastro?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
             });
         });
 
         function verificarSenha() {
             var senha = $('#senha').val();
             var email = $('#email').val();
-            var urlParams = new URLSearchParams(window.location.search);
-            var somaRespostas = urlParams.get('soma');
             // Enviar solicitação POST para o servidor
+            var aptidoes = JSON.parse(getParameterByName('aptidoes'));
             $.post('/verificar_senha', {senha: senha, email: email}, function(data) {
                 // Verificar se a senha está correta
                 if (data === "Senha correta. Acesso concedido.") {
                     // Redirecionar para a página de resultados
-                    window.location.href = "/resultados?soma=" + somaRespostas;
+                    window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
                 } else {
                     // Exibir a mensagem de erro
                     alert(data);
@@ -54,9 +44,15 @@
             });
         }
 
-        
+        function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
     </script>
-    
-
 </body>
 </html>

@@ -4,25 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <button type="button" class="btn btn-light" onclick="window.location.href='/'">Home</button>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-4">
+                <h1>Vagas!</h1>
+                <p>Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários</p>
+                    <button type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
+            </div>
+            <div class="col-8">
                 <div class="form-group">
                     {% block content %}
                     <form action="/cadastro" method="POST">
-                        <p>Nome Completo<input type="text" name="nome" placeholder="DIGITE AQUI" /></p>
+                        <p>Nome Completo: <input type="text" name="nome" placeholder="DIGITE AQUI" /></p>
                         <label for="date">Data:</label>
                         <input type="date" name="date" id="date">
-                        <p>Telefone/WhatsApp<input type="integer" name="telefone" placeholder="(99)99999-9999" /></p>
-                        <p>E-mail<input type="text" name="email" placeholder="DIGITE AQUI" /></p>
-                           <!-- Adicione um elemento <span> para exibir a mensagem de erro -->
-                        <span id="error-message" style="color: red;"></span>
-                        <p>Senha<input type="text" name="senha" placeholder="DIGITE AQUI" /></p>
-                        <!-- Adicione um elemento <span> para exibir a mensagem de erro -->
-                     <span id="error-message" style="color: red;"></span>
+                        <p>Telefone/WhatsApp:<input type="integer" name="telefone" placeholder="(99)99999-9999" /></p>
+                       
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="text" name="email" placeholder="Digite seu e-mail" />
+                        </div>
+                        
+                        {% if error_message %}
+                        <div class="alert alert-danger" role="alert" style="display: block;">
+                            {{ error_message }}
+                        </div>
+                        
+                        {% endif %}
+                        
+                      
+                    
+                        <p>Senha:<input type="password" id="senha" placeholder="DIGITE AQUI" /></p>
+                        
+                        
+                    
                         <label for="estado">Estado:</label>
                         <select class="form-control" name="estado" id="estado" style="width: 300px;"> 
                             <option>Selecionar</option>
@@ -51,9 +71,11 @@
                         </select>
                         
                         <!-- Modal -->
-                        <div><input type="checkbox" id="lgpd" checked="checked" name="lgpd">
-                            <a href="#" id="openModal">Aceite LGPD</a>
+                        <div><p><input type="checkbox" id="lgpd" checked="checked" name="lgpd"> Li e concordo com a LGPD - Lei Geral de Proteção de Dados.
+                            <a style="font-size: 11px;" href="#" id="openModal"> Abrir termo de LGPD- Lei Geral de Portação de Dados</a>
                            
+                        </p>
+                          
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -77,14 +99,17 @@
                         </div>
                         <!-- Fim Modal -->
 
-                        <p> <input type="checkbox" name="confirm" id="confirm"/> confmemail</p>
+                        <p > <input type="checkbox" name="confirm" id="confirm"/> Autorizo o envio de e-mails com vagas correspondentes ao meu perfil.</p>
                     </div>
-                    <input class="btn btn-success" type="submit" id="submit" value="Submit" disabled />
+                    <input class="btn btn-success" type="submit" id="submit" value="Concluir cadastro e descobrir resultado do teste" disabled />
                 </form>
                 {% endblock %}
             </div>
         </div>
+       
     </div>
+                
+
 </div>
 
   <!-- Script para dropdown  cidade/estado -->  
@@ -113,10 +138,10 @@ document.getElementById('estado').addEventListener('change', function() {
         document.querySelector('form').addEventListener('submit', function(event) {
             // Impede o envio padrão do formulário
             event.preventDefault();
-    
+
             // Obtém os dados do formulário
             var formData = new FormData(this);
-    
+
             // Envia os dados para o servidor
             fetch('/cadastro', {
                 method: 'POST',
@@ -137,12 +162,12 @@ document.getElementById('estado').addEventListener('change', function() {
                     }
     
                     // Obtém o parâmetro 'soma' da URL
-                    var somaRespostas = getParameterByName('soma');
+                    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
                     
                     // Se 'somaRespostas' não for nulo, faça algo com ele
-                    if (somaRespostas !== null) {
+                    if (aptidoes !== null) {
                         // Redireciona para a página de resultados
-                        window.location.href = "/resultados?soma=" + somaRespostas;
+                        window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
                     } else {
                         console.error('Erro: somaRespostas não definido na URL.');
                     }
@@ -156,7 +181,7 @@ document.getElementById('estado').addEventListener('change', function() {
             });
         });
     });
-    </script>
+</script>
     
     
 
@@ -194,7 +219,6 @@ document.getElementById('estado').addEventListener('change', function() {
       });
     });
 </script>
-
 
 
 

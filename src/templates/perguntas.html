@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Avaliação de Respostas</title>
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
     <script src="//qiao.github.io/ProgressCircle.js/ProgressCircle.min.js"></script>
     <style>
         /* Estilos CSS */
@@ -11,11 +12,58 @@
         }
     </style>
     <script>
-        var perguntas = [
-            { pergunta: "Eu não gosto de mudanças inesperadas.", valor: 0 },
-            { pergunta: "Eu não gosto de pressão.", valor: 0 },
-            { pergunta: "Eu sou multi-tarefas.", valor: 0 }
+              var perguntas = [
+            // Grupo I
+            { pergunta: "Eu consigo manter o ritmo de uma música com um instrumento de percussão.", valor: 0, aptidao: "Musical" },
+            { pergunta: "Eu consigo me lembrar com detalhes importantes de lugares que visitei", valor: 0, aptidao: "Espacial" },
+            { pergunta: "Eu percebo como as pessoas se sentem em seus relacionamentos", valor: 0, aptidao: "Interpessoal" },
+            { pergunta: "Eu geralmente sei como me sinto em relação às coisas e a meus sentimentos", valor: 0, aptidao: "Intrapessoal" },
+            { pergunta: "Eu sempre quero saber como as coisas funcionam", valor: 0, aptidao: "Matemática" },
+            { pergunta: "Minhas melhores idéias surgem em uma caminhada ou corrida", valor: 0, aptidao: "Cinestésica" },
+            { pergunta: "Sou ótimo em jogos de palavras cruzadas, anagramas e cruzadinhas", valor: 0, aptidao: "Linguística" },
+            // Grupo II
+            { pergunta: "Aprendo novos esportes com facilidade", valor: 0, aptidao: "Cinestésica" },
+            { pergunta: "Eu tenho um interesse grande em saber mais sobre eu mesmo", valor: 0, aptidao: "Intrapessoal" },
+            { pergunta: "Línguas e estudos sociais são mais fáceis para min do que ciências exatas", valor: 0, aptidao: "Linguística" },
+            { pergunta: "Matemática e ciências são minhas matérias preferidas na escola", valor: 0, aptidao: "Matemática" },
+            { pergunta: "Para eu Geometria é mais fácil do que outras matérias da escola", valor: 0, aptidao: "Espacial" },
+            { pergunta: "Quando sei alguma coisa, gosto de ensinar para outras pessoas", valor: 0, aptidao: "Interpessoal" },
+            { pergunta: "Toco um instrumento musical", valor: 0, aptidao: "Musical" },
+            // Grupo III
+            { pergunta: "Eu organizo as coisas em minha mesa de trabalho com categoria e padrão", valor: 0, aptidao: "Matemática" },
+            { pergunta: "Eu prefiro passar a noite em casa do que em uma festa animada", valor: 0, aptidao: "Intrapessoal" },
+            { pergunta: "Eu tenho facilidade para resolver quebra cabeça", valor: 0, aptidao: "Espacial" },
+            { pergunta: "Gosto de passar meu tempo ao ar livre", valor: 0, aptidao: "Cinestésica" },
+            { pergunta: "Minha coleção musical está entre as coisas mais preciosas para mim", valor: 0, aptidao: "Musical" },
+            { pergunta: "Prefiro praticar esportes em equipes", valor: 0, aptidao: "Interpessoal" },
+            { pergunta: "Meus livros estão entre as coisas mais preciosas para mim", valor: 0, aptidao: "Linguística" },
+            // Grupo IV
+            { pergunta: "Eu acho difícil ficar sentado quieto por muito tempo", valor: 0, aptidao: "Cinestésica" },
+            { pergunta: "Eu acredito que quase tudo tem uma explicação racional", valor: 0, aptidao: "Matemática" },
+            { pergunta: "Eu consigo facilmente me orientar em locais pouco conhecidos", valor: 0, aptidao: "Espacial" },
+            { pergunta: "Eu consigo perceber quando uma nota musical está desafinada", valor: 0, aptidao: "Musical" },
+            { pergunta: "Eu me sinto confortável em meio a uma multidão", valor: 0, aptidao: "Interpessoal" },
+            { pergunta: "Penso em ter meu próprio negócio e ser meu chefe", valor: 0, aptidao: "Intrapessoal" },
+            { pergunta: "Eu percebo erros gramaticais quando outras pessoas falam, nem sempre as corrijo", valor: 0, aptidao: "Linguística" },
+            // Grupo V
+            { pergunta: "As pessoas costumam me ver como solitário", valor: 0, aptidao: "Intrapessoal" },
+            { pergunta: "As pessoas dizem que eu tenho uma voz agradável", valor: 0, aptidao: "Musical" },
+            { pergunta: "Costumo desafiar meus amigos em jogos estratégicos", valor: 0, aptidao: "Matemática" },
+            { pergunta: "Costumo gesticular bastante quando estou conversando com as pessoas", valor: 0, aptidao: "Cinestésica" },
+            { pergunta: "Eu consigo visualizar imagens claramente quando fecho os olhos", valor: 0, aptidao: "Espacial" },
+            { pergunta: "Eu me lembro de frases de efeito ou citações e uso-as como em conversas", valor: 0, aptidao: "Linguística" },
+            { pergunta: "Tenho pelo menos, três amigos íntimos", valor: 0, aptidao: "Interpessoal" }
         ];
+
+        var aptidoes = {
+            "Musical": 0,
+            "Espacial": 0,
+            "Interpessoal": 0,
+            "Intrapessoal": 0,
+            "Matemática": 0,
+            "Cinestésica": 0,
+            "Linguística": 0
+        };
 
         var perguntaAtualIndex = 0;
         var somaRespostas = 0;
@@ -29,17 +77,20 @@
             var perguntaAtual = perguntas[perguntaAtualIndex];
             perguntaAtual.valor = parseInt(resposta);
 
+            // Atualizar respostas por tipo
+            aptidoes[perguntaAtual.aptidao] += perguntaAtual.valor;
+
             perguntaAtualIndex++;
             if (perguntaAtualIndex < perguntas.length) {
                 exibir_pergunta();
                 addProgress();
             } else {
-                window.location.href = "/login?soma=" + somaRespostas;
+                // Redirecionar para a página de resultados com os parâmetros na URL
+                window.location.href = "/login?soma=" + somaRespostas + "&aptidoes=" + JSON.stringify(aptidoes);
             }
-            
-        }// fazer o mesmo aqui para cadastro
+        }
 
-        function votar_pergunta_anterior() {
+            function votar_pergunta_anterior() {
             if (perguntaAtualIndex > 0) {
                 perguntaAtualIndex--;
                 var perguntaAnterior = perguntas[perguntaAtualIndex];
@@ -55,11 +106,10 @@
         function exibir_pergunta() {
             var perguntaAtual = perguntas[perguntaAtualIndex];
           
-
             document.getElementById("pergunta").innerHTML = `
                 <p>${perguntaAtual.pergunta}</p>
                
-                <input type="radio" name="resposta" value="0"> 0
+          	 <input type="radio" name="resposta" value="0"> 0
                 <input type="radio" name="resposta" value="1"> 1
                 <input type="radio" name="resposta" value="2"> 2
                 <input type="radio" name="resposta" value="3"> 3
@@ -73,53 +123,52 @@
         }
 
         function criar_grafico_progresso() {
-    var myCanvas = document.getElementById('grafico_progresso');
+            var myCanvas = document.getElementById('grafico_progresso');
 
-    if (myCanvas) {
-        circle = new ProgressCircle({
-            canvas: myCanvas,
-            minRadius: 30
-        });
+            if (myCanvas) {
+                circle = new ProgressCircle({
+                    canvas: myCanvas,
+                    minRadius: 30
+                });
 
-        circle.addEntry({
-            fillColor: 'rgba(152, 155, 225, 1)',
-            progressListener: function() {
-                return progresso;
-            },
-            infoListener: function() {
-                return texto;
-            },
-        });
+                circle.addEntry({
+                    fillColor: 'rgba(152, 155, 225, 1)',
+                    progressListener: function() {
+                        return progresso;
+                    },
+                    infoListener: function() {
+                        return texto;
+                    },
+                });
 
-        circle.start(35); // Ajustado para um total de 35 tarefas
-    } else {
-        console.error("O elemento 'grafico_progresso' não foi encontrado.");
-    }
-}
+                circle.start(35); // Ajustado para um total de 35 tarefas
+            } else {
+                console.error("O elemento 'grafico_progresso' não foi encontrado.");
+            }
+        }
 
-function addProgress() {
-    progresso += 0.0286; // Ajustado para um total de 35 tarefas
-    texto ="Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
+        function addProgress() {
+            progresso += 0.0286; // Ajustado para um total de 35 tarefas
+            texto ="Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
 
-    atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
-}
+            atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
+        }
 
-function regressarProgresso() {
-    progresso -= 0.0286; // Ajustado para um total de 35 tarefas
-    texto = "Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
+        function regressarProgresso() {
+            progresso -= 0.0286; // Ajustado para um total de 35 tarefas
+            texto = "Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
 
-    atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
-}
+            atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
+        }
 
-function atualizar_grafico_progresso() {
+        function atualizar_grafico_progresso() {
+            var somaRespostasTexto = "Respondidas: " + Math.round(progresso * 35) + "/35"; 
 
-   var somaRespostasTexto = "Respondidas: " + Math.round(progresso * 35) + "/35"; 
-
-   if (circle && circle.entries && circle.entries[0]) {
-       circle.entries[0].progress = progresso;
-       circle.entries[0].info = somaRespostasTexto;
-   }
-}
+            if (circle && circle.entries && circle.entries[0]) {
+                circle.entries[0].progress = progresso;
+                circle.entries[0].info = somaRespostasTexto;
+            }
+        }
 
         window.onload = function() {
             exibir_pergunta();
@@ -128,11 +177,21 @@ function atualizar_grafico_progresso() {
     </script>
 </head>
 <body>
-    <div>
-        <canvas id="grafico_progresso"></canvas>
-    </div>
+    <button type="button" class="btn btn-success" onclick="window.location.href='/'">Home</button>
+   <div class="container"> 
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <canvas id="grafico_progresso"></canvas>
+        </div>
+    <div class="col-8 col-md-8">
+        <div  id="pergunta">
 
-    <div id="pergunta">
+        </div>
     </div>
+      
+    </div>
+   </div>
+  
+
 </body>
 </html>

@@ -2,7 +2,9 @@ from flask import render_template, request, redirect,jsonify
 from flask.views import MethodView
 from src.db import  get_mysql_connection
 from src.db import get_estados
+import requests
 import mysql.connector
+from urllib.parse import urlparse,urlunparse
 #from src.rosca import exibir_grafico_rosca
 #from src.routes import *
 #from src.routes.routes import get_routes
@@ -10,10 +12,13 @@ import mysql.connector
 #from src.utils import cidadebyestado
 from tkinter import messagebox
 
+from flask.views import MethodView
+
 class HomeController(MethodView):
     def get(self):
-        
-            return render_template('home.html')
+        # Lógica para manipular a requisição GET da rota /api/data
+         return render_template('homes.html')
+
  
 
 class CadastroController(MethodView):
@@ -51,13 +56,13 @@ class CadastroController(MethodView):
 
         except Exception as e:
             print(f"Erro ao cadastrar pessoa no banco de dados: {e}")
+            return render_template('index.html', error_message="Usuário já cadastrado. Por favor, tente novamente com um e-mail diferente.")
+
         finally:
             if connection:
                 connection.close()
-        
     
         return redirect('/cadastro')
-
 
     
 
@@ -68,15 +73,18 @@ class PerguntasController(MethodView):
      
 class ResultadosController(MethodView):
     def get(self):
-      soma_respostas = request.args.get('soma')
+      #soma_respostas = request.args.get('soma')
     # Renderizar a página de resultados
-      return render_template('resultados.html', soma_respostas=soma_respostas)
+      return render_template('resultados.html')
 
 class LoginController(MethodView):
     def get(self):
-        soma_respostas = request.args.get('soma', '')
-        return render_template('login.html', soma_respostas=soma_respostas)
+        #soma_respostas = request.args.get('soma', '')
+        return render_template('login.html')
     
 class ResetController(MethodView):
     def get(self):
         return render_template('reset.html')
+    
+
+

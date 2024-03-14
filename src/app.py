@@ -7,10 +7,17 @@ from src.controler import *
 from src.db import *
 from src.utils.sendmail import send_email
 import pymysql.cursors
+from flask import redirect
+from urllib.parse import urlparse,urlunparse
+from flask import Blueprint
+#from src.routes import api_blueprint
+
 
 
 
 app = Flask(__name__,template_folder='templates')
+
+
 
 @app.route('/send_email', methods=['POST'])
 def send_email_route():
@@ -74,6 +81,10 @@ def verificar_senha():
     finally:
     # Fechar conexão com o banco de dados
         connection.close()
+
+
+
+
 
 app.add_url_rule(routes["home"], view_func=HomeController.as_view('home'))
 app.add_url_rule(routes["cadastro"], view_func=CadastroController.as_view('cadastro'))

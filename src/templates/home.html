@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste Vocacional - ITEMM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <html>
+  <head>
+    <script src="http://localhost:8097"></script>
 </head>
 <body>
-    <p>Bem vindo!</p>
-    <button  type="button" class="btn btn-success" onclick="window.location.href = 'perguntas';">Teste Vocacional</button>
+    <!-- Aqui você pode deixar o conteúdo vazio, pois o React irá renderizar -->
+    <div id="root"></div>
+
+    <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+    <script>{`
+        (function() {
+          var info = console.info
+          console.info = function (message) {
+            if (!/Download the React DevTools/.test(message)) info.apply(console, arguments) 
+          }
+        })()
+      `}</script>
 </body>
 </html>

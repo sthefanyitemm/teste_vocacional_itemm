@@ -4,48 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados</title>
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  />
+
+<!-- CSS do projeto -->
+   <link rel="stylesheet" href="style.css" />
+
+
+   <!-- JavaScript Bootstrap -->
+   <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous"
+   ></script>
+
 </head>
 <body>
-    <div id="resultadoSoma"></div>
-
-    <script>
-        // Função para recuperar parâmetro da URL
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
-
-        // Obtém o parâmetro 'soma' da URL
-        var soma = getParameterByName('soma');
-
-        // Exibe a soma na div resultadoSoma
-        document.getElementById('resultadoSoma').innerHTML = 'A soma total é: ' + soma;
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados</title>
-</head>
-<body>
-    <div id="resultadoSoma">
-        <div>
-            
-            <button  type="button" class="btn btn-success" onclick="window.location.href = 'perguntas';">Refazer o teste</button>
-             
-        </div>
+  <button type="button" class="btn btn-light" onclick="window.location.href='/'">Home</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-7">
+        <h1>Confira o resultado do seu teste!</h1>
+        <h1>Suas maiores características são:</h1>
+        <p style="margin-top: 30px; text-align: justify;">O teste identificou algumas perguntas que abordam vários aspectos de afinidades. Com base nas suas respostas, apontamos as áreas que mais se encaixam com o seu perfil. Ressaltamos a importância da sinceridade ao responder para obter resultados mais precisos.</p>
+        <button  type="button" class="btn btn-secondary" onclick="window.location.href = 'perguntas';">REFAZER O TESTE</button>
+      </div>
+      <div class="col-5">
+        <img decoding="async" width="75%" height="100%" src="https://s3-alpha-sig.figma.com/img/074b/8e4e/06a1bf7ea61a7b4ecc5535598683bd81?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qM84FsNm~VEa-DU5LY1-z~6eBkSe6xxr9d915fYXArSIr1mgSmLVdi30bTIN8H3sdjn~i70qD1lgTUQmkt7QJ3YPL6ecRAP6C2AhRkP5sIxnNHUr3Zo2Y4enMvrrcw-wu0Aslc7bMbx36CzH6Pi2psRFBL3cm3o831SBu5JCBzB5Cd4PHQKueKedHXInYwQt3uw-4kRU9jCWgqhhSmAhP1-kCN2-~jGo7Nati8z8Oft0WpS1JqT13VGtGUbs5ax-ZZaW4rT1UbsxwcEDPxXtcKqUrtTMFoNCXf2dbQ4l8BoQfey~xRpvQn9HY-Obcry7kQo8SbqKALv99uFixqkoVQ__" class="attachment-large size-large wp-image-981" alt="">								</a>
+      </div>
+      <div class="col-12">
+        <div id="resultadoSoma"></div>
+        <div id="resultadoAptidoes"></div>
+        <canvas id="grafico" width="200" height="35"></canvas>
+      </div>
     </div>
+  </div>
+  
+
 
     <script>
-        // montar logica se clicar botão acima vai direto perguntas else botão cadastro/login
         // Função para recuperar parâmetro da URL
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
@@ -56,12 +64,147 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
+        
 
-        // Obtém o parâmetro 'soma' da URL
-        var soma = getParameterByName('soma');
+        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
 
-        // Exibe a soma na div resultadoSoma
-        document.getElementById('resultadoSoma').innerHTML = 'Resultado: ' + soma;
+// Criar uma matriz de objetos com nome e resultado de cada aptidão
+var aptidoesArray = [];
+for (var aptidao in aptidoes) {
+    aptidoesArray.push({ nome: aptidao, resultado: aptidoes[aptidao] });
+}
+
+ //Classificar as aptidões com base no resultado (em ordem decrescente)
+aptidoesArray.sort(function(a, b) {
+    return b.resultado - a.resultado;
+});
+
+// Construir o HTML do ranking das aptidões
+var resultadoAptidoesHtml = '<h2>Teste Vocacional:</h2><br><p>Resultado do teste:</p>';
+
+for (var i = 0; i < aptidoesArray.length; i++) {
+    var aptidao = aptidoesArray[i];
+    //resultadoAptidoesHtml += '<p>' + aptidao.nome + ': ' + aptidao.resultado + '</p>';
+}
+
+// Exibir o ranking na div resultadoAptidoes
+document.getElementById('resultadoAptidoes').innerHTML = resultadoAptidoesHtml;
+
+        // função grafico de coluna 
+
+        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+
+// Objeto para armazenar a soma total das respostas para cada inteligência
+var somaPorInteligencia = {};
+
+// Calcular a soma total das respostas para cada inteligência
+for (var questao in aptidoes) {
+    var inteligencia = questao.split('_')[0]; // Obtém o nome da inteligência da questão
+    if (!somaPorInteligencia[inteligencia]) {
+        somaPorInteligencia[inteligencia] = 0;
+    }
+    somaPorInteligencia[inteligencia] += aptidoes[questao];
+}
+
+// Preparar os dados para o gráfico
+var labels = Object.keys(somaPorInteligencia);
+var valores = labels.map(function(inteligencia) {
+    return (somaPorInteligencia[inteligencia] * 100) / 30;
+});
+
+// Configuração do gráfico
+var ctx = document.getElementById('grafico').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Soma Total das Respostas por Inteligência',
+            data: valores,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Cor de fundo das barras
+            borderColor: 'rgba(54, 162, 235, 1)', // Cor da borda das barras
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true // Começar o eixo y a partir do zero
+                }
+            }]
+        }
+    }
+});
+
+
     </script>
+    <section  id="cursos">
+        <div class="container" id="featured-container">
+          <div class="col-12">
+           
+            <h2 style="margin-top: 30px;"  class="subtitle secondary-color">
+             <strong> Conheça nossos cursos:</strong>
+            </h2>
+            <p>Acesse os cursos clicando nos quadrantes abaixo ou consulte todos os cursos disponíveis em nossa plataforma</p>
+          </div>
+          <div class="col-12" id="featured-images">
+            <div class="row g-4">
+              <div class="col-12 col-md-4">
+                <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha/">
+                    <img decoding="async" width="198" height="207" src="https://itemm.com.br/wp-content/uploads/2023/08/p1_trilha2.png" class="attachment-large size-large wp-image-981" alt="">								</a>
+                <div class="banner-content">
+                  <p class="secondary-color">Educação Financeira</p>
+                
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha-pacote-office/">
+                    <img decoding="async" width="202" height="207" src="https://itemm.com.br/wp-content/uploads/2023/08/p2_trilha.png" class="attachment-large size-large wp-image-982" alt="">								</a>
+                <div class="banner-content">
+                  <p class="secondary-color">Pacote Office</p>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha-itemm-pacote-office/">
+                    <img decoding="async" width="198" height="207" src="https://itemm.com.br/wp-content/uploads/2023/08/p1_office_libras.png" class="attachment-large size-large wp-image-980" alt="">								</a>
+                <div class="banner-content">
+                  <p class="secondary-color">Libras</p>
+                </div>
+              </div>
+         
+            </div>
+            <button type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/projeto-trilha/'">Ver todos os cursos</button>
+
+            
+
+          </div>
+   <div class="container pt-4">
+    <div class="row">
+   <div class="col-6">
+    <img decoding="async" width="202" height="207" src="https://th.bing.com/th/id/OIP.6-DX0kbIJBEUhkbOy8YRrAAAAA?rs=1&pid=ImgDetMain" class="attachment-large size-large wp-image-982" alt="">								</a>
+    <h1>VAGAS!</h1>
+      <p>Confira nossas vagas!</p>
+      <p>Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários.</p>
+    <button type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
+   
+   </div>
+   <div class="col-6 ">
+    <button type="button" class="btn btn-success" onclick="window.location.href='/home'">Home</button>
+   </div>
+    </div>
+   </div>
+        </div>
+        <footer>
+          <div>
+            <div class="row">
+                <div class="pb-4">
+                  
+                </div>
+            </div>
+          </div>
+
+        </footer>
 </body>
+
 </html>
