@@ -2,15 +2,40 @@
 <html>
 <head>
     <title>Avaliação de Respostas</title>
+
     <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
     <script src="//qiao.github.io/ProgressCircle.js/ProgressCircle.min.js"></script>
-    <style>
-        /* Estilos CSS */
-        #grafico_progresso {
-            width: 400px; /* Definir uma largura para o canvas */
-            height: 400px; /* Definir uma altura para o canvas */
-        }
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  />
+
+
+   <!-- JavaScript Bootstrap -->
+   <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous"
+   ></script>
+ 
+   <style>
+    /* Estilos CSS */
+    #grafico_progresso {
+        width: 300px; /* Definir uma largura para o canvas */
+        height: 175px; /* Definir uma altura para o canvas */
+    }
     </style>
+
+
     <script>
               var perguntas = [
             // Grupo I
@@ -117,8 +142,8 @@
                 <input type="radio" name="resposta" value="5"> 5
                 <input type="radio" name="resposta" value="6"> 6
                 <br>
-                <button type="button" onclick="votar_pergunta_anterior()">Voltar</button>
-                <button type="button" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
+                <button style="margin-top: 15px;" type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
+                <button style="margin-top: 15px;" type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
             `;
         }
 
@@ -177,14 +202,14 @@
     </script>
 </head>
 <body>
-    <button type="button" class="btn btn-success" onclick="window.location.href='/'">Home</button>
+    <button type="button" class="btn btn-light" onclick="window.location.href='/'">Home</button>
    <div class="container"> 
     <div class="row">
         <div class="col-12 col-md-4">
-            <canvas id="grafico_progresso"></canvas>
+            <canvas style="margin: 15px;" id="grafico_progresso"></canvas>
         </div>
-    <div class="col-8 col-md-8">
-        <div  id="pergunta">
+    <div class="col-8 col-md-8 pt-4">
+        <div style="margin: 3px;" id="pergunta">
 
         </div>
     </div>

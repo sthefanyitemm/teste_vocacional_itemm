@@ -6,6 +6,14 @@
     <title>Cadastro</title>
     <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .rounded-input {
+            border-radius: 5px; /* Define o raio de arredondamento das bordas */
+            border: 1px solid #ccc; /* Adiciona uma borda para melhorar a aparência */
+            padding: 5px; /* Adiciona um espaçamento interno ao redor do texto */
+        }
+    </style>
+    
 </head>
 <body>
     <button type="button" class="btn btn-light" onclick="window.location.href='/'">Home</button>
@@ -16,18 +24,18 @@
                 <p>Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários</p>
                     <button type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
             </div>
-            <div class="col-8">
-                <div class="form-group">
+            <div class="col-8" >
+                <div class="form-group" style="margin: 5px;">
                     {% block content %}
                     <form action="/cadastro" method="POST">
-                        <p>Nome Completo: <input type="text" name="nome" placeholder="DIGITE AQUI" /></p>
+                        <p>Nome Completo: <input type="text" name="nome" placeholder="DIGITE AQUI" class="rounded-input" /></p>
                         <label for="date">Data:</label>
-                        <input type="date" name="date" id="date">
-                        <p>Telefone/WhatsApp:<input type="integer" name="telefone" placeholder="(99)99999-9999" /></p>
+                        <input type="date" name="date" id="date" class="rounded-input">
+                        <p style="margin-top:15px; " >Telefone/WhatsApp: <input type="integer" name="telefone" placeholder="(99)99999-9999" class="rounded-input"/></p>
                        
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="text" name="email" placeholder="Digite seu e-mail" />
+                            <input type="text" name="email" placeholder="Digite seu e-mail" class="rounded-input"/>
                         </div>
                         
                         {% if error_message %}
@@ -39,7 +47,7 @@
                         
                       
                     
-                        <p>Senha:<input type="password" id="senha" placeholder="DIGITE AQUI" /></p>
+                        <p>Senha: <input type="password" id="senha" placeholder="DIGITE AQUI" class="rounded-input" /></p>
                         
                         
                     
@@ -56,7 +64,7 @@
                         </select>
 
                         <div class="form-group">
-                            <label for="cidade">Cidade:</label>
+                            <label  style="margin-top:10px; "for="cidade">Cidade:</label>
                             <select class="form-control" name="cidade" id="cidade" style="width: 300px;">
                                 <option>Selecionar</option>
                             </select>
@@ -71,7 +79,7 @@
                         </select>
                         
                         <!-- Modal -->
-                        <div><p><input type="checkbox" id="lgpd" checked="checked" name="lgpd"> Li e concordo com a LGPD - Lei Geral de Proteção de Dados.
+                        <div><p  style="margin-top:10px; "><input type="checkbox" id="lgpd" checked="checked" name="lgpd"> Li e concordo com a LGPD - Lei Geral de Proteção de Dados.
                             <a style="font-size: 11px;" href="#" id="openModal"> Abrir termo de LGPD- Lei Geral de Portação de Dados</a>
                            
                         </p>
@@ -101,10 +109,10 @@
 
                         <p > <input type="checkbox" name="confirm" id="confirm"/> Autorizo o envio de e-mails com vagas correspondentes ao meu perfil.</p>
                     </div>
-                    <input class="btn btn-success" type="submit" id="submit" value="Concluir cadastro e descobrir resultado do teste" disabled />
+                    <input  style="margin-bottom:15px; " class="btn btn-success" type="submit" id="submit" value="Concluir cadastro e descobrir resultado do teste" disabled />
                 </form>
                 {% endblock %}
-            </div>
+            </div> 
         </div>
        
     </div>

@@ -5,54 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  />
+
+
+   <!-- JavaScript Bootstrap -->
+   <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous"
+   ></script>
+   <style>
+    .rounded-input {
+        border-radius: 5px; /* Define o raio de arredondamento das bordas */
+        border: 1px solid #ccc; /* Adiciona uma borda para melhorar a aparência */
+        padding: 5px; /* Adiciona um espaçamento interno ao redor do texto */
+    }
+</style>
 </head>
 <body>
-    <label>Email:</label>
-    <input type="text" placeholder="Seu email" name="email" id="email">
-    <label>Senha:</label>
-    <input type="password" placeholder="Exemplo@04" name="senha" id="senha" >
-    <button type="button" class="btn btn-success" onclick="verificarSenha()">enviar</button>
-
-    <a href="/reset">Esqueci minha senha</a>
-    <p>Ainda não tem cadastro? <a href="#" id="link_cadastro">Cadastre-se</a></p>
-
-    <script>
-        $(document).ready(function() {
-            // Manipulador de evento para o link "Cadastre-se"
-            $('#link_cadastro').on('click', function(event) {
-                event.preventDefault(); // Evita que o link seja seguido imediatamente
-                // Redireciona para a página de cadastro
-                var aptidoes = JSON.parse(getParameterByName('aptidoes'));
-                window.location.href = "/cadastro?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
-            });
-        });
-
-        function verificarSenha() {
-            var senha = $('#senha').val();
-            var email = $('#email').val();
-            // Enviar solicitação POST para o servidor
-            var aptidoes = JSON.parse(getParameterByName('aptidoes'));
-            $.post('/verificar_senha', {senha: senha, email: email}, function(data) {
-                // Verificar se a senha está correta
-                if (data === "Senha correta. Acesso concedido.") {
-                    // Redirecionar para a página de resultados
-                    window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
-                } else {
-                    // Exibir a mensagem de erro
-                    alert(data);
+  <div class="container">
+    <div class="row">
+        <div class="col-4 pt-1">
+            <h1>Vagas!</h1>
+            <p>Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários</p>
+                <button type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
+        </div>
+        <div class="col-8 pt-4">
+           <div>
+            <label>Email:</label>
+            <input type="text" placeholder="Seu email" name="email" id="email" class="rounded-input">
+            <label>Senha:</label>
+            <input type="password" placeholder="Exemplo@04" name="senha" id="senha" class="rounded-input">
+            <button style="margin-left: 5px;" type="button" class="btn btn-success" onclick="verificarSenha()">enviar</button>
+        
+            <div>
+                <a href="/reset">Esqueci minha senha</a>
+            <p>Ainda não tem cadastro? <a href="#" id="link_cadastro">Cadastre-se</a></p>
+            </div>
+        
+            <script>
+                $(document).ready(function() {
+                    // Manipulador de evento para o link "Cadastre-se"
+                    $('#link_cadastro').on('click', function(event) {
+                        event.preventDefault(); // Evita que o link seja seguido imediatamente
+                        // Redireciona para a página de cadastro
+                        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+                        window.location.href = "/cadastro?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
+                    });
+                });
+        
+                function verificarSenha() {
+                    var senha = $('#senha').val();
+                    var email = $('#email').val();
+                    // Enviar solicitação POST para o servidor
+                    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+                    $.post('/verificar_senha', {senha: senha, email: email}, function(data) {
+                        // Verificar se a senha está correta
+                        if (data === "Senha correta. Acesso concedido.") {
+                            // Redirecionar para a página de resultados
+                            window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
+                        } else {
+                            // Exibir a mensagem de erro
+                            alert(data);
+                        }
+                    });
                 }
-            });
+        
+                function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
+            </script>
+           </div>
+        
+        </div>
 
-        function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-    </script>
+    </div>
+  </div>
 </body>
 </html>
