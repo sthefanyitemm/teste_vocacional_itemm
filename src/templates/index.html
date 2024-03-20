@@ -27,27 +27,25 @@
             <div class="col-8" >
                 <div class="form-group" style="margin: 5px;">
                     {% block content %}
-                    <form action="/cadastro" method="POST">
+                    <form id="cadastro-form" action="/cadastro" method="POST">
                         <p>Nome Completo: <input type="text" name="nome" placeholder="DIGITE AQUI" class="rounded-input" /></p>
                         <label for="date">Data:</label>
                         <input type="date" name="date" id="date" class="rounded-input">
-                        <p style="margin-top:15px; " >Telefone/WhatsApp: <input type="integer" name="telefone" placeholder="(99)99999-9999" class="rounded-input"/></p>
+                        <p style="margin-top:15px; " >Telefone/WhatsApp: <input type="text" name="telefone" placeholder="(99)99999-9999" class="rounded-input"/>
+                        </p>
                        
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="text" name="email" placeholder="Digite seu e-mail" class="rounded-input"/>
+                            <input type="text" name="email" placeholder="Digite seu e-mail" class="rounded-input" autocomplete="current-password" required/>
                         </div>
-                        
                         {% if error_message %}
-                        <div class="alert alert-danger" role="alert" style="display: block;">
+                        <div class="alert alert-danger" role="alert">
                             {{ error_message }}
                         </div>
-                        
                         {% endif %}
-                        
                       
                     
-                        <p>Senha: <input type="password" id="senha" placeholder="DIGITE AQUI" class="rounded-input" /></p>
+                        <p>Senha: <input type="password" id="senha" placeholder="DIGITE AQUI" class="rounded-input"  autocomplete="current-password" required /></p>
                         
                         
                     
@@ -99,7 +97,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                            <input type="checkbox" id="lgpd" checked="checked" >
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -122,6 +120,7 @@
 
   <!-- Script para dropdown  cidade/estado -->  
 <script>
+
 document.getElementById('estado').addEventListener('change', function() {
         var estadoId = this.value;
         fetch(`/cidade/${estadoId}`)
@@ -142,52 +141,53 @@ document.getElementById('estado').addEventListener('change', function() {
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Intercepta o envio do formulário
-        document.querySelector('form').addEventListener('submit', function(event) {
-            // Impede o envio padrão do formulário
-            event.preventDefault();
+        var cadastroForm = document.getElementById('cadastro-form');
+        if (cadastroForm) {
+            cadastroForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
 
-            // Obtém os dados do formulário
-            var formData = new FormData(this);
+                fetch('/cadastro', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        console.log('Formulário enviado com sucesso!');
+                        // Função para recuperar parâmetro da URL
+                        function getParameterByName(name, url) {
+                            if (!url) url = window.location.href;
+                            name = name.replace(/[\[\]]/g, "\\$&");
+                            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                                results = regex.exec(url);
+                            if (!results) return null;
+                            if (!results[2]) return '';
+                            return decodeURIComponent(results[2].replace(/\+/g, " "));
+                        }
 
-            // Envia os dados para o servidor
-            fetch('/cadastro', {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) {
-                // Verifica se o envio foi bem-sucedido
-                if (response.ok) {
-                    // Função para recuperar parâmetro da URL
-                    function getParameterByName(name, url) {
-                        if (!url) url = window.location.href;
-                        name = name.replace(/[\[\]]/g, "\\$&");
-                        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                            results = regex.exec(url);
-                        if (!results) return null;
-                        if (!results[2]) return '';
-                        return decodeURIComponent(results[2].replace(/\+/g, " "));
-                    }
-    
-                    // Obtém o parâmetro 'soma' da URL
-                    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
-                    
-                    // Se 'somaRespostas' não for nulo, faça algo com ele
-                    if (aptidoes !== null) {
-                        // Redireciona para a página de resultados
-                        window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes)
+                        // Obtém o parâmetro 'soma' da URL
+                        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+                        
+                        // Se 'somaRespostas' não for nulo, redireciona para a página de resultados
+                        if (aptidoes !== null) {
+                            window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes);
+                        } else {
+                            console.error('Erro: somaRespostas não definido na URL.');
+                        }
+                    } else if (response.status === 400) {
+                        alert('E-mail já cadastrado. Por favor, insira outro e-mail.');
                     } else {
-                        console.error('Erro: somaRespostas não definido na URL.');
+                        throw new Error('Erro ao processar o formulário: ' + response.statusText);
                     }
-                } else {
-                    // Exibe uma mensagem de erro caso necessário
-                    console.error('Erro ao enviar formulário:', response.statusText);
-                }
-            })
-            .catch(function(error) {
-                console.error('Erro ao enviar formulário:', error);
+                })
+                .catch(function(error) {
+                    console.error('Erro ao enviar formulário:', error);
+                    alert('Erro ao enviar formulário. Por favor, tente novamente mais tarde.');
+                });
             });
-        });
+        } else {
+            console.error('Elemento de formulário de cadastro não encontrado.');
+        }
     });
 </script>
     

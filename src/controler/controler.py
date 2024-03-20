@@ -27,7 +27,6 @@ class CadastroController(MethodView):
         
         return render_template('index.html', estados=estados)
 
-    # Adicionando a rota para obter as cidades de um determinado estado
 
 
     def post(self):
@@ -44,6 +43,16 @@ class CadastroController(MethodView):
             confirm_value = request.form.get('confirm', 'off')
             confirm_int = 1 if confirm_value.lower() == 'on' else 0
 
+               
+            with connection.cursor() as cur:
+               cur.execute("SELECT COUNT(*) FROM cadastro WHERE email = %s", (email,))
+            if cur.fetchone()[0] > 0:
+                    raise ValueError("E-mail já cadastrado")
+
+            # Iniciar transação
+            connection.begin()
+
+
             with connection.cursor() as cur:
                 cur.execute("INSERT INTO cadastro (nome, email, telefone, sexo, estado, cidade, datanascimento, confirm) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                             (name, email, telefone, sexo, estado, cidade, date, confirm_int))
@@ -54,9 +63,12 @@ class CadastroController(MethodView):
                             (email,senha))
                 connection.commit()
 
+      
+
         except Exception as e:
-            print(f"Erro ao cadastrar pessoa no banco de dados: {e}")
-            return render_template('index.html', error_message="Usuário já cadastrado. Por favor, tente novamente com um e-mail diferente.")
+            error_message = "Erro ao cadastrar pessoa no banco de dados: " + str(e)
+            return jsonify({'error': error_message}), 400
+
 
         finally:
             if connection:
