@@ -43,7 +43,6 @@ def statebycountry(get_cidade):
     return jsonify({'cidadeestado': cidadeArray})
 
 
-# Rota para verificar a senha
 @app.route('/verificar_senha', methods=['POST'])
 def verificar_senha():
     # Obter os dados do formulário
@@ -81,6 +80,7 @@ def verificar_senha():
     finally:
     # Fechar conexão com o banco de dados
         connection.close()
+
 
 
 

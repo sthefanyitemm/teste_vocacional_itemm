@@ -12,6 +12,7 @@
             border: 1px solid #ccc; /* Adiciona uma borda para melhorar a aparência */
             padding: 5px; /* Adiciona um espaçamento interno ao redor do texto */
         }
+
     </style>
     
 </head>
@@ -45,7 +46,7 @@
                         {% endif %}
                       
                     
-                        <p>Senha: <input type="password" id="senha" placeholder="DIGITE AQUI" class="rounded-input"  autocomplete="current-password" required /></p>
+                        <p>Senha: <input type="password" id="senha" name="senha" placeholder="DIGITE AQUI" class="rounded-input password-like"  required /></p>
                         
                         
                     
@@ -121,6 +122,7 @@
   <!-- Script para dropdown  cidade/estado -->  
 <script>
 
+
 document.getElementById('estado').addEventListener('change', function() {
         var estadoId = this.value;
         fetch(`/cidade/${estadoId}`)
@@ -140,13 +142,15 @@ document.getElementById('estado').addEventListener('change', function() {
 
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var cadastroForm = document.getElementById('cadastro-form');
-        if (cadastroForm) {
-            cadastroForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                var formData = new FormData(this);
+document.addEventListener("DOMContentLoaded", function() {
+    var cadastroForm = document.getElementById('cadastro-form');
+    if (cadastroForm) {
+        cadastroForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
 
+            // Atraso de 5 segundos antes de enviar o formulário
+            setTimeout(function() {
                 fetch('/cadastro', {
                     method: 'POST',
                     body: formData
@@ -170,25 +174,32 @@ document.getElementById('estado').addEventListener('change', function() {
                         
                         // Se 'somaRespostas' não for nulo, redireciona para a página de resultados
                         if (aptidoes !== null) {
-                            window.location.href = "/resultados?soma=" + "&aptidoes=" + JSON.stringify(aptidoes);
+                            // Criar um cookie de sessão com o email do usuário
+                            var email = formData.get('email'); // Obtém o email do formulário
+                            document.cookie = "loggedIn=true; email=" + email + "; path=/";
+                            console.log("Cookie de sessão criado com sucesso para o email: " + email);
+
+                            // Redirecionar para a página de resultados com o email como parâmetro na URL
+                            window.location.href = "/login?soma=" + "&aptidoes=" + JSON.stringify(aptidoes) + "&email=" + email;
                         } else {
                             console.error('Erro: somaRespostas não definido na URL.');
                         }
-                    } else if (response.status === 400) {
-                        alert('E-mail já cadastrado. Por favor, insira outro e-mail.');
+
                     } else {
                         throw new Error('Erro ao processar o formulário: ' + response.statusText);
                     }
                 })
                 .catch(function(error) {
                     console.error('Erro ao enviar formulário:', error);
-                    alert('Erro ao enviar formulário. Por favor, tente novamente mais tarde.');
+                    alert('Erro ao enviar formulário. Por favor, verifique este e-mail parece já estar cadastrado no nosso sistema!.');
                 });
-            });
-        } else {
-            console.error('Elemento de formulário de cadastro não encontrado.');
-        }
-    });
+            }, 100); // 5000 milissegundos = 5 segundos de atraso
+        });
+    } else {
+        console.error('Elemento de formulário de cadastro não encontrado.');
+    }
+});
+
 </script>
     
     
@@ -210,6 +221,13 @@ document.getElementById('estado').addEventListener('change', function() {
 
 
   <script>
+           function convertPasswordFieldToText() {
+        var passwordInput = document.getElementById("senha");
+        passwordInput.type = "text"; // Altera temporariamente o tipo de entrada para 'text'
+    }
+
+    // Evento de envio do formulário - chama a função convertPasswordFieldToText
+    document.getElementById("cadastro-form").addEventListener("submit", convertPasswordFieldToText);
     
   // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
     $(document).ready(function(){

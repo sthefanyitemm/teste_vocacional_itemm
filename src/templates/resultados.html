@@ -165,14 +165,39 @@
 <script>
   // Função para recuperar parâmetro da URL
   function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) {
+        // Tenta recuperar do cookie se não encontrar nos parâmetros da URL
+        const cookieValue = getCookie(name);
+        if (cookieValue !== null) {
+            return cookieValue;
         }
+        return null;
+    }
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+// Função para obter o valor de um cookie pelo seu nome
+function setSessionCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+}
+
+// Função para recuperar o valor de um cookie pelo seu nome
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+// Recupera o estado de login e o email do cookie de sessão
+const loggedIn = getCookie('loggedIn') === 'true'; // Verifica se o usuário está logado
+const email = getParameterByName('email');; // Recupera o email
+
+// Exibe o estado de login e o email no console
+console.log("Usuário logado:", loggedIn);
+console.log("Email do usuário:", email);
 
         // Obtém as aptidões da URL
         var aptidoes = JSON.parse(getParameterByName('aptidoes'));
@@ -343,17 +368,45 @@ var myChart = new Chart(ctx, {
 <img decoding="async" width="202" height="207" src="https://th.bing.com/th/id/OIP.6-DX0kbIJBEUhkbOy8YRrAAAAA?rs=1&pid=ImgDetMain" class="attachment-large size-large wp-image-982" alt="">								</a>
 <h1>VAGAS!</h1>
 <p>Confira nossas vagas!</p>
-<p>Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários.</p>
+<p>Confira nossas vagas!Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários.</p>
 <button type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
 
 </div>
 <div class="col-6 ">
 <button type="button" class="btn btn-success" onclick="window.location.href='/home'">Home</button>
+<button type="button" id="btnEnviarEmail" class="btn btn-success">Enviar resultados por email</button>
+
 </div>
 </div>
 </div>
   </div>
+  <script>
+    document.getElementById('btnEnviarEmail').addEventListener('click', function() {
+// Função para enviar resultados por email
+function enviarResultadosPorEmail() {
+    // Obtém o texto dos resultados
+    var resultadosTexto = document.getElementById('resultadoAptidoes').innerText;
+
+    // Cria um link para enviar email
+    var linkEmail = email+"?subject=Resultados do teste&body=" + encodeURIComponent(resultadosTexto);
+
+    // Abre o cliente de email padrão com os resultados no corpo do email
+    window.location.href = linkEmail;
+}
+
+// Adiciona evento de clique ao botão "Enviar resultados por email"
+document.querySelector('button.btn-success').addEventListener('click', enviarResultadosPorEmail);
+
+        // Por enquanto, vamos apenas exibir uma mensagem de exemplo
+        alert('Os resultados foram enviados por email!');
+    });
+  
  
+  
+  
+</script>
+
 </body>
 
 </html>
+  

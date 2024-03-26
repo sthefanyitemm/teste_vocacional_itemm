@@ -35,6 +35,7 @@ class CadastroController(MethodView):
             name = request.form.get('nome')
             email = request.form.get('email')
             senha = request.form.get('senha')
+            print(senha)
             telefone = request.form.get('telefone')
             sexo = request.form.get('sexo')
             estado = request.form.get('estado')
