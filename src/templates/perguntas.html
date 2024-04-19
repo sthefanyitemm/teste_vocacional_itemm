@@ -63,12 +63,19 @@
         /* Media query para dispositivos maiores */
         @media screen and (min-width: 1024px) {
             .radio-label {
-                padding: 15px 10px; /* Mantenha o mesmo padding para dispositivos maiores */
+                padding: 20px 14px; /* Mantenha o mesmo padding para dispositivos maiores */
             }
+            .resposta{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:125px
+            }
+         
         }
         @media screen and (min-width: 1280px) {
             .radio-label {
                 padding: 20px 22px; /* Mantenha o mesmo padding para dispositivos maiores */
+            }
+            .resposta{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:200px
             }
         }
     </style>
@@ -187,7 +194,7 @@
 <label class="radio-label" for="resposta6" onclick="selectRadio('resposta6')">6</label>
 
 <!-- Radio buttons ocultos -->
-<p id="respostan" name="resposta" style="display: inline-block; margin-top:15px">você menos se identifica</p>
+<p  id="respostan" name="resposta" style="display: inline-block;justify-content:space-between;margin-top:15px">você menos se identifica</p>
     <input type="radio" id="resposta0" name="resposta" value="0" hidden>
     <input type="radio" id="resposta1" name="resposta" value="1" hidden>
     <input type="radio" id="resposta2" name="resposta" value="2" hidden>
@@ -195,12 +202,17 @@
     <input type="radio" id="resposta4" name="resposta" value="4" hidden>
     <input type="radio" id="resposta5" name="resposta" value="5" hidden>
     <input type="radio" id="resposta6" name="resposta" value="6" hidden>
-    <p id="respostas" name="resposta" style="display: inline-block; margin-left:200px;margin-top:15px">se identifica completamente</p>
+    <p class="resposta" id="respostas" name="resposta" style="display: inline-block; justify-content:space-between;margin-top:15px ; ">se identifica completamente</p>
         </div>
    <br>
 
-                <button  style="margin-top: 50px;margin-right: 300px; margin-left:65px ;padding-left:30px; padding-right:30px" type="button" class="btn btn-secondary " onclick="votar_pergunta_anterior()">Voltar</button>
-                <button  style="margin-top: 50px; padding-left:30px; padding-right:30px" type="button" class="btn btn-success " onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
+   <div style="display: flex; justify-content: space-between; margin-left:-28px">
+            <button style="margin-top: 50px; padding-left:30px; padding-right:30px;" type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
+            <button style="margin-top: 50px; padding-left:25px; padding-right:25px;" type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
+        </div>
+        <div>
+            <br>
+            </div>
             `;
         }
 
@@ -277,10 +289,10 @@
    <div class="container" > 
     <div class="row">
         <div class="col-12 col-md-4" >
-            <canvas style="margin-left: -15px; " id="grafico_progresso"></canvas>
+            <canvas style="margin-left: -25px; " id="grafico_progresso"></canvas>
             
             <div class="pt-5">
-                <img  style="margin-top: 20px;" decoding="async" width="198" height="190" src="{{ url_for('static', filename='Logotipo.png') }}" class="attachment-large size-large wp-image-981" alt="">								</a>
+                <img  style="margin-top: 20px; margin-left: 50px;" decoding="async" width="198" height="190" src="{{ url_for('static', filename='Logotipo.png') }}" class="attachment-large size-large wp-image-981" alt="">								</a>
             </div>
         </div>
     <div class="col-8 col-md-8 pt-4" style="background-color: white">

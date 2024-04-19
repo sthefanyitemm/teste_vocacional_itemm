@@ -488,30 +488,69 @@ var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
    // enviarResultadosParaServidor(resultadosTexto);
 
 
-   document.getElementById('btnEnviarEmail').addEventListener('click', function() {
-// Função para enviar resultados por email
-function enviarResultadosPorEmail() {
-    // Obtém o texto dos resultados
-    var resultadosTexto = document.getElementById('resultadoAptidoes').innerText;
+   function enviarResultadosPorEmail(email, resultadosTexto, aptidoes) {
+    // Verifica se o email foi recuperado com sucesso
+    if (email) {
+        console.log('Email:', email);
+        console.log('Resultados:',resultadosTexto);
+        console.log("Aptidoes:", aptidoes)
 
-    // Cria um link para enviar email
-    var linkEmail = email+"?subject=Resultados do teste&body=" + encodeURIComponent(resultadosTexto);
+        // Cria um objeto com os dados a serem enviados
+        var data = {
+            email: email,
+            resultadosTexto: resultadosTexto,
+            aptidoes: aptidoes // Passa as aptidões como parte dos dados
+        };
 
-    // Abre o cliente de email padrão com os resultados no corpo do email
-    window.location.href = linkEmail;
+        // Converte o objeto para JSON
+        var jsonData = JSON.stringify(data);
+
+        // Envia os resultados por email usando AJAX
+        $.ajax({
+            url: '/enviar_resultados_por_email',
+            type: 'POST',
+            contentType: 'application/json',
+            data: jsonData,
+            success: function(response) {
+                alert('Resultados enviados por email com sucesso!');
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro ao enviar resultados por email:', error);
+                alert('Erro ao enviar resultados por email. Por favor, tente novamente mais tarde.');
+            }
+        });
+    } else {
+        console.error('O endereço de e-mail não foi recuperado.');
+    }
 }
 
 // Adiciona evento de clique ao botão "Enviar resultados por email"
-document.querySelector('button.btn-success').addEventListener('click', enviarResultadosPorEmail);
+document.getElementById('btnEnviarEmail').addEventListener('click', function() {
+    // Obtém o texto dos resultados
+    // Transforma o objeto somaPorInteligencia em texto JSON
+    function converterObjetoParaTexto(objeto) {
+    // Transforma o objeto em texto JSON
+    return JSON.stringify(objeto);
+}
 
-        // Por enquanto, vamos apenas exibir uma mensagem de exemplo
-        alert('Os resultados foram enviados por email!');
-    });
+// Use a função para converter o objeto em texto
+var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
 
-  
-  
+
+
+    // Obtém as aptidões da URL
+    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+
+    // Recupera o email do parâmetro ou do cookie
+    const email = getParameterByName('email');
+
+    // Envia os resultados por email
+    enviarResultadosPorEmail(email, resultadosTexto, aptidoes);
+});
+
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
