@@ -216,3 +216,5 @@ app.add_url_rule('/cidades', view_func=CadastroController.as_view('obter_cidades
 app.add_url_rule('/resultados', view_func=ResultadosController.as_view('resultados'))
 app.add_url_rule('/login', view_func=LoginController.as_view('login'))
 app.add_url_rule('/reset', view_func=ResetController.as_view('reset'))
+app.add_url_rule('/cadastros', view_func=CadastrosController.as_view('cadastros'))
+app.add_url_rule('/agil', view_func=AgilController.as_view('agil'))

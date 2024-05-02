@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agil</title>
+</head>
+<body>
+    <h1>Agil sistem</h1>
+    <p><a href="">Link para cadastro</a></p>
+    <script>
+        // Função para extrair parâmetros da URL
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    
+        // Recuperar e preencher o campo 'nome' com o parâmetro 'nome' da URL, se existir
+        var nomeParam = getParameterByName('nome');
+        if (nomeParam) {
+            document.getElementById('nome').value = nomeParam;
+        }
+    
+        // Recuperar e preencher o campo 'idade' com o parâmetro 'idade' da URL, se existir
+        var idadeParam = getParameterByName('idade');
+        if (idadeParam) {
+            document.getElementById('idade').value = idadeParam;
+        }
+    </script>
+</body>
+</html>

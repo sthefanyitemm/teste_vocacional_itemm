@@ -7,10 +7,12 @@ from src.db import *
 routes = {
         "home": "/",
         "cadastro": "/cadastro",
+        "cadastros": "/cadastros",
         "perguntas":"/perguntas",
         "resultados":"/resultados",
         "login":"/login",
-        "reset":"/reset"      
+        "reset":"/reset" ,
+        "agil":"/agil"      
     }
 
 

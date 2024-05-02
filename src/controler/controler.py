@@ -17,15 +17,15 @@ from flask.views import MethodView
 class HomeController(MethodView):
     def get(self):
         # Lógica para manipular a requisição GET da rota /api/data
-         return render_template('homes.html')
+         return render_template('index.html')
 
  
 
-class CadastroController(MethodView):
+class CadastrosController(MethodView):
     def get(self):
         estados = get_estados()
         
-        return render_template('index.html', estados=estados)
+        return render_template('cadastro2.html', estados=estados)
 
 
 
@@ -75,7 +75,7 @@ class CadastroController(MethodView):
             if connection:
                 connection.close()
     
-        return redirect('/cadastro')
+        return redirect('/cadastros')
 
     
 
@@ -100,4 +100,10 @@ class ResetController(MethodView):
         return render_template('reset.html')
     
 
-
+class CadastroController(MethodView):
+    def get(self):
+        return render_template('cadastro1.html')
+    
+class AgilController(MethodView):
+    def get(self):
+        return render_template('agil.html')

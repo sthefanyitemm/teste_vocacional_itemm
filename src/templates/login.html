@@ -6,8 +6,6 @@
     <title>Login</title>
     <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -20,72 +18,124 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
   />
 
-
-   <!-- JavaScript Bootstrap -->
-   <script
-     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-     crossorigin="anonymous"
-
-     
-   ></script>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <style>
     .rounded-input {
-        border-radius: 5px; /* Define o raio de arredondamento das bordas */
+        border-radius: 17px; /* Define o raio de arredondamento das bordas */
         border: 1px solid #ccc; /* Adiciona uma borda para melhorar a aparência */
-        padding: 5px; /* Adiciona um espaçamento interno ao redor do texto */
+        padding: 2px; /* Adiciona um espaçamento interno ao redor do texto */
     }
+    @media screen and (min-width: 1280px) {
+        .logotipo{
+            width: 80%;
+            height: 20%;
+
+        }
+        }
+        
+   
 </style>
 </head>
 <body>
-  <div class="container pt-5">
-    <div class="row">
-        <div class=" col-5 pt-3 pb-5">
-            <div class="  pb-5" style="background-image: url('https://s3-alpha-sig.figma.com/img/fd90/368f/1fec467f869fe1ee0edf5cd598d17198?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XoGHL-F8CVZrekzbvZ5sqDmpJUPPChWujFKD7zB0MfRHTVy1paIo-KFLbvtAmMlEvxSRR7phdyd122dX-L2NaCgIb-G4OWHh0~aAh0-PdtyUXcz9tYwERM3wfj8LH08W5CDUOkdmHnskku~FnBIu3~QXqGXoWr8jRq1il0xVpdxxuX~AyW3gUEq93WqgveVbP5jaQ9NM5rDkUg~d6EjQRQLizZTq2YJW8qBvvVu6vd7vOKXeeuRi~CAVcEFPw6IhcbQSWIg9YbpkCbBAYUOZQa9A-5DVfkpW7QQjcbSE1ldN1WeS~oCMQMzP4F36dl09zP47q9fQw2as3It7dHq9qg__'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white;">
-                <button style="margin-left: 10px; margin-top: 5px;" type="button" class="btn btn-light" onclick="window.location.href='/';">Home</button>
-                <div class="col-3">
-                    <h1 style="margin-left: 15px;" >Vagas!</h1>
-                <p style="margin-left: 15px;">Confira nossas vagas!<br>
-Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários</p>
-                    <button style="margin-left: 15px;" type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
-
-                </div>
-                </div>
-                </div>
-
-                <div class="col-6"   >
-                    <div class="pt-5 pb-5" style="background-color: white;">
-                        <div style="margin-left: 110px;">
-                         <div style="margin-bottom:15px;">      <label> Email:</label>
-                             <input style="margin-left: 5px;"  type="text" placeholder="Seu email" name="email" id="email" class="rounded-input">
-                         </div>
-                         
-                        <div> <label>Senha:</label>
-                         <input   type="password" placeholder="Exemplo@04" name="senha" id="senha" class="rounded-input">
-             
-                    <div>
-                     <a  style="font-size: 12px; margin-left: 135px ;" href="/reset">Esqueci minha senha</a>
-                 </div>
-                 <div class="pt-3">  <button  style="margin-left: 175px;" type="button" class="btn btn-secondary" onclick="verificarSenha()">entrar</button>
-              </div>
-              
-                  <div class="pt-5 pb-5" style="margin-left: 45px;">
-                     
-                  <p style="font-size: 12px;">Ainda não tem cadastro? <a href="#" id="link_cadastro">Cadastre-se</a></p>
-                    </div>
-                      </div>
-                     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-4" style="background-image: url('/static/logoVagas.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; margin-top: 15px; border-radius:15px;">
+                <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%; color: white; margin-top: 15px;" type="button" class="btn btn-light " onclick="window.location.href='/'"><i class="bi bi-arrow-left"></i> Home</button>
+               <div class="pt-5">
+                <h1 class="vagatitle" style="margin-top:115px ; margin-left:50px ; margin-right:50px ;font-family: fantasy; font-size: 75px;"> Vagas!</h1>
+                <p class="vagaparagrafo" style="margin-left:50px ; margin-right:50px ;" >Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários</p>
+                <button style="margin-left:50px ; margin-right:50px ;" type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
+               </div>
+           
             </div>
+            <div class=" col-xl-6 ">
+                <div class="formmail" style="background-color: white;">
+                    
+                       
+                    <div class="form-group email" style="margin-bottom:15px; margin-top: 140px;">   
+                        <h1 style="margin-top: 150px;margin-left: 50px;margin-right: 35px; margin-bottom: 35px;"><strong>Login</strong></h1>
+                        <label style="margin-bottom: 10px;margin-left: 50px;"><strong>E-mail ou CPF:</strong></label>
+                        <br>
+                        <input style="top: 15px; margin-left: 50px;width: 300px; padding-left: 10px;"  type="text" placeholder="DIGITE AQUI" name="email" id="email" class="rounded-input" required>
+                    </div>
+                    <button id="btn-avancar" class="btn-success" style="margin-left: 52px; border-radius: 10px;" onclick="verificarInput()">Avançar</button>
+                    
+                    <!-- Div para o formulário de senha -->
+                    <div id="form-senha" style="display: none;">
+                        <div class="form-group senha" style="margin-bottom:15px; margin-top: 25px;">  
+                            <label style="margin-bottom: 10px; margin-left: 52px;"><strong>Senha</strong></label>
+                            <br>
+                            <input style="padding-left: 10px;width: 250px; margin-left: 50px;" type="password" placeholder="Exemplo@04" name="senha" id="senha" class="rounded-input" required>
+                            <div>
+                                <a class="esquecisenha" style="font-size: 12px; margin-left: 55px;" href="/reset">Esqueci minha senha</a>
+                            </div>
+                            <div>
+                                <button style="margin-left: 290px; margin-top: 30px; " type="button" class="btn btn-secondary" onclick="verificarSenha()">Entrar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+              <div class="pt-5 " style="margin-left: 55px;">
+                 
+              <p style="font-size: 12px;margin-top: -40px;">Ainda não tem cadastro? <a href="#" id="link_cadastro">Cadastre-se</a></p>
+              <div style=" margin-bottom: 250px;">
+             
+             </div> 
+        
         </div>
-     
-            <div class="col-1">
-                <img style="margin-left: -15px;" decoding="async" width="100" height="100" src="{{ url_for('static', filename='Logotipo.png') }}"  class="attachment-large size-large wp-image-981" alt="">								</a>
-           </div>
+        
+    </div>
+             
+</div>
+<div class=" col-xl-2 pt-3 logo">
+    <img class="logotipo"  class="logotipo"  decoding="async"  src="{{ url_for('static', filename='Logotipo.png') }}"  alt="">
+</div>
+      
+   
         
         
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
             <script>
+                   // Função para verificar se o usuário digitou um email ou CPF
+      // Função para verificar se o campo de entrada está vazio
+      function verificarInput() {
+        var entrada = document.getElementById("email").value;
+        // Verificar se o campo está vazio
+        if (entrada.trim() === "") {
+            // Se estiver vazio, exibir um alerta
+            alert("Por favor, digite um email ou CPF.");
+        } else {
+            // Caso contrário, chamar a função para verificar o tipo
+            verificarTipo();
+        }
+    }
+
+    // Função para verificar se é email ou CPF
+    function verificarTipo() {
+        var entrada = document.getElementById("email").value;
+        // Verificar se a entrada parece ser um email
+        if (entrada.includes('@')) {
+            // Exibir o formulário de senha
+            document.getElementById("form-senha").style.display = "block";
+             // Ocultar o botão "Avançar"
+            document.getElementById("btn-avancar").style.display = "none";
+
+        } else {
+            // Caso contrário, verificar o CPF no banco de dados
+            verificarCPFNoBanco(entrada);
+        }
+    }
+
+   
+
+    // Função para verificar o CPF no banco de dados
+    function verificarCPFNoBanco(cpf) {
+        // Aqui você pode adicionar a lógica para verificar se o CPF existe no banco de dados
+        // Se existir, você pode tomar a ação apropriada
+        // Por enquanto, vamos apenas exibir uma mensagem de alerta
+        alert("Verificando CPF no banco de dados: " + cpf);
+    }
 
 
                 $(document).ready(function() {
@@ -99,53 +149,45 @@ Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidade
                 });
         
                 function verificarSenha() {
-    var senha = $('#senha').val();
-    var email = $('#email').val();
-    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+                    var senha = $('#senha').val();
+                    var email = $('#email').val();
+                    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
 
-    // Enviar solicitação POST para o servidor
-    $.post('/verificar_senha', { senha: senha, email: email })
-        .done(function(data) {
-            if (data === "Senha correta. Acesso concedido.") {
-                // Criar um cookie de sessão com o email do usuário
-                document.cookie = "loggedIn=true; email=" + email + "; path=/";
-                console.log("Cookie de sessão criado com sucesso." + email);
+                    // Enviar solicitação POST para o servidor
+                    $.post('/verificar_senha', { senha: senha, email: email })
+                        .done(function(data) {
+                            if (data === "Senha correta. Acesso concedido.") {
+                                // Criar um cookie de sessão com o email do usuário
+                                document.cookie = "loggedIn=true; email=" + email + "; path=/";
+                                console.log("Cookie de sessão criado com sucesso." + email);
 
-                // Aguardar 5 segundos antes de redirecionar
-                setTimeout(function() {
-                    // Redirecionar para a página de resultados com o email como parâmetro na URL
-                    window.location.href = "/resultados?soma=&aptidoes=" + JSON.stringify(aptidoes) + "&email=" + email;
-                }, 100); // 5000 milissegundos = 5 segundos
-            } else {
-                // Exibir a mensagem de erro
-                alert(data);
-            }
-        })
-        .fail(function(xhr, status, error) {
-            // Exibir mensagem de erro se a requisição falhar
-            alert("Erro ao verificar a senha: " + error);
-        });
-}
+                                // Aguardar 5 segundos antes de redirecionar
+                                setTimeout(function() {
+                                    // Redirecionar para a página de resultados com o email como parâmetro na URL
+                                    window.location.href = "/resultados?soma=&aptidoes=" + JSON.stringify(aptidoes) + "&email=" + email;
+                                }, 100); // 5000 milissegundos = 5 segundos
+                            } else {
+                                // Exibir a mensagem de erro
+                                alert(data);
+                            }
+                        })
+                        .fail(function(xhr, status, error) {
+                            // Exibir mensagem de erro se a requisição falhar
+                            alert("Erro ao verificar a senha: " + error);
+                        });
+                }
 
-
-        
                 function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
             </script>
-         </div>
-        
-        </div>
-
-    </div>
-  </div>
-</div>
+   
 
 </body>
 </html>

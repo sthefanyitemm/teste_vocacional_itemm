@@ -23,16 +23,7 @@
             margin: 0 auto; /* Centraliza horizontalmente */
         }
 
-        .radio-label {
-            display: inline-block;
-            cursor: pointer;
-            padding: 20px 22px; /* Reduz padding para dispositivos menores */
-            border: 1px solid #ccc;
-            border-radius: 60px;
-            margin-right: 5px; /* Reduz a margem para dispositivos menores */
-            background-color: rgba(217, 217, 217, 1);
-            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
-        }
+    
 
         .btn {
             padding: 10px 20px; /* Reduz padding para dispositivos menores */
@@ -49,254 +40,218 @@
             margin-right: 50px; /* Altere o valor conforme necessário */
         }
 
-        /* Media query para dispositivos menores */
-        @media screen and (max-width: 600px) and (min-width: 271px) {
-            #grafico_progresso {
-                max-width: 100%; /* Largura máxima ajustada para 100% */
-            }
+     
+/* Estilos para dispositivos maiores */
+@media screen and (min-width: 540px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px 7px;
+        border: 1px solid #ccc;
+        border-radius: 60px;
+        margin-right: 5px;
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
 
-            .radio-label {
-                padding: 10px 12px; /* Reduz padding para dispositivos menores */
-            }
-        }
+    .logo{
+           margin-left: 30px;
+           margin-top: -60px;
+       }
+     
+       .logotipo{
+           margin-left: 500px;
+           margin-top: -200px;
+           width:102px ;
+           height:80px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
 
-        /* Media query para dispositivos maiores */
-        @media screen and (min-width: 1024px) {
-            .radio-label {
-                padding: 20px 14px; /* Mantenha o mesmo padding para dispositivos maiores */
+    body {
+        padding-bottom: 50px;
+    }
+    .grafico{
+           position:absolute;
+           top: 100px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 125px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+       .notas{
+          padding-top:200px 
+       }
+       
+}
+        
+    
+        @media screen and (min-width: 853px) {
+           
+            .radio-label {  
+            display: inline-block;
+            cursor: pointer;
+            padding: 12px 10px; /* Reduz padding para dispositivos menores */
+            border: 1px solid #ccc;
+            border-radius: 60px;
+            margin-right: 5px; /* Reduz a margem para dispositivos menores */
+            background-color: rgba(217, 217, 217, 1);
+            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+              /* Mantenha o mesmo padding para dispositivos maiores */
             }
             .resposta{
-                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:125px
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:20px
+            }
+            .logo{
+                margin-left: 700px;
+
+              
+            }
+            .logotipo{
+                margin-left: -20px;
+           
+                width:50px ;
+                height:50px
+              
+            }
+            body{
+                padding-bottom: 1000px;
+                
+            }
+            .grafico{
+                position:relative;
+             
             }
          
-        }
-        @media screen and (min-width: 1280px) {
-            .radio-label {
-                padding: 20px 22px; /* Mantenha o mesmo padding para dispositivos maiores */
+            .notas{
+               padding-top:30px 
+            }
+            .perguntas{
+        padding-bottom:0px;
+            }
+      }
+      
+        /* Media query para dispositivos maiores */
+        @media screen and (min-width: 1024px) {
+            .radio-label {  
+            display: inline-block;
+            cursor: pointer;
+            padding: 12px 10px; /* Reduz padding para dispositivos menores */
+            border: 1px solid #ccc;
+            border-radius: 60px;
+            margin-right: 5px; /* Reduz a margem para dispositivos menores */
+            background-color: rgba(217, 217, 217, 1);
+            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+              /* Mantenha o mesmo padding para dispositivos maiores */
             }
             .resposta{
-                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:200px
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:20px
             }
+            .logo{
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+            .logotipo{
+                margin-left: -20px;
+                margin-top: 20px;
+                width:200px ;
+                height:190px
+              
+            }
+            body{
+                padding-bottom: 200px;
+                
+            }
+            .grafico{
+                position:relative;
+                top: 0px;
+                margin-left: -25px; 
+            }
+            .notas{
+               padding-top:30px 
+            }
+            .perguntas{
+        padding-bottom:0px;
+            }
+      
         }
+        @media screen and (min-width: 1280px) {
+            .radio-label {  
+            display: inline-block;
+            cursor: pointer;
+            padding: 15px 15px; /* Reduz padding para dispositivos menores */
+            border: 1px solid #ccc;
+            border-radius: 60px;
+            margin-right: 5px; /* Reduz a margem para dispositivos menores */
+            background-color: rgba(217, 217, 217, 1);
+            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+           /* Mantenha o mesmo padding para dispositivos maiores */
+            }
+            .resposta{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:220px
+            }
+            .logo{
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+            .logotipo{
+                margin-left: -20px;
+                margin-top: 20px;
+                width:200px ;
+                height:190px
+            }
+            body{
+                padding-bottom: 5px;
+                
+            }
+            .grafico{
+                position:relative;
+                top: 0px;
+
+            }
+         
+            .notas{
+               padding-top:30px 
+            }
+            .perguntas{
+           position:absolute;
+           top: 25px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+margin-left: 100px;
+       }
+       .notas{
+          padding-top:40px;
+          
+       }
+
+        }
+      
+        
     </style>
       
 
 
-    <script>
-              var perguntas = [
-            // Grupo I
-            { pergunta: "Eu consigo manter o ritmo de uma música com um instrumento de percussão.", valor: 0, aptidao: "Musical" },
-            { pergunta: "Eu consigo me lembrar com detalhes importantes de lugares que visitei", valor: 0, aptidao: "Espacial" },
-            { pergunta: "Eu percebo como as pessoas se sentem em seus relacionamentos", valor: 0, aptidao: "Interpessoal" },
-            { pergunta: "Eu geralmente sei como me sinto em relação às coisas e a meus sentimentos", valor: 0, aptidao: "Intrapessoal" },
-            { pergunta: "Eu sempre quero saber como as coisas funcionam", valor: 0, aptidao: "Matemática" },
-            { pergunta: "Minhas melhores idéias surgem em uma caminhada ou corrida", valor: 0, aptidao: "Cinestésica" },
-            { pergunta: "Sou ótimo em jogos de palavras cruzadas, anagramas e cruzadinhas", valor: 0, aptidao: "Linguística" },
-            // Grupo II
-            { pergunta: "Aprendo novos esportes com facilidade", valor: 0, aptidao: "Cinestésica" },
-            { pergunta: "Eu tenho um interesse grande em saber mais sobre eu mesmo", valor: 0, aptidao: "Intrapessoal" },
-            { pergunta: "Línguas e estudos sociais são mais fáceis para min do que ciências exatas", valor: 0, aptidao: "Linguística" },
-            { pergunta: "Matemática e ciências são minhas matérias preferidas na escola", valor: 0, aptidao: "Matemática" },
-            { pergunta: "Para eu Geometria é mais fácil do que outras matérias da escola", valor: 0, aptidao: "Espacial" },
-            { pergunta: "Quando sei alguma coisa, gosto de ensinar para outras pessoas", valor: 0, aptidao: "Interpessoal" },
-            { pergunta: "Toco um instrumento musical", valor: 0, aptidao: "Musical" },
-            // Grupo III
-            { pergunta: "Eu organizo as coisas em minha mesa de trabalho com categoria e padrão", valor: 0, aptidao: "Matemática" },
-            { pergunta: "Eu prefiro passar a noite em casa do que em uma festa animada", valor: 0, aptidao: "Intrapessoal" },
-            { pergunta: "Eu tenho facilidade para resolver quebra cabeça", valor: 0, aptidao: "Espacial" },
-            { pergunta: "Gosto de passar meu tempo ao ar livre", valor: 0, aptidao: "Cinestésica" },
-            { pergunta: "Minha coleção musical está entre as coisas mais preciosas para mim", valor: 0, aptidao: "Musical" },
-            { pergunta: "Prefiro praticar esportes em equipes", valor: 0, aptidao: "Interpessoal" },
-            { pergunta: "Meus livros estão entre as coisas mais preciosas para mim", valor: 0, aptidao: "Linguística" },
-            // Grupo IV
-            { pergunta: "Eu acho difícil ficar sentado quieto por muito tempo", valor: 0, aptidao: "Cinestésica" },
-            { pergunta: "Eu acredito que quase tudo tem uma explicação racional", valor: 0, aptidao: "Matemática" },
-            { pergunta: "Eu consigo facilmente me orientar em locais pouco conhecidos", valor: 0, aptidao: "Espacial" },
-            { pergunta: "Eu consigo perceber quando uma nota musical está desafinada", valor: 0, aptidao: "Musical" },
-            { pergunta: "Eu me sinto confortável em meio a uma multidão", valor: 0, aptidao: "Interpessoal" },
-            { pergunta: "Penso em ter meu próprio negócio e ser meu chefe", valor: 0, aptidao: "Intrapessoal" },
-            { pergunta: "Eu percebo erros gramaticais quando outras pessoas falam, nem sempre as corrijo", valor: 0, aptidao: "Linguística" },
-            // Grupo V
-            { pergunta: "As pessoas costumam me ver como solitário", valor: 0, aptidao: "Intrapessoal" },
-            { pergunta: "As pessoas dizem que eu tenho uma voz agradável", valor: 0, aptidao: "Musical" },
-            { pergunta: "Costumo desafiar meus amigos em jogos estratégicos", valor: 0, aptidao: "Matemática" },
-            { pergunta: "Costumo gesticular bastante quando estou conversando com as pessoas", valor: 0, aptidao: "Cinestésica" },
-            { pergunta: "Eu consigo visualizar imagens claramente quando fecho os olhos", valor: 0, aptidao: "Espacial" },
-            { pergunta: "Eu me lembro de frases de efeito ou citações e uso-as como em conversas", valor: 0, aptidao: "Linguística" },
-            { pergunta: "Tenho pelo menos, três amigos íntimos", valor: 0, aptidao: "Interpessoal" }
-        ];
-
-        var aptidoes = {
-            "Musical": 0,
-            "Espacial": 0,
-            "Interpessoal": 0,
-            "Intrapessoal": 0,
-            "Matemática": 0,
-            "Cinestésica": 0,
-            "Linguística": 0
-        };
-
-        var perguntaAtualIndex = 0;
-        var somaRespostas = 0;
-        var progresso = 0;
-        var texto = "";
-        var circle = null;
-
-        function botao_clicado(resposta) {
-            somaRespostas += parseInt(resposta);
-
-            var perguntaAtual = perguntas[perguntaAtualIndex];
-            perguntaAtual.valor = parseInt(resposta);
-
-            // Atualizar respostas por tipo
-            aptidoes[perguntaAtual.aptidao] += perguntaAtual.valor;
-
-            perguntaAtualIndex++;
-            if (perguntaAtualIndex < perguntas.length) {
-                exibir_pergunta();
-                addProgress();
-            } else {
-                // Redirecionar para a página de resultados com os parâmetros na URL
-                window.location.href = "/login?soma=" + somaRespostas + "&aptidoes=" + JSON.stringify(aptidoes);
-            }
-        }
-
-            function votar_pergunta_anterior() {
-            if (perguntaAtualIndex > 0) {
-                perguntaAtualIndex--;
-                var perguntaAnterior = perguntas[perguntaAtualIndex];
-                var valorRespostaAnterior = perguntaAnterior.valor;
-                somaRespostas -= valorRespostaAnterior;
-                exibir_pergunta();
-                regressarProgresso();
-            } else {
-                console.log("Não há perguntas anteriores.");
-            }
-        }
-
-        function exibir_pergunta() {
-            var perguntaAtual = perguntas[perguntaAtualIndex];
-          
-            document.getElementById("pergunta").innerHTML = `
-               <div class= "pt-5"> 
-                <p style="color:"rgba(102, 101, 101, 1)">Atribua notas de 0 a 6, de acordo com as suas aptidões - sendo 6 a que mais combina com você e 0 a que menos.
-  </p>
-                <h4><strong>${perguntaAtual.pergunta}</strong</h4></div>
-               
-       <div class="pt-5" style=" margin-left: 30px" >
-        <!-- HTML -->
-      
-        <label  class="radio-label" for="resposta0" onclick="selectRadio('resposta0')">0</label>
-<label class="radio-label" for="resposta1" onclick="selectRadio('resposta1')">1</label>
-<label class="radio-label" for="resposta2" onclick="selectRadio('resposta2')">2</label>
-<label class="radio-label" for="resposta3" onclick="selectRadio('resposta3')">3</label>
-<label class="radio-label" for="resposta4" onclick="selectRadio('resposta4')">4</label>
-<label class="radio-label" for="resposta6" onclick="selectRadio('resposta6')">6</label>
-
-<!-- Radio buttons ocultos -->
-<p  id="respostan" name="resposta" style="display: inline-block;justify-content:space-between;margin-top:15px">você menos se identifica</p>
-    <input type="radio" id="resposta0" name="resposta" value="0" hidden>
-    <input type="radio" id="resposta1" name="resposta" value="1" hidden>
-    <input type="radio" id="resposta2" name="resposta" value="2" hidden>
-    <input type="radio" id="resposta3" name="resposta" value="3" hidden>
-    <input type="radio" id="resposta4" name="resposta" value="4" hidden>
-    <input type="radio" id="resposta5" name="resposta" value="5" hidden>
-    <input type="radio" id="resposta6" name="resposta" value="6" hidden>
-    <p class="resposta" id="respostas" name="resposta" style="display: inline-block; justify-content:space-between;margin-top:15px ; ">se identifica completamente</p>
-        </div>
-   <br>
-
-   <div style="display: flex; justify-content: space-between; margin-left:-28px">
-            <button style="margin-top: 50px; padding-left:30px; padding-right:30px;" type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
-            <button style="margin-top: 50px; padding-left:25px; padding-right:25px;" type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
-        </div>
-        <div>
-            <br>
-            </div>
-            `;
-        }
-
-        function criar_grafico_progresso() {
-            var myCanvas = document.getElementById('grafico_progresso');
-
-            if (myCanvas) {
-                circle = new ProgressCircle({
-                    canvas: myCanvas,
-                    minRadius: 30
-                });
-
-                circle.addEntry({
-                    fillColor: ' rgba(0, 152, 239, 1)',
-                    progressListener: function() {
-                        return progresso;
-                    },
-                    infoListener: function() {
-                        return texto;
-                    },
-                });
-
-                circle.start(35); // Ajustado para um total de 35 tarefas
-            } else {
-                console.error("O elemento 'grafico_progresso' não foi encontrado.");
-            }
-        }
-
-        function addProgress() {
-            progresso += 0.0286; // Ajustado para um total de 35 tarefas
-            texto ="Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
-
-            atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
-        }
-
-        function regressarProgresso() {
-            progresso -= 0.0286; // Ajustado para um total de 35 tarefas
-            texto = "Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
-
-            atualizar_grafico_progresso(); // Atualiza o gráfico de progresso
-        }
-
-        function atualizar_grafico_progresso() {
-            var somaRespostasTexto = "Respondidas: " + Math.round(progresso * 35) + "/35"; 
-
-            if (circle && circle.entries && circle.entries[0]) {
-                circle.entries[0].progress = progresso;
-                circle.entries[0].info = somaRespostasTexto;
-            }
-        }
-
-        window.onload = function() {
-            exibir_pergunta();
-            criar_grafico_progresso();
-        };
-
-        function selectRadio(id) {
-        // Remove a classe 'selected' de todos os rótulos
-        var labels = document.querySelectorAll('.radio-label');
-        labels.forEach(function(label) {
-            label.classList.remove('selected');
-        });
-
-        // Adiciona a classe 'selected' ao rótulo clicado
-        var label = document.querySelector('label[for="' + id + '"]');
-        label.classList.add('selected');
-    }
-    </script>
+   
 
     
 </head>
 <body style="background-color: rgba(121, 217, 252, 0.14); padding: 1 px;">
-    <button  type="button" class="btn btn-light" onclick="window.location.href='/'">Home</button>
+    <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%;" type="button" class="btn btn-light " onclick="window.location.href='/'"><i class="bi bi-arrow-left"></i> Home</button>
+   
    <div class="container" > 
     <div class="row">
-        <div class="col-12 col-md-4" >
-            <canvas style="margin-left: -25px; " id="grafico_progresso"></canvas>
+        <div class="col-3 col-xl-4 col-lg-4 col-md-3 grafico" >
+            <canvas class="graficoprogress"  id="grafico_progresso"></canvas>
             
-            <div class="pt-5">
-                <img  style="margin-top: 20px; margin-left: 50px;" decoding="async" width="198" height="190" src="{{ url_for('static', filename='Logotipo.png') }}" class="attachment-large size-large wp-image-981" alt="">								</a>
+            <div class="logo">
+                <img class="logotipo"  decoding="async"  src="{{ url_for('static', filename='Logotipo.png') }}" class="attachment-large size-large wp-image-981" alt="">								</a>
             </div>
         </div>
-    <div class="col-8 col-md-8 pt-4" style="background-color: white">
-        <div style="margin-left: 30px; padding-bottom: 300px;"  id="pergunta">
+    <div class="col-8 col-xl-8 col-lg-8  col-md-8 pergunta" style="background-color: white">
+        <div  id="pergunta">
            
 
         </div>
@@ -304,7 +259,233 @@
       
     </div>
    </div>
+   <script>
+    var perguntas = [
+  // Grupo I
+  { pergunta: "Eu consigo manter o ritmo de uma música com um instrumento de percussão.", valor: 0, aptidao: "Musical" },
+  { pergunta: "Eu consigo me lembrar com detalhes importantes de lugares que visitei", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Eu percebo como as pessoas se sentem em seus relacionamentos", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Eu geralmente sei como me sinto em relação às coisas e a meus sentimentos", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Eu sempre quero saber como as coisas funcionam", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Minhas melhores idéias surgem em uma caminhada ou corrida", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Sou ótimo em jogos de palavras cruzadas, anagramas e cruzadinhas", valor: 0, aptidao: "Linguística" },
+  // Grupo II
+  { pergunta: "Aprendo novos esportes com facilidade", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Eu tenho um interesse grande em saber mais sobre eu mesmo", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Línguas e estudos sociais são mais fáceis para min do que ciências exatas", valor: 0, aptidao: "Linguística" },
+  { pergunta: "Matemática e ciências são minhas matérias preferidas na escola", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Para eu Geometria é mais fácil do que outras matérias da escola", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Quando sei alguma coisa, gosto de ensinar para outras pessoas", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Toco um instrumento musical", valor: 0, aptidao: "Musical" },
+  // Grupo III
+  { pergunta: "Eu organizo as coisas em minha mesa de trabalho com categoria e padrão", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Eu prefiro passar a noite em casa do que em uma festa animada", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Eu tenho facilidade para resolver quebra cabeça", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Gosto de passar meu tempo ao ar livre", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Minha coleção musical está entre as coisas mais preciosas para mim", valor: 0, aptidao: "Musical" },
+  { pergunta: "Prefiro praticar esportes em equipes", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Meus livros estão entre as coisas mais preciosas para mim", valor: 0, aptidao: "Linguística" },
+  // Grupo IV
+  { pergunta: "Eu acho difícil ficar sentado quieto por muito tempo", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Eu acredito que quase tudo tem uma explicação racional", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Eu consigo facilmente me orientar em locais pouco conhecidos", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Eu consigo perceber quando uma nota musical está desafinada", valor: 0, aptidao: "Musical" },
+  { pergunta: "Eu me sinto confortável em meio a uma multidão", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Penso em ter meu próprio negócio e ser meu chefe", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Eu percebo erros gramaticais quando outras pessoas falam, nem sempre as corrijo", valor: 0, aptidao: "Linguística" },
+  // Grupo V
+  { pergunta: "As pessoas costumam me ver como solitário", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "As pessoas dizem que eu tenho uma voz agradável", valor: 0, aptidao: "Musical" },
+  { pergunta: "Costumo desafiar meus amigos em jogos estratégicos", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Costumo gesticular bastante quando estou conversando com as pessoas", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Eu consigo visualizar imagens claramente quando fecho os olhos", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Eu me lembro de frases de efeito ou citações e uso-as como em conversas", valor: 0, aptidao: "Linguística" },
+  { pergunta: "Tenho pelo menos, três amigos íntimos", valor: 0, aptidao: "Interpessoal" }
+];
+
+var aptidoes = {
+  "Musical": 0,
+  "Espacial": 0,
+  "Interpessoal": 0,
+  "Intrapessoal": 0,
+  "Matemática": 0,
+  "Cinestésica": 0,
+  "Linguística": 0
+};
+
+var perguntaAtualIndex = 0;
+var somaRespostas = 0;
+var progresso = 0;
+var texto = "";
+var circle = null;
+
+function botao_clicado(resposta) {
+somaRespostas += parseInt(resposta);
+
+var perguntaAtual = perguntas[perguntaAtualIndex];
+perguntaAtual.valor = parseInt(resposta);
+
+aptidoes[perguntaAtual.aptidao] += perguntaAtual.valor;
+
+perguntaAtualIndex++;
+if (perguntaAtualIndex < perguntas.length) {
+exibir_pergunta();
+addProgress();
+} else {
+// Corrigindo o redirecionamento
+window.location.replace("/login?soma=" + somaRespostas + "&aptidoes=" + JSON.stringify(aptidoes));
+}
+}
+
+// Função para votar na pergunta anterior
+function votar_pergunta_anterior() {
+if (perguntaAtualIndex > 0) {
+perguntaAtualIndex--;
+var perguntaAnterior = perguntas[perguntaAtualIndex];
+var valorRespostaAnterior = perguntaAnterior.valor;
+somaRespostas -= valorRespostaAnterior;
+exibir_pergunta();
+regressarProgresso();
+} else {
+console.log("Não há perguntas anteriores.");
+}
+}
+function exibir_pergunta() {
+  var perguntaAtual = perguntas[perguntaAtualIndex];
+
+  document.getElementById("pergunta").innerHTML = `
+     <div class= "notas"> 
+      <p style="color:"rgba(102, 101, 101, 1)">Atribua notas de 0 a 6, de acordo com as suas aptidões - sendo 6 a que mais combina com você e 0 a que menos.
+</p>
+     
+          <h4><strong>${perguntaAtual.pergunta}</strong></h4>
+      </div>
+<div class="pt-5" style=" margin-left: 20px" >
+<!-- HTML -->
+
+<label  class="radio-label" for="resposta0" onclick="selectRadio('resposta0')">0</label>
+<label class="radio-label" for="resposta1" onclick="selectRadio('resposta1')">1</label>
+<label class="radio-label" for="resposta2" onclick="selectRadio('resposta2')">2</label>
+<label class="radio-label" for="resposta3" onclick="selectRadio('resposta3')">3</label>
+<label class="radio-label" for="resposta4" onclick="selectRadio('resposta4')">4</label>
+<label class="radio-label" for="resposta5" onclick="selectRadio('resposta5')">5</label>
+<label class="radio-label" for="resposta6" onclick="selectRadio('resposta6')">6</label>
+
+<!-- Radio buttons ocultos -->
+<p  id="respostan" name="resposta" style="display: inline-block;justify-content:space-between;margin-top:15px">você menos se identifica</p>
+<input type="radio" id="resposta0" name="resposta" value="0" hidden>
+<input type="radio" id="resposta1" name="resposta" value="1" hidden>
+<input type="radio" id="resposta2" name="resposta" value="2" hidden>
+<input type="radio" id="resposta3" name="resposta" value="3" hidden>
+<input type="radio" id="resposta4" name="resposta" value="4" hidden>
+<input type="radio" id="resposta5" name="resposta" value="5" hidden>
+<input type="radio" id="resposta6" name="resposta" value="6" hidden>
+<p class="resposta" id="respostas" name="resposta" style="display: inline-block; justify-content:space-between;margin-top:15px ; ">se identifica completamente</p>
+</div>
+<br>
+
+<div class="voltaavanca"  style="display: flex; justify-content: space-between; ">
+  <button style="margin-top: 50px; padding-left:30px; padding-right:30px;" type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
+  <button style="margin-top: 50px; padding-left:25px; padding-right:25px;" type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)">Avançar</button>
+</div>
+<div>
+  <br>
+  </div>
+ 
+  `
+;
   
+}
+
+function criar_grafico_progresso(marginTop = '0px', marginLeft = '0px', marginRight = '0px', marginBottom = '0px') {
+  var myCanvas = document.getElementById('grafico_progresso');
+
+  if (myCanvas) {
+      circle = new ProgressCircle({
+          canvas: myCanvas,
+          minRadius: 30
+      });
+
+      circle.addEntry({
+          fillColor: ' rgba(0, 152, 239, 1)',
+          progressListener: function() {
+              return progresso;
+          },
+          infoListener: function() {
+              return texto;
+          },
+      });
+
+      circle.start(35); // Ajustado para um total de 35 tarefas
+
+      // Definindo as margens
+      myCanvas.style.marginTop = marginTop;
+      myCanvas.style.marginLeft = marginLeft;
+      myCanvas.style.marginRight = marginRight;
+      myCanvas.style.marginBottom = marginBottom;
+  } else {
+      console.error("O elemento 'grafico_progresso' não foi encontrado.");
+  }
+}
+function addProgress(marginTop = '0px', marginLeft = '0px', marginRight = '0px', marginBottom = '0px') {
+  progresso += 0.0286; // Ajustado para um total de 35 tarefas
+  texto ="Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
+
+  atualizar_grafico_progresso(marginTop, marginLeft, marginRight, marginBottom); // Atualiza o gráfico de progresso
+}
+
+function regressarProgresso(marginTop = '0px', marginLeft = '0px', marginRight = '0px', marginBottom = '0px') {
+  progresso -= 0.0286; // Ajustado para um total de 35 tarefas
+  texto = "Respondidas: "+ Math.round(progresso * 35) + "/35"; // Ajustado para exibir o número atual da tarefa de um total
+
+  atualizar_grafico_progresso(marginTop, marginLeft, marginRight, marginBottom); // Atualiza o gráfico de progresso
+}
+
+function atualizar_grafico_progresso(marginTop = '0px', marginLeft = '0px', marginRight = '0px', marginBottom = '0px') {
+  var somaRespostasTexto = "Respondidas: " + Math.round(progresso * 35) + "/35"; 
+
+  if (circle && circle.entries && circle.entries[0]) {
+      circle.entries[0].progress = progresso;
+      circle.entries[0].info = somaRespostasTexto;
+  }
+
+  // Atualizando as margens da parte "Respondidas"
+  var respondidasElement = document.getElementById('respondidas');
+  if (respondidasElement) {
+    respondidasElement.style.marginTop = marginTop;
+    respondidasElement.style.marginLeft = marginLeft;
+    respondidasElement.style.marginRight = marginRight;
+    respondidasElement.style.marginBottom = marginBottom;
+  }
+}
+
+
+window.onload = function() {
+  exibir_pergunta();
+  criar_grafico_progresso('15px', '-20px', '10px', '15px');
+};
+
+function selectRadio(id) {
+// Remove a classe 'selected' de todos os rótulos
+var labels = document.querySelectorAll('.radio-label');
+labels.forEach(function(label) {
+  label.classList.remove('selected');
+});
+
+// Adiciona a classe 'selected' ao rótulo clicado
+var label = document.querySelector('label[for="' + id + '"]');
+label.classList.add('selected');
+}
+function adjustPadding() {
+    var featuredImages = document.getElementById('pergunta');
+    var windowHeight = window.innerHeight;
+    var paddingToSet = (windowHeight > 800) ? '170px' : '';
+    var paddingToSet2 = (windowHeight >= 1180) ? '500px' : ''; // Definindo o padding maior apenas se a altura for maior ou igual a 1180 pixels
+
+    // Aplica o paddingToSet2 se estiver definido
+    featuredImages.style.paddingBottom = paddingToSet2 || paddingToSet;
+}
+</script>
 
 </body>
 </html>
