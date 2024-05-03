@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="pt-br"> 
 <head>
    <!-- Prototipo tela inicial -->
     <meta charset="UTF-8">
@@ -79,8 +79,82 @@
   font-size: 14px;
   
 }
+@media screen and (min-width: 330px)  {
+  .titleteste {
+  margin-left: 2px;
+  margin-right: 90px;
+  padding-top: 120px;
+  margin-top: -170px;
+  font-size: 12px;
+}
 
-@media screen and (min-width: 375px) and (max-width: 390px) {
+.apresentacao {
+  font-size: 2px;
+  text-align: justify;
+  margin-top: 10px;
+  color: rgba(146, 191, 175, 1);
+  margin-top: 16px;
+}
+
+.logo {
+  margin-top: 20px;
+  margin-left: 265px;
+  height: 10%;
+  width: 20%;
+}
+
+.attachment-large {
+  margin-left:-120px;
+  width: 170%;
+  height:85%;
+  margin-top: 15px;
+}
+
+body {
+  padding-bottom: 25px;
+}
+
+.funcionamento {
+  margin-right: -20px;
+}
+
+.lermais {
+  margin-bottom: 60px;
+}
+
+.tipos {
+  margin-left: 10px;
+}
+
+.btntipos {
+  margin-left: 87px;
+}
+
+.btntestebottom {
+  margin-left:47px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 539px) {
+  .hidden-on-mobile {
+    display: none !important;
+  }
+}
+.hidden-on-large{
+  display: block !important;
+margin-top: -40px;
+    margin-bottom: 40px;
+  }
+  .image-container{
+    margin-right:0px;
+    margin-left: 25px;
+  }
+  .ptipos{
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 414px) {
   .titleteste {
   margin-left: 2px;
   margin-right: 90px;
@@ -107,12 +181,12 @@
 .attachment-large {
   margin-left:-120px;
   width: 170%;
-  height:80%;
+  height:85%;
   margin-top: 15px;
 }
 
 body {
-  padding-bottom: 150px;
+  padding-bottom: 350px;
 }
 
 .funcionamento {
@@ -128,11 +202,11 @@ body {
 }
 
 .btntipos {
-  margin-left: 20px;
+  margin-left: 87px;
 }
 
 .btntestebottom {
-  margin-left:70px;
+  margin-left:50px;
   margin-bottom: 10px;
 }
 
@@ -201,7 +275,7 @@ body {
 }
 
 .btntipos {
-  margin-left: 20px;
+  margin-left: 87px; 
 }
 
 .btntestebottom {
@@ -273,7 +347,7 @@ body {
 }
 
 .btntipos {
-  margin-left: 20px;
+  margin-left: 127px;
 }
 
 .btntestebottom {
@@ -341,7 +415,12 @@ margin-top: -40px;
   .image-container{
     margin-left: 50px;
   }
-
+  .btntipos {
+  margin-left: 87px;
+}
+.tipos {
+  margin-left: 20px;
+}
       }
 
 
@@ -402,7 +481,20 @@ margin-top: -40px;
   }
 
       }
-    
+      @media screen and (max-width: 853px) {
+    .respostan {
+        display: none !important;
+    }
+}
+
+/* Para dispositivos maiores que 853px */
+@media screen and (min-width: 854px) {
+    .respostan {
+        display: block !important;
+        margin-top: -40px;
+        margin-bottom: 40px;
+    }
+}
 
 @media screen and (min-width: 912px) {
        .titleteste{
@@ -532,7 +624,7 @@ margin-top: -40px;
   
        margin-left:-6px;
        width:60%;
-        height:13%
+        height:7%
        }
       
        .attachment-large {
@@ -550,7 +642,7 @@ body{
   margin-right: -40px;
  }
  .btntipos{
-  margin-left: 97px;
+  margin-left: 100px;
  }
   .btntestebottom{
     margin-left:270px;
@@ -568,6 +660,10 @@ body{
   .image-container{
     margin-left: 50px;
   }
+  .ptipos{
+    margin-left: 27px;
+  }
+  
 
         }
         
@@ -642,83 +738,82 @@ body{
               </div>
               
               
-              <p style=" margin-left: 22px; margin-top: 10px;">Físico-Cinestésica</p>
+              <p class="ptipos" style="margin-top: 10px;">Físico-Cinestésica</p>
              
             
             </div>
       
      
             <div class="col-lg-2 col-md-2 col-sm-4 col-4   image-container" onclick="toggleText2('overlay3')" style="background-color:#FDF5E6; border-radius: 30px;  ">
-              <button class="btntipos" style="border-radius: 100px; margin-left: 100px; " onclick="toggleText2('overlay4')">?</button>
+              <button class="btntipos" style="border-radius: 100px; " onclick="toggleText2('overlay4')">?</button>
                   <img  style="margin-top: 7px;" decoding="async" style="border-radius: 10px;"  width="70" height="70" src="{{ url_for('static', filename='espacial.png') }}" class="img-fluid tipos" alt="">								</a>
                   <div class="overlay-text" id="overlay3">
                     <strong>está relacionada a pessoas com uma boa percepção visual e espacial</strong>
                     <button onclick="toggleText2('overlay3')"></button>
                   </div>
  
-                  <p style=" margin-left: 25px; margin-top: 30px;">Espacial</p>
+                  <p class="ptipos" style=" margin-top: 30px;">Espacial</p>
                 
                 </div>
 
             <div class="col-lg-2 col-md-2 col-sm-4 col-4 image-container" onclick="toggleText2('overlay5')" style="background-color:#FDF5E6; border-radius: 30px; ">
-              <button class="btntipos" style="border-radius: 100px; margin-left: 100px; " onclick="toggleText2('overlay4')">?</button>
+              <button class="btntipos" style="border-radius: 100px;  " onclick="toggleText2('overlay4')">?</button>
                   <img style="margin-top: 10px;" decoding="async" style="border-radius: 10px; "  width="70" height="70" src="{{ url_for('static', filename='interpessoal.png') }}" class="img-fluid tipos" alt="">								</a>
                   <div class="overlay-text" id="overlay5">
                     <strong>está relacionada ao domínio da comunicação e persuasão</strong>
                     <button  onclick="toggleText2('overlay5')"></button>
                   </div>
               
-                <p style="margin-top: 30px; margin-left: 17px;">Interpessoal</p>
+                <p class="ptipos" style="margin-top: 30px; ">Interpessoal</p>
               </div>
         
             <div class="col-lg-2 col-md-2 col-sm-4 col-4  image-container" onclick="toggleText2('overlay7')" style="background-color:#FDF5E6; border-radius: 30px; ">
-              <button class="btntipos" style="border-radius: 100px; margin-left: 100px; " onclick="toggleText2('overlay4')">?</button>
+              <button class="btntipos" style="border-radius: 100px; " onclick="toggleText2('overlay4')">?</button>
               <img style=" margin-top: 10px;" decoding="async" style="border-radius: 10px;"  width="70" height="70" src="{{ url_for('static', filename='intrapessoal.png') }}" class="img-fluid tipos" alt="">								</a>
               <div class="overlay-text" id="overlay7">
                 <strong>está relacionada a pessoa que possui o autoconhecimento, ou seja, a conexão consigo mesmo</strong>
                     <button onclick="toggleText2('overlay7')"></button>
                   </div>
                 
-            <p  style=" margin-left: 17px; margin-top: 30px;" >Intrapessoal</p>
+            <p class="ptipos" style=" margin-top: 30px;" >Intrapessoal</p>
           </div>
        
           <div class=" col-lg-1 image-container" onclick="toggleText2('overlay9')" style="margin-left: 30px;">
           </div>
 
         <div class="col-lg-2 col-md-2 col-sm-4 col-4 image-container" onclick="toggleText2('overlay9')" style="background-color:#FDF5E6; border-radius: 30px; " >
-          <button class="btntipos" style="border-radius: 100px; margin-left: 100px; " onclick="toggleText2('overlay4')">?</button>
+          <button class="btntipos" style="border-radius: 100px;" onclick="toggleText2('overlay4')">?</button>
           <img  style="margin-top: 20px;" decoding="async" style="border-radius: 10px;"  width="70" height="70" src="{{ url_for('static', filename='linguistica.png') }}" class="img-fluid tipos" alt="">								</a>
           <div class="overlay-text" id="overlay9">
             <strong>está relacionada a pessoa que consegue se comunicar, aprender novas línguas e fazer uso da linguagem verbal e escrita</strong>
             <button onclick="toggleText2('overlay9')"></button>
           </div>
     
-        <p style="margin-top: 20px; margin-left: 22px;" >Linguística</p>
+        <p class="ptipos" style="margin-top: 20px; " >Linguística</p>
       </div>
    
     <div class="col-lg-2 col-md-2 col-sm-4 col-4 image-container" onclick="toggleText2('overlay11')" style="background-color:#FDF5E6; border-radius: 30px; ">
-      <button style="border-radius: 100px; margin-left: 100px; " onclick="toggleText2('overlay4')">?</button>    
+      <button class="btntipos" style="border-radius: 100px;  " onclick="toggleText2('overlay4')">?</button>    
       <img style="margin-top: 10px;" decoding="async" style="border-radius: 10px;"  width="70" height="70" src="{{ url_for('static', filename='matematico.png') }}" class="img-fluid tipos" alt="">								</a>
       <div class="overlay-text" id="overlay11">
         <strong>está ligada a capacidade que o ser humano tem para raciocínios dedutivos e conceitos matemáticos</strong>
         <button onclick="toggleText2('overlay11')"></button>
       </div>
      
-    <p style="margin-top: 15px; margin-left: 15px;">Lógico-Matemática</p>
+    <p class="ptipos" style="margin-top: 15px; ">Lógico-Matemática</p>
   </div>
 
 <div class="col-lg-2 col-md-2 col-sm-4 col-4 image-container" onclick="toggleText2('overlay13')" style="background-color:#FDF5E6; border-radius: 30px; ">
-  <button class="btntipos" style="border-radius: 100px; margin-left: 100px; " onclick="toggleText2('overlay4')">?</button>             
-  <img style="margin-top: 20px;" decoding="async" style="border-radius: 10px;"  width="70" height="70" src="{{ url_for('static', filename='musical.png') }}" class="img-fluid tipos" alt="">								</a>
+  <button class="btntipos" style="border-radius: 100px;  " onclick="toggleText2('overlay4')">?</button>             
+  <img style="margin-top: 20px;" decoding="async" style="border-radius: 10px;"  width="65" height="70" src="{{ url_for('static', filename='musical.png') }}" class="img-fluid tipos" alt="">								</a>
   <div class="overlay-text" id="overlay13">
     <strong>demonstra grande habilidade de reconhecer, aprender, interpretar e diferenciar notas, timbres, melodias e ritmos</strong>
     <button onclick="toggleText2('overlay13')"></button>
   </div>
 
-<p style="margin-top: 20px; margin-left: 32px;" >Musical</p>
+<p class="ptipos" style="margin-top: 20px; " >Musical</p>
 </div>
-<div class="col-lg-1 image-container" onclick="toggleText2('overlay9')">
-</div>
+
 
 </div>
 <div class="pt-3" >
@@ -749,9 +844,7 @@ body{
     
       </div>
       <script>
-        window.addEventListener('resize', function() {
-    location.reload(); // Recarrega a página quando o tamanho da janela é alterado
-})
+
 window.addEventListener('load', function() {
     var perfilDiv = document.querySelector('.perfil-div');
     var isMobile = window.innerWidth <= 576; // ou o valor desejado para 'col-sm'
@@ -784,7 +877,7 @@ window.addEventListener('load', function() {
                 texto.style.display = "block";
             });
             button.textContent = "Ler menos";
-            logoImg.style.height = '16%';
+            logoImg.style.height = '17%';
         } else {
             textos.forEach(function(texto) {
                 texto.style.display = "none";
@@ -821,7 +914,7 @@ window.addEventListener('load', function() {
     window.addEventListener('load', function() {
     var button = document.getElementById('lerMaisBtn');
     var textos = document.querySelectorAll(".textoOculto");
-    var isMobile = window.innerWidth <= 539 || window.innerWidth <= 912;
+    var isMobile = window.innerWidth <= 539 && window.innerWidth <= 912;
  // Define o limite de largura de 853 pixels
     var logoImg = document.getElementById('logoImg'); // Seleciona a imagem pelo ID
     if (isMobile) {
@@ -833,13 +926,15 @@ window.addEventListener('load', function() {
         });
         button.style.display = 'none'; // Oculta o botão
     }
-    if (isMobile && window.innerWidth <= 912) {
-        logoImg.style.height = '49%';
-    } else if (window.innerWidth <= 540) {
-        logoImg.style.height = '30%';
-    } else {
-        logoImg.style.height = '17%';
-    } // Define a altura da imagem com base na largura da tela e no limite de 960 pixels
+    if (isMobile && window.innerWidth >= 539 && window.innerWidth <= 912) {
+    logoImg.style.height = '49%';
+    } else if (window.innerWidth >= 1280) {
+    logoImg.style.height = '15%';
+} else if (window.innerWidth >= 540) {
+    logoImg.style.height = '30%';
+} else {
+    logoImg.style.height = '20%';
+}  // Define a altura da imagem com base na largura da tela e no limite de 960 pixels
 });
 
 
