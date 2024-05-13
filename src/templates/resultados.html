@@ -84,6 +84,7 @@
           <p style="margin-left: 5px;">Resultado do seu perfil</p>
         </div>
       <div style="margin-top: 75px; "><canvas id="grafico" width="200" height="35"></canvas>
+        
       </div>
       </div>
       <h2 style="margin-top: 100px; margin-bottom: 30px;"> <strong >Saiba mais sobre as Múltiplas Inteligências:</strong></h2>
@@ -394,6 +395,12 @@ console.log("Email do usuário:", email);
 // Gráfico de coluna
 
 // Objeto para armazenar a soma total das respostas para cada inteligência
+// Calcula a soma total das respostas para cada inteligência
+var total = 0;
+for (var questao in aptidoes) {
+    total += aptidoes[questao];
+}
+
 var somaPorInteligencia = {};
 
 // Calcula a soma total das respostas para cada inteligência
@@ -405,11 +412,15 @@ for (var questao in aptidoes) {
     somaPorInteligencia[inteligencia] += aptidoes[questao];
 }
 
-    // Prepara os dados para o gráfico
-    var labels = Object.keys(somaPorInteligencia);
-    var valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / 30));
+// Normaliza os valores para que o total seja 100
+for (var inteligencia in somaPorInteligencia) {
+    somaPorInteligencia[inteligencia] = Math.round((somaPorInteligencia[inteligencia] * 100) / total);
+}
 
 // Configuração do gráfico
+var labels = Object.keys(somaPorInteligencia);
+var valores = labels.map(inteligencia => somaPorInteligencia[inteligencia]);
+
 var ctx = document.getElementById('grafico').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -420,8 +431,7 @@ var myChart = new Chart(ctx, {
             data: valores,
             backgroundColor: ['#FF5733', '#33FF57', '#5733FF', '#FFFF33', '#33FFFF'], // Cores diferentes para cada barra
             borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-
+            borderWidth: 2
         }]
     },
     options: {
@@ -437,20 +447,23 @@ var myChart = new Chart(ctx, {
         },
         plugins: {
             datalabels: {
-                 anchor: 'end', // Posição dos rótulos dos dados
+                anchor: 'end',
                 align: 'end',
-                formatter: function(value) {
-                    return Math.round(value * 100) / 100 + '%'; // Arredonda os valores para duas casas decimais
-                },
-                color: 'black', // Cor do texto dos rótulos
+                color: 'white', // Cor do texto dos rótulos
                 font: {
                     weight: 'bold' // Peso da fonte dos rótulos
                 },
-                zIndex: 1 
+                formatter: function(value, context) {
+                    return value + '%'; // Retorna o valor da barra com o símbolo de porcentagem
+                },
+                textStrokeColor: 'black', // Cor da borda do texto
+                textStrokeWidth: 2 // Largura da borda do texto
             }
         }
     }
 });
+
+
     
     // Obtém o texto dos resultados
     function converterObjetoParaTexto(objeto) {
@@ -526,6 +539,7 @@ var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
     // Envia os resultados por email
     enviarResultadosPorEmail(email, resultadosTexto, aptidoes);
 });
+
 
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

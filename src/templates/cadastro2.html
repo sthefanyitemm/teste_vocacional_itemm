@@ -34,8 +34,24 @@
                 <div class="form-group" style="margin: 40px;">
                     {% block content %}
                     <form id="cadastro-form" action="/cadastros" method="POST">
-                        <p>Nome Completo: <input style="width: 300px;" type="text" name="nome" placeholder="DIGITE AQUI" class="rounded-input" /></p>
-                        <p style="margin-top:15px;">Telefone/WhatsApp: <input style="width: 280px;" type="text" name="telefone" placeholder="(99)99999-9999" class="rounded-input" /></p>
+                        <p> <strong>Nome Completo: </strong> <br> <input id="nomeInput" style="width: 415px; margin-top: 10px;padding-left: 10px;" type="text" name="nome" placeholder="DIGITE AQUI" class="rounded-input" /></p>
+                        <div class="row">
+                            <div class="form-group col-md-6 ">
+                               <p><strong>Data:</strong></p>
+                                <input style="margin-top: -5px; " type="date" name="date" id="data" class="rounded-input">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="margin-left: -35px;" for="sexo"><strong>Sexo:</strong></label>
+                                
+                                <select style="margin-left: -45px;" class="form-control rounded-input"  style="width: 200px;" name="sexo" id="sexo">
+                                    <option value="">selecionar</option>
+                                    <option value="F">Feminino</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="O">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p style="margin-top:15px;"><strong>Telefone/WhatsApp:</strong> <input style="width: 260px;padding-left: 10px;" type="text" name="telefone" placeholder="(99)99999-9999" class="rounded-input" /></p>
                         {% if error_message %}
                         <div class="alert alert-danger" role="alert">
                             {{ error_message }}
@@ -43,16 +59,16 @@
                         {% endif %}
                         <div class="row">
                             <div class="form-group col-md-6 pt-3">
-                                <p>E-mail: <input type="text" name="email" placeholder="Digite seu e-mail" class="rounded-input" autocomplete="current-password" required/></p>
+                                <p><strong>E-mail:</strong> <input type="text" name="email" placeholder="Digite seu e-mail" class="rounded-input" autocomplete="current-password" required/></p>
                             </div>
                             <div class="form-group col-md-6 pt-3">
-                                <p>Senha: <input type="password" id="senha" name="senha" placeholder="DIGITE AQUI" class="rounded-input password-like"  required /></p>
+                                <p style="margin-left: -15px;"><strong>Senha:</strong> <input type="password" id="senha" name="senha" placeholder="DIGITE AQUI" class="rounded-input password-like"  required /></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6 ">
-                                <label for="estado">Estado:</label>
-                                <select class="form-control rounded-input" name="estado" id="estado" style="width: 200px;"> 
+                                <label for="estado"><strong>Estado:</strong></label>
+                                <select class="form-control rounded-input" name="estado" id="estado" style="width: 190px;"> 
                                     <option>Selecionar</option>
                                     {% if estados %}
                                     {% for estado in estados %}
@@ -64,27 +80,13 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="cidade">Cidade:</label>
-                                <select class="form-control rounded-input" name="cidade" id="cidade" style="width: 200px;">
+                                <label style="margin-left: -15px;" for="cidade"><strong>Cidade:</strong></label>
+                                <select style="margin-left: -15px;" class="form-control rounded-input" name="cidade" id="cidade" style="width: 200px;">
                                     <option>Selecionar</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-6 ">
-                                <label for="date">Data:</label>
-                                <input style="margin-top: 30px; margin-left: 15px;" type="date" name="date" id="date" class="rounded-input">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="sexo">Sexo:</label>
-                                <select class="form-control rounded-input"  style="width: 200px;" name="sexo" id="sexo">
-                                    <option value="">selecionar</option>
-                                    <option value="F">Feminino</option>
-                                    <option value="M">Masculino</option>
-                                    <option value="O">Outros</option>
-                                </select>
-                            </div>
-                        </div>
+                        
                         <p><input type="checkbox" id="lgpd" checked="checked" name="lgpd"> Li e concordo com a LGPD - Lei Geral de Proteção de Dados.
                             <a style="font-size: 11px;" href="#" id="openModal"> Abrir termo de LGPD- Lei Geral de Portação de Dados</a>
                         </p>
@@ -138,8 +140,8 @@ document.getElementById('estado').addEventListener('change', function() {
     });
 
 
-</script>
-<script>
+
+
 document.addEventListener("DOMContentLoaded", function() {
     var cadastroForm = document.getElementById('cadastro-form');
     if (cadastroForm) {
@@ -197,6 +199,41 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Elemento de formulário de cadastro não encontrado.');
     }
 });
+// Função para obter parâmetros da URL
+// Função para obter parâmetros da URL
+// Função para obter parâmetros da URL
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Função para preencher os campos com os dados da URL
+window.onload = function() {
+    var nome = getParameterByName('nome');
+    var data = getParameterByName('idade');
+    
+    document.getElementById('nomeInput').value = nome;
+    document.getElementById('data').value = data;
+}
+// Função para preencher os campos com os dados da URL
+
+
+
+
+
+
+           function convertPasswordFieldToText() {
+        var passwordInput = document.getElementById("senha");
+        passwordInput.type = "text"; // Altera temporariamente o tipo de entrada para 'text'
+    }
+
+      // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
+    
 
 </script>
     
@@ -208,40 +245,36 @@ document.addEventListener("DOMContentLoaded", function() {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- Script para abrir o modal -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
-    $(document).ready(function(){
-      $("#openModal").click(function(){
+// Função para abrir o modal quando o botão é clicado
+$(document).ready(function(){
+    $("#openModal").click(function(){
         $("#myModal").modal('show');
-      });
     });
-  </script>
 
+    // Definir inicialmente o estado do checkbox LGPD como não marcado
+    $("#lgpd").prop("checked", false);
 
-
-  <script>
-           function convertPasswordFieldToText() {
-        var passwordInput = document.getElementById("senha");
-        passwordInput.type = "text"; // Altera temporariamente o tipo de entrada para 'text'
-    }
-
-    // Evento de envio do formulário - chama a função convertPasswordFieldToText
-    document.getElementById("cadastro-form").addEventListener("submit", convertPasswordFieldToText);
-    
-  // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
-    $(document).ready(function(){
-      $("#openModal").click(function(){
-        $("#myModal").modal('show');
-      });
-
-      // Definir inicialmente o estado do checkbox LGPD como não marcado
-      $("#lgpd").prop("checked", false);
-
-      // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
-      $("#lgpd").change(function(){
-          var isChecked = $(this).prop("checked");
-          $("#submit").prop("disabled", !isChecked);
-      });
+    // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
+    $("#lgpd").change(function(){
+        var isChecked = $(this).prop("checked");
+        $("#submit").prop("disabled", !isChecked);
     });
+});
+
+// Função para converter campo de senha em texto
+function convertPasswordFieldToText() {
+    var passwordInput = document.getElementById("senha");
+    passwordInput.type = "text"; // Altera temporariamente o tipo de entrada para 'text'
+}
+
+// Evento de envio do formulário - chama a função convertPasswordFieldToText
+document.getElementById("cadastro-form").addEventListener("submit", convertPasswordFieldToText);
 </script>
 
 

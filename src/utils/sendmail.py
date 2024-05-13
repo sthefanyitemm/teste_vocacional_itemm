@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(receiver_email):
     # Configurar informações do e-mail
-    sender_email = 'sthefany.lima@itemm.com.br'
+    sender_email = 'testevocacional@itemm.com.br'
     subject = 'teste send email '
     message = 'Um link para criação de senha foi enviado para o seu e-mail.'
 
@@ -18,8 +18,8 @@ def send_email(receiver_email):
     # Configurar servidor SMTP
     smtp_server = 'smtp.office365.com'
     smtp_port = 587
-    smtp_username = 'sthefany.lima@itemm.com.br'
-    smtp_password = '!@Devpy0'
+    smtp_username = 'testevocacional@itemm.com.br'
+    smtp_password = 'Itemm@2024'
 
     # Iniciar conexão com o servidor SMTP
     server = smtplib.SMTP(smtp_server, smtp_port)

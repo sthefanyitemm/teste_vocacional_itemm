@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Cadastro </title>
     <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <!-- Bootstrap Icons -->
@@ -44,19 +44,19 @@
            
             </div>
             <div class="col-6">
-                <h1 style="margin-top: 150px;margin-left: 40px;margin-right: 35px;"><strong>Cadastre-se</strong></h1>
+                <h1 style="margin-top: 150px;margin-left: 40px;margin-right: 35px;"><strong>Cadastre-se para visualizar  o resultado do seu teste!</strong></h1>
                
                 <div class="form-group">
                 <label style="margin-left: 5px;margin-left: 60px; margin-top: 50px;"><strong>Nome Completo:</strong></label><br>
-                <input style="width: 440px;margin-left: 60px; margin-bottom: 10px;padding-left: 15px;" type="text" name="nome" placeholder="DIGITE AQUI" class="rounded-input" />
+                <input style="width: 440px;margin-left: 60px; margin-bottom: 10px;padding-left: 15px;" type="text" name="nome"  id="nomeInput" placeholder="DIGITE AQUI" class="rounded-input" />
                </div>
               
                     <div class="form-group ">
                         <label style="margin-left: 5px;margin-left: 60px;" for="date"><strong>Data:</strong></label>
                         <input style="margin-top: -15px;margin-left: 10px;width: 150px;padding-left:10px;" type="date" name="date" id="date" class="rounded-input">
                     </div>
-                    <button style="border-radius: 15px; margin-top: -15px; margin-left: 425px; margin-bottom: 200px;" type="button" class="btn btn-success btntestebottom" onclick="verificarIdade()"> Avançar</button>
-                
+                    <button style="border-radius: 15px; margin-top: 15px; margin-left: 425px; " type="button" class="btn btn-success btntestebottom" onclick="verificarIdade()"> Avançar</button>
+                    <p style="margin-bottom: 200px; margin-left: 55px; margin-top: -25px;"><a href="login">Já tem cadastro? Clique aqui para fazer o login </a></p>
             </div>
             <div class=" col-xl-2 pt-3 logo">
                 <img class="logotipo"   decoding="async"  src="{{ url_for('static', filename='Logotipo.png') }}"  alt="">
@@ -73,6 +73,7 @@
                             return decodeURIComponent(results[2].replace(/\+/g, " "));
                         }
 function verificarIdade() {
+    
     var nome = document.getElementsByName("nome")[0].value;
     var dataNascimento = new Date(document.getElementById("date").value);
     var hoje = new Date();
@@ -91,6 +92,8 @@ function verificarIdade() {
         // Caso contrário, redirecione para "cadastro2.html" com os parâmetros de nome e idade na URL
         window.location.href = 'cadastros?nome=' + encodeURIComponent(nome) + '&idade=' + idade + "&soma=&aptidoes=" + JSON.stringify(aptidoes);
     }
+
+  
 }
 
 

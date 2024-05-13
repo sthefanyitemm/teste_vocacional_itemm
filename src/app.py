@@ -92,7 +92,7 @@ def enviar_resultados_por_email(email, resultadosTexto):
 
 def enviar_resultados_por_email(email, resultadosTexto):
     # Configurar informações do e-mail
-    sender_email = 'sthefany.lima@itemm.com.br'  # Substitua pelo seu endereço de e-mail
+    sender_email = 'testevocacional@itemm.com.br'  # Substitua pelo seu endereço de e-mail
     subject = 'Resultados do teste vocacional'
     message = resultadosTexto 
 
@@ -106,8 +106,8 @@ def enviar_resultados_por_email(email, resultadosTexto):
     # Configurar servidor SMTP
     smtp_server = 'smtp.office365.com'
     smtp_port = 587
-    smtp_username = 'sthefany.lima@itemm.com.br'
-    smtp_password = '!@Devpy0'
+    smtp_username = 'testevocacional@itemm.com.br'
+    smtp_password = 'Itemm@2024'
     
     try:
         # Iniciar conexão com o servidor SMTP
