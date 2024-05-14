@@ -354,7 +354,6 @@ console.log("Email do usuário:", email);
             }
         });
 
-        // Função para ocultar as divs das 4 últimas inteligências
         function hideOtherIntelligences() {
             aptidoesArray.slice(3).forEach(aptidao => {
                 var container = document.getElementById(aptidao.nome);
@@ -395,12 +394,6 @@ console.log("Email do usuário:", email);
 // Gráfico de coluna
 
 // Objeto para armazenar a soma total das respostas para cada inteligência
-// Calcula a soma total das respostas para cada inteligência
-var total = 0;
-for (var questao in aptidoes) {
-    total += aptidoes[questao];
-}
-
 var somaPorInteligencia = {};
 
 // Calcula a soma total das respostas para cada inteligência
@@ -412,15 +405,15 @@ for (var questao in aptidoes) {
     somaPorInteligencia[inteligencia] += aptidoes[questao];
 }
 
-// Normaliza os valores para que o total seja 100
-for (var inteligencia in somaPorInteligencia) {
-    somaPorInteligencia[inteligencia] = Math.round((somaPorInteligencia[inteligencia] * 100) / total);
-}
+    // Prepara os dados para o gráfico
+    //var labels = Object.keys(somaPorInteligencia);
+    //var valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / 30));
 
 // Configuração do gráfico
 var labels = Object.keys(somaPorInteligencia);
-var valores = labels.map(inteligencia => somaPorInteligencia[inteligencia]);
+var valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / 30));
 
+// Configuração do gráfico
 var ctx = document.getElementById('grafico').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -454,7 +447,7 @@ var myChart = new Chart(ctx, {
                     weight: 'bold' // Peso da fonte dos rótulos
                 },
                 formatter: function(value, context) {
-                    return value + '%'; // Retorna o valor da barra com o símbolo de porcentagem
+                    return value; // Retorna o valor da barra
                 },
                 textStrokeColor: 'black', // Cor da borda do texto
                 textStrokeWidth: 2 // Largura da borda do texto
@@ -462,7 +455,6 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
 
     
     // Obtém o texto dos resultados

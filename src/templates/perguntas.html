@@ -264,7 +264,7 @@ min-height: 300px;
     /* Adicione outros estilos conforme necessário */
 
     body {
-        padding-bottom: 200px;
+        padding-bottom: 800px;
     }
     .grafico{
            position:absolute;
@@ -277,7 +277,12 @@ min-height: 300px;
 z-index: 1;
 min-height: 300px;
        }
-     
+       .pergunta{
+        margin-bottom: 250px;
+       }
+       .pergunta{
+        margin-bottom: 250px;
+       }
        .notas{
           padding-top:200px 
        }
@@ -771,7 +776,7 @@ margin-left: -6px;
 #progresso_svg{
 margin-left: -25px;
 width:200;
-height:150
+height:100
 }
 .respostas{
     margin-top: 100px;
@@ -802,7 +807,7 @@ height:150
     <div  class="container">
         <div class="row padding-left: 60px;">
             <div  id="grafico_progresso" class="col-12 col-xl-4 col-lg-4 col-md-12 grafico col-sm-12" style="padding: 40px;">
-                <svg id="progresso_svg" width="200" height="200">
+                <svg id="progresso_svg" >
                     <circle id="progresso_circle" cx="100" cy="100" r="90" fill="none" stroke="#00CED1" stroke-width="20" stroke-dasharray="0, 564" stroke-dashoffset="0">
                         <animate attributeName="stroke-dasharray" attributeType="XML" from="0, 564" to="564, 564" dur="3s" fill="freeze" />
                     </circle>
@@ -895,7 +900,7 @@ function botao_clicado(resposta) {
         addProgress();
     } else {
         // Corrigindo o redirecionamento
-        window.location.replace("/cadastro?soma=" + somaRespostas + "&aptidoes=" + JSON.stringify(aptidoes));
+        window.location.replace("/login?soma=" + somaRespostas + "&aptidoes=" + JSON.stringify(aptidoes));
     }
 }
 

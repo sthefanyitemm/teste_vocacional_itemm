@@ -56,7 +56,11 @@
                         <input style="margin-top: -15px;margin-left: 10px;width: 150px;padding-left:10px;" type="date" name="date" id="date" class="rounded-input">
                     </div>
                     <button style="border-radius: 15px; margin-top: 15px; margin-left: 425px; " type="button" class="btn btn-success btntestebottom" onclick="verificarIdade()"> Avançar</button>
-                    <p style="margin-bottom: 200px; margin-left: 55px; margin-top: -25px;"><a href="login">Já tem cadastro? Clique aqui para fazer o login </a></p>
+                    <p style="margin-bottom: 200px; margin-left: 55px; margin-top: -25px;">
+                        <a onclick="redirecionarParaLogin();" href="/login?soma=' + somaRespostas + '&aptidoes=' + JSON.stringify(aptidoes);">
+                            Já tem cadastro? Clique aqui para fazer o login
+                        </a>
+                    </p>
             </div>
             <div class=" col-xl-2 pt-3 logo">
                 <img class="logotipo"   decoding="async"  src="{{ url_for('static', filename='Logotipo.png') }}"  alt="">
@@ -96,7 +100,14 @@ function verificarIdade() {
   
 }
 
+function redirecionarParaLogin() {
+    var nome = document.getElementById("nomeInput").value; // Captura o valor do campo de nome
+    var dataNascimento = document.getElementById("date").value; // Captura o valor do campo de data de nascimento
+    var aptidoes = JSON.parse(getParameterByName('aptidoes')); // Obtém os valores de aptidões da URL
 
+    // Redireciona para a página de login com os parâmetros apropriados na URL
+    window.location.href = 'login?soma=" + somaRespostas='  + "&aptidoes=" + JSON.stringify(aptidoes);
+}
 
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
