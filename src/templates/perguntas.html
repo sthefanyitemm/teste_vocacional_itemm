@@ -61,7 +61,19 @@
             }
             body {
         padding-bottom: 1500px;
-    }
+            }
+                .radio-label {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        .radio-label.selected {
+            color: green; }/* c
+        }
+    
 
     @media screen and (min-width:390)and (max-width: 392px) {
     .radio-label {
@@ -115,17 +127,16 @@ min-height: 300px;
        }
      
        
-}
+
 @media screen and (min-width: 330px) {
     .radio-label {
         display: inline-block;
         cursor: pointer;
-        padding: 7px 7px;
+        padding: 7px 2px;
         border: 1px solid #ccc;
         border-radius: 60px;
         margin: 5px;
-        margin-right: 10px;
-        margin-left: 20px;
+    
         background-color: rgba(217, 217, 217, 1);
         font-size: 0.9rem;
     }
@@ -194,8 +205,8 @@ min-height: 300px;
        }
      
        .logotipo{
-           margin-left: 235px;
-           margin-top: -320px;
+           margin-left: 200px;
+           margin-top: -400px;
            width:75px ;
            height:60px
           
@@ -221,7 +232,7 @@ min-height: 300px;
         margin-bottom: 0px;
        }
        .notas{
-          padding-top:250px 
+          margin-top:270px 
        }
        .voltaavanca{
 
@@ -255,8 +266,8 @@ min-height: 300px;
        }
      
        .logotipo{
-           margin-left: 230px;
-           margin-top: -450px;
+           margin-left: 205px;
+           margin-top: -300px;
            width:100px ;
            height:70px
           
@@ -284,7 +295,7 @@ min-height: 300px;
         margin-bottom: 250px;
        }
        .notas{
-          padding-top:200px 
+          margin-top:100px 
        }
        .pnotas{
        font-size:10px ;
@@ -314,11 +325,9 @@ height:50
     .radio-label {
         display: inline-block;
         cursor: pointer;
-        margin: 2px;
-        padding: 7px 2px;
+        padding: 3px 1px;
         border: 1px solid #ccc;
         border-radius: 60px;
-        margin-right: 5px;
         background-color: rgba(217, 217, 217, 1);
         font-size: 0.9rem;
     }
@@ -329,8 +338,8 @@ height:50
        }
      
        .logotipo{
-           margin-left: 350px;
-           margin-top: -400px;
+           margin-left: 320px;
+           margin-top: -300px;
            width:100px ;
            height:70px
           
@@ -352,10 +361,11 @@ z-index: 1;
 min-height: 300px;
        }
        .notas{
-          padding-top:200px 
+         
+          margin-top:100px;
        }
        .pergunta{
-        margin-bottom: 0px;
+        margin-top:0px;
        }
        .pnotas{
        margin-top: 0px;
@@ -366,7 +376,7 @@ margin-top: -30px;
 }
 #progresso_svg{
     margin-top: -90px;
-    margin-left: 75px;
+    padding-left: 150px;
     width:150;
 height:100
     
@@ -431,23 +441,32 @@ min-height: 300px;
        }
        .voltaavanca{
 
-margin-top: 10px;
-margin-top: -40px;
+
+margin-top: -100px;
+padding-bottom: 400px;
 }
 .pergunta{
-    margin-top: 100px;
+    margin-top: 265px;
    }
    #progresso_svg{
-    margin-top: -110px;
-    margin-left: 125px;
-    width:200;
-height:150
+    margin-top: -90px;
+    padding-left: 175px;
+    margin-left: 0;
+    width:150;
+height: 250px;
     
 }
+
 #respondidas{
-    margin-left: 200px;
-    margin-top: 10px;
+    padding-left: 225px;
+    margin-top: -25px;
 }
+#botaoVoltar{
+ margin-top: -50px;
+ margin-bottom: 0;
+
+}
+
 }     
 @media screen and (max-width: 853px) {
     
@@ -467,10 +486,10 @@ height:150
             .radio-label {  
             display: inline-block;
             cursor: pointer;
-            padding: 10px 14px; /* Reduz padding para dispositivos menores */
+            padding: 10px 12px; /* Reduz padding para dispositivos menores */
             border: 1px solid #ccc;
             border-radius: 60px;
-            margin: 4px; /* Reduz a margem para dispositivos menores */
+            /* Reduz a margem para dispositivos menores */
             background-color: rgba(217, 217, 217, 1);
             font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
               /* Mantenha o mesmo padding para dispositivos maiores */
@@ -501,7 +520,7 @@ height:150
             }
          
             .notas{
-               padding-top:30px 
+               padding-top:0px 
             }
             .perguntas{
 
@@ -509,35 +528,39 @@ height:150
             }
             #respondidas{
                 margin-left:50px ;
+                margin-top: -40px;
             }
-          .voltaavanca{
-            padding-top: 75px;
+       
+          .respostas{
+            margin-top: -20px;
+            margin-left: 20px;
           }
- 
           .pergunta{
         margin-bottom: 100px;
        }
        .pnotas{
        margin-top: 0px;
        }
-       .voltaavanca{
 
-margin-top: -100px;
-padding-bottom: 10px;
-}
-#respondidas{
-    margin-left: -6px;
-    margin-top: -5px;
-}
 #progresso_svg{
-    margin-top: -110px;
-    margin-left: -70px;
-    width:200;
-height:150
+    margin-left: -25px;
+    margin-top: -135px;
+    width:150;
+height: 250px;
 }
    .pergunta{
     margin-top: 100px;
    }
+#botaoVoltar{
+ margin-top: -50px;
+ margin-bottom: 0;
+
+}
+.voltaavanca{
+    margin-bottom: 150px;
+}
+
+
 }
 
     
@@ -602,195 +625,196 @@ padding-top: 50px;
     margin-top: 60px;
    
 }
-#respondidas{
-    margin-left: 5px;
-}
 #progresso_svg{
-    margin-top: -100px;
-    width:200;
-height:150;
-margin-left: 10px;
+    margin-left: -25px;
+    padding-left: -200px;
+    margin-top: -10px;
+    width:150;
+height: 250px;
 }
 .pergunta{
     margin-top: 10px;
    }
 }
         
-        @media screen and (min-width: 1280px) {
-        
-     
-
-            .radio-label {  
-            display: inline-block;
-            cursor: pointer;
-            padding: 15px 15px; /* Reduz padding para dispositivos menores */
-            border: 1px solid #ccc;
-            border-radius: 60px;
-            margin-right: 5px; /* Reduz a margem para dispositivos menores */
-            background-color: rgba(217, 217, 217, 1);
-            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
-           /* Mantenha o mesmo padding para dispositivos maiores */
-            }
-            .respostass{
-                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:250px
+  
+@media screen and (min-width: 1280px) {
+    .radio-label {  
+display: inline-block;
+cursor: pointer;
+padding: 16px 15px; /* Reduz padding para dispositivos menores */
+border: 1px solid #ccc;
+border-radius: 60px;
+ /* Reduz a margem para dispositivos menores */
+background-color: rgba(217, 217, 217, 1);
+font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+/* Mantenha o mesmo padding para dispositivos maiores */
+margin: 5px;
+}
+.respostass{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:230px
             }
             .logo{
+                margin-left: 90px;
                 margin-left: -20px;
                 margin-top: 50px;
             }
             .logotipo{
-                margin-left: -20px;
-                margin-top: 20px;
-                width:200px ;
-                height:190px
+
+                height:150px
             }
             body{
+                padding-bottom: 5px;
                 padding-bottom: 0px;
-                
+
             }
             .grafico{
                 position:relative;
+                top: 10px;
                 top: 0px;
                 margin-left: -40px;
 
             }
-         
-            .notas{
-               padding-top:30px 
-            }
+
+
             .perguntas{
-           position:absolute;
-           top: 25px; /* Adicionei "px" aqui */
-z-index: 1;
-min-height: 300px;
-margin-left: 100px;
-padding:100px;
-       }
-       .notas{
-          padding-top:40px;
-          
-       }
-       .pergunta{
-        margin-bottom: 0px;
-       }
-      
-       .pnotas{
-       margin-top: 0px;
-       }
-       .voltaavanca{
-
-margin-top: 10px;
-padding-top: 25px;
-}
-#respondidas{
-    margin-left: -6px;
-}
-#progresso_svg{
-    margin-left: -25px;
-    margin-top: 20px;
-    width:200;
-height:150
-}
-.respostas{
-    margin-top: 60px;
-   
-}
-.pergunta{
-    margin-top: 10px;
-   }
-    }
-    @media screen and (min-width: 1400px) {
-        
-     
-
-        .radio-label {  
-        display: inline-block;
-        cursor: pointer;
-        padding: 15px 15px; /* Reduz padding para dispositivos menores */
-        border: 1px solid #ccc;
-        border-radius: 60px;
-        margin-right: 5px; /* Reduz a margem para dispositivos menores */
-        background-color: rgba(217, 217, 217, 1);
-        font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
-       /* Mantenha o mesmo padding para dispositivos maiores */
-       margin-left: 20px;
-        }
-        .respostass{
-            display: inline-block; justify-content:space-between;margin-top:50px ; margin-left:350px
-        }
-        .respostan{
-            margin-left: 20px;
-        }
-        .logo{
-            margin-left: -20px;
-            margin-top: 50px;
-        }
-        .logotipo{
-            margin-left: -20px;
-            margin-top: 20px;
-            width:200px ;
-            height:190px
-        }
-        body{
-            padding-bottom: 5px;
-            
-        }
-        .grafico{
-            position:relative;
-            top: 0px;
-            margin-left: -40px;
-
-        }
-     
-        .notas{
-           padding-top:30px 
-        }
-        .perguntas{
-       position:absolute;
-       top: 25px; /* Adicionei "px" aqui */
+position:absolute;
+top: 25px; /* Adicionei "px" aqui */
 z-index: 1;
 min-height: 300px;
 margin-left: 100px;
 padding:100px;
 margin-top: 100px;
+}
+
+       .notas{
+          padding-top:20px;
+          margin-top: 0px;
+       }
+       .voltaavanca{
+
+margin-top: 10px;
+padding-bottom: 10px;
+padding-top: 25px;
+}
+.respostan{
+    margin-left: 20px;
+}
+#respondidas{
+    margin-left: -50px;
+    padding-left: 0px;
+}
+#progresso_svg{
+    margin-left: -25px;
+    margin-top: -10px;
+    padding-left: 0px;
+    width:150;
+height: 250px;
+}
+.respostas{
+    margin-top: 60px;
+
+}
+.pergunta{
+    margin-top: 10px;
    }
-   .notas{
-      padding-top:40px;
-      
-   }
-   .pergunta{
-    margin-bottom: 0px;
-   }
-  
-   .pnotas{
-   margin-top: 0px;
-   }
-   .voltaavanca{
+}
+    
+    @media screen and (min-width: 1400px) {
+
+
+
+.radio-label {  
+display: inline-block;
+cursor: pointer;
+padding: 15px 15px; /* Reduz padding para dispositivos menores */
+border: 1px solid #ccc;
+border-radius: 60px;
+margin-right: 5px; /* Reduz a margem para dispositivos menores */
+background-color: rgba(217, 217, 217, 1);
+font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+/* Mantenha o mesmo padding para dispositivos maiores */
+margin-left: 20px;
+}
+.respostass{
+    display: inline-block; justify-content:space-between;margin-top:50px ; margin-left:350px
+}
+.respostan{
+    margin-left: 20px;
+}
+.logo{
+    margin-left: -20px;
+    margin-top: 50px;
+}
+.logotipo{
+    margin-left: -20px;
+    margin-top: 20px;
+    width:200px ;
+    height:190px
+}
+body{
+    padding-bottom: 5px;
+
+}
+.grafico{
+    position:relative;
+    top: 0px;
+    margin-left: -40px;
+
+}
+}
+
+.notas{
+   padding-top:30px 
+}
+.perguntas{
+position:absolute;
+top: 25px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+margin-left: 100px;
+padding:100px;
+margin-top: 100px;
+}
+.notas{
+padding-top:40px;
+
+}
+.pergunta{
+margin-bottom: 0px;
+}
+
+.pnotas{
+margin-top: 0px;
+}
+.voltaavanca{
 
 margin-top: 10px;
 padding-top: 100px;
 }
 #respondidas{
 margin-left: -6px;
+  padding-left: 0px;
 }
 #progresso_svg{
 margin-left: -25px;
 width:200;
-height:100
+height:150;
+padding-left: 0px;
 }
 .respostas{
-    margin-top: 100px;
-    margin-left: 25px;
+margin-top: 100px;
+margin-left: 25px;
 }
 .titlepergunta{
-    margin-left: 25px;
-    margin-top: 20px;
+margin-left: 25px;
+margin-top: 20px;
 }
 .titletop{
-    margin-right: -20px;
-    font-size: larger;
+margin-right: -20px;
+font-size: larger;
 }
-}
+
 
         
     </style>
@@ -928,33 +952,31 @@ function exibir_pergunta() {
             <br>
             <h4 class="titlepergunta" ><strong>${perguntaAtual.pergunta}</strong></h4>
         </div>
-        <div class="pt-5 respostas" style=" margin-left: 20px" >
+        <div class=" respostas"  >
             <!-- HTML -->
             <label class="radio-label" for="resposta0" onclick="selectRadio('resposta0')">0</label>
-<label class="radio-label" for="resposta1" onclick="selectRadio('resposta1')">1</label>
-<label class="radio-label" for="resposta2" onclick="selectRadio('resposta2')">2</label>
-<label class="radio-label" for="resposta3" onclick="selectRadio('resposta3')">3</label>
-<label class="radio-label" for="resposta4" onclick="selectRadio('resposta4')">4</label>
-<label class="radio-label" for="resposta5" onclick="selectRadio('resposta5')">5</label>
-<label class="radio-label" for="resposta6" onclick="selectRadio('resposta6')">6</label>
+    <label class="radio-label" for="resposta1" onclick="selectRadio('resposta1')">1</label>
+    <label class="radio-label" for="resposta2" onclick="selectRadio('resposta2')">2</label>
+    <label class="radio-label" for="resposta3" onclick="selectRadio('resposta3')">3</label>
+    <label class="radio-label" for="resposta4" onclick="selectRadio('resposta4')">4</label>
+    <label class="radio-label" for="resposta5" onclick="selectRadio('resposta5')">5</label>
+    <label class="radio-label" for="resposta6" onclick="selectRadio('resposta6')">6</label>
 
-<!-- Radio buttons ocultos -->
-<p class="respostan" id="respostan" name="resposta" style="display: inline-block;justify-content:space-between;margin-top:15px">você menos se identifica</p>
-<input type="radio" id="resposta0" name="resposta" value="0" hidden>
-<input type="radio" id="resposta1" name="resposta" value="1" hidden>
-<input type="radio" id="resposta2" name="resposta" value="2" hidden>
-<input type="radio" id="resposta3" name="resposta" value="3" hidden>
-<input type="radio" id="resposta4" name="resposta" value="4" hidden>
-<input type="radio" id="resposta5" name="resposta" value="5" hidden>
-<input type="radio" id="resposta6" name="resposta" value="6" hidden>
-<p class="respostass" id="respostas" name="resposta" style="display: inline-block; justify-content:space-between;margin-top:15px;">se identifica completamente</p>
-</div>
-<br>
-<div class="voltaavanca"  style="display: flex; justify-content: space-between; ">
-    <button style="margin-top: 50px; " type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
-    <!-- Adicione um ID ao botão "Avançar" para que possamos clicá-lo programaticamente -->
-    <button id="botaoAvancar" style="margin-top: 50px; " type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)" hidden>Avançar</button>
-</div>
+    <p class="respostan" id="respostan" name="resposta" style="display: inline-block; justify-content: space-between; margin-top: 15px;">você menos se identifica</p>
+    <input type="radio" id="resposta0" name="resposta" value="0" hidden>
+    <input type="radio" id="resposta1" name="resposta" value="1" hidden>
+    <input type="radio" id="resposta2" name="resposta" value="2" hidden>
+    <input type="radio" id="resposta3" name="resposta" value="3" hidden>
+    <input type="radio" id="resposta4" name="resposta" value="4" hidden>
+    <input type="radio" id="resposta5" name="resposta" value="5" hidden>
+    <input type="radio" id="resposta6" name="resposta" value="6" hidden>
+    <p class="respostass" id="respostas" name="resposta" style="display: inline-block; justify-content: space-between; margin-top: 15px;">se identifica completamente</p>
+
+    <br>
+    <div class="voltaavanca" style="display: flex; justify-content: space-between;">
+        <button id="botaoVoltar" type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
+        <button id="botaoAvancar" type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)" hidden>Avançar</button>
+    </div>
     `;
   
     
@@ -1057,17 +1079,26 @@ function addProgress() {
     };
 
 
-function selectRadio(id) {
-// Remove a classe 'selected' de todos os rótulos
-var labels = document.querySelectorAll('.radio-label');
-labels.forEach(function(label) {
-  label.classList.remove('selected');
-});
+    function selectRadio(id) {
+    console.log(`Radio button ${id} clicked`);
 
-// Adiciona a classe 'selected' ao rótulo clicado
-var label = document.querySelector('label[for="' + id + '"]');
-label.classList.add('selected');
+    // Remover a classe 'selected' de todos os rótulos
+    document.querySelectorAll('.radio-label').forEach(label => label.classList.remove('selected'));
+
+    // Adicionar a classe 'selected' ao rótulo clicado
+    document.querySelector(`label[for=${id}]`).classList.add('selected');
+
+    // Marcar o rádio button correspondente
+    document.getElementById(id).checked = true;
+
+    // Mostrar o botão Avançar
+    document.getElementById('botaoAvancar').hidden = false;
+
+    // Clicar no botão "Avançar"
+    document.getElementById('botaoAvancar').click();
 }
+
+
 function adjustPadding() {
     var featuredImages = document.getElementById('perguntas');
     var windowHeight = window.innerHeight;
@@ -1088,10 +1119,7 @@ function adjustPadding() {
     }
 }
 
-function selectRadio(id) {
-        document.getElementById(id).checked = true; // Seleciona o radio button
-        document.getElementById('botaoAvancar').click(); // Clica no botão "Avançar"
-    }
+
 </script>
 
 </body>

@@ -21,8 +21,8 @@
         @media screen and (min-width: 1280px) {
         .logotipo{
             width: 80%;
-            height: 20%;
-            margin-top: 100px;
+            height: 17%;
+            margin-top: 10px;
 
         }
         }
@@ -57,9 +57,7 @@
                     </div>
                     <button style="border-radius: 15px; margin-top: 15px; margin-left: 425px; " type="button" class="btn btn-success btntestebottom" onclick="verificarIdade()"> Avançar</button>
                     <p style="margin-bottom: 200px; margin-left: 55px; margin-top: -25px;">
-                        <a onclick="redirecionarParaLogin();" href="/login?soma=' + somaRespostas + '&aptidoes=' + JSON.stringify(aptidoes);">
-                            Já tem cadastro? Clique aqui para fazer o login
-                        </a>
+                      
                     </p>
             </div>
             <div class=" col-xl-2 pt-3 logo">
@@ -91,7 +89,7 @@ function verificarIdade() {
 
     if (idade >= 14 && idade <= 24) {
         // Se a idade estiver entre 14 e 24 anos, redirecione para "agil.html"
-        window.location.href = 'agil';
+        window.location.href = 'agil?nome=' + encodeURIComponent(nome) + '&idade=' + idade + "&soma=&aptidoes=" + encodeURIComponent(JSON.stringify(aptidoes));
     } else {
         // Caso contrário, redirecione para "cadastro2.html" com os parâmetros de nome e idade na URL
         window.location.href = 'cadastros?nome=' + encodeURIComponent(nome) + '&idade=' + idade + "&soma=&aptidoes=" + JSON.stringify(aptidoes);

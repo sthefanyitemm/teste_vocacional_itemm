@@ -51,6 +51,12 @@
 .container:not(#featured-container):nth-child(even) {
     background-color: white;
 }
+
+#grafico{
+  margin-top: -40px;
+  margin-left: -15px;
+}
+
 </style>
 
 
@@ -58,7 +64,7 @@
 
 </head>
 <body>
-  <button type="button" class="btn btn-light" onclick="window.location.href='/'">Home</button>
+  <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%; color: black; margin-top: 15px;" type="button" class="btn btn-light " onclick="window.location.href='/'"><i class="bi bi-arrow-left"></i> Home</button>
   <div class="container">
     <div class="row">
       <div class="col-7">
@@ -205,8 +211,8 @@
   <div class="container" id="featured-container" >
     <div class="col-12" >
      
-      <h2 style="margin-top: 30px;"  class="subtitle secondary-color">
-       <strong> Conheça nossos cursos:</strong>
+      <h2 style="margin-top: 50px;"  class="subtitle secondary-color">
+       <strong> Conheça nossos cursos gratuitos:</strong>
       </h2>
       <p>Acesse os cursos clicando nos quadrantes abaixo ou consulte todos os cursos disponíveis em nossa plataforma</p>
     </div>
@@ -282,7 +288,8 @@
 </div>
 <div class="col-4" >
   <form style="margin-right: 30px;" id="emailForm">
-    <button  style="margin-top: 40px; border-radius: 15px; " type="button" id="btnEnviarEmail" class="btn btn-secondary">Enviar resultados por email</button>
+    <input id="emailInput" placeholder="Digite seu e-mail: " style=" margin-left: 12px;border-radius: 10px;padding-left: 10px;">
+    <button  style="margin-top: 10px; border-radius: 15px; " type="button" id="btnEnviarEmail" class="btn btn-secondary">Enviar resultados por email</button>
     </form>
 </div>
 </div>
@@ -314,187 +321,55 @@ function setSessionCookie(name, value) {
     document.cookie = `${name}=${value}; path=/`;
 }
 
-// Função para recuperar o valor de um cookie pelo seu nome
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
 }
+
+// Função para recuperar o valor de um parâmetro da URL pelo seu nome
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 // Recupera o estado de login e o email do cookie de sessão
 const loggedIn = getCookie('loggedIn') === 'true'; // Verifica se o usuário está logado
-const email = getParameterByName('email');; // Recupera o email
+let email = getParameterByName('email'); // Recupera o email
 
 // Exibe o estado de login e o email no console
 console.log("Usuário logado:", loggedIn);
 console.log("Email do usuário:", email);
 
-        // Obtém as aptidões da URL
-        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
-
-        // Cria uma matriz de objetos com nome e resultado de cada aptidão
-        var aptidoesArray = Object.entries(aptidoes).map(([nome, resultado]) => ({ nome, resultado }));
-
-        // Classifica as aptidões com base no resultado (em ordem decrescente)
-        aptidoesArray.sort((a, b) => b.resultado - a.resultado);
-
-        // Constrói o HTML do ranking das aptidões
-        var resultadoAptidoesHtml = '<h2>Teste Vocacional:</h2><br><p>Resultado do teste:</p>';
-
-        // Cria array de strings HTML com os resultados das aptidões
-        aptidoesArray.forEach(aptidao => {
-            resultadoAptidoesHtml += '<p>' + aptidao.nome + ': ' + aptidao.resultado + '</p>';
-        });
-
-        // Reorganiza os containers com base no ranking das aptidões
-        var divPai = document.querySelector('.row');
-        aptidoesArray.forEach(aptidao => {
-            var container = document.getElementById(aptidao.nome);
-            if (container) {
-                divPai.appendChild(container);
-            }
-        });
-
-        function hideOtherIntelligences() {
-            aptidoesArray.slice(3).forEach(aptidao => {
-                var container = document.getElementById(aptidao.nome);
-                if (container) {
-                    container.style.display = 'none'; // Oculta a div
-                }
-            });
-        }
-
-        // Função para mostrar as divs das 4 últimas inteligências
-        function showOtherIntelligences() {
-            aptidoesArray.slice(3).forEach(aptidao => {
-                var container = document.getElementById(aptidao.nome);
-                if (container) {
-                    container.style.display = 'block'; // Mostra a div
-                }
-            });
-        }
-
-        // Oculta as divs das 4 últimas inteligências ao carregar a página
-        hideOtherIntelligences();
-
-        // Adiciona evento de clique ao botão "Outras Inteligências"
-        document.getElementById('btnOutrasInteligencias').addEventListener('click', function() {
-            var buttonText = this.textContent;
-            if (buttonText === 'Mostrar outras inteligências') {
-                showOtherIntelligences(); // Mostra as divs das outras inteligências
-                this.textContent = 'Ocultar Inteligências'; // Altera o texto do botão
-            } else {
-                hideOtherIntelligences(); // Oculta as divs das outras inteligências
-                this.textContent = 'Mostrar outras inteligências'; // Altera o texto do botão
-            }
-        });
-
-// Exibe o ranking na div resultadoAptidoes
-//document.getElementById('resultadoAptidoes').innerHTML = resultadoAptidoesHtml;
-
-// Gráfico de coluna
-
-// Objeto para armazenar a soma total das respostas para cada inteligência
-var somaPorInteligencia = {};
-
-// Calcula a soma total das respostas para cada inteligência
-for (var questao in aptidoes) {
-    var inteligencia = questao.split('_')[0]; // Obtém o nome da inteligência da questão
-    if (!somaPorInteligencia[inteligencia]) {
-        somaPorInteligencia[inteligencia] = 0;
-    }
-    somaPorInteligencia[inteligencia] += aptidoes[questao];
+// Exibe o input ou o botão com base na presença do email
+if (!email) {
+    document.getElementById('emailInput').style.display = 'block';
 }
+document.getElementById('btnEnviarEmail').style.display = 'block';
 
-    // Prepara os dados para o gráfico
-    //var labels = Object.keys(somaPorInteligencia);
-    //var valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / 30));
-
-// Configuração do gráfico
-var labels = Object.keys(somaPorInteligencia);
-var valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / 30));
-
-// Configuração do gráfico
-var ctx = document.getElementById('grafico').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Resultado do seu perfil',
-            data: valores,
-            backgroundColor: ['#FF5733', '#33FF57', '#5733FF', '#FFFF33', '#33FFFF'], // Cores diferentes para cada barra
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 2
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    callback: function(value) {
-                        return value + '%'; // Adiciona o símbolo de porcentagem ao eixo y
-                    }
-                }
-            }]
-        },
-        plugins: {
-            datalabels: {
-                anchor: 'end',
-                align: 'end',
-                color: 'white', // Cor do texto dos rótulos
-                font: {
-                    weight: 'bold' // Peso da fonte dos rótulos
-                },
-                formatter: function(value, context) {
-                    return value; // Retorna o valor da barra
-                },
-                textStrokeColor: 'black', // Cor da borda do texto
-                textStrokeWidth: 2 // Largura da borda do texto
-            }
-        }
-    }
-});
-
-    
-    // Obtém o texto dos resultados
-    function converterObjetoParaTexto(objeto) {
-    // Transforma o objeto em texto JSON
-    return JSON.stringify(objeto);
-}
-
-// Use a função para converter o objeto em texto
-var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
-
-    //print(resultadosTexto)
-
-    // Envia os resultados para o servidor Flask quando a página carrega
-   // enviarResultadosParaServidor(resultadosTexto);
-
-
-   function enviarResultadosPorEmail(email, resultadosTexto, aptidoes) {
-    // Verifica se o email foi recuperado com sucesso
+// Função para enviar resultados por email
+function enviarResultadosPorEmail(email, resultadosTexto, aptidoes) {
     if (email) {
         console.log('Email:', email);
-        console.log('Resultados:',resultadosTexto);
-        console.log("Aptidoes:", aptidoes)
+        console.log('Resultados:', resultadosTexto);
+        console.log('Aptidões:', aptidoes);
 
-        // Cria um objeto com os dados a serem enviados
-        var data = {
+        const data = {
             email: email,
             resultadosTexto: resultadosTexto,
-            aptidoes: aptidoes // Passa as aptidões como parte dos dados
+            aptidoes: aptidoes
         };
 
-        // Converte o objeto para JSON
-        var jsonData = JSON.stringify(data);
-
-        // Envia os resultados por email usando AJAX
         $.ajax({
             url: '/enviar_resultados_por_email',
             type: 'POST',
             contentType: 'application/json',
-            data: jsonData,
+            data: JSON.stringify(data),
             success: function(response) {
                 alert('Resultados enviados por email com sucesso!');
             },
@@ -504,33 +379,146 @@ var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
             }
         });
     } else {
+        alert('Email vazio. Por favor, digite um email válido.');
         console.error('O endereço de e-mail não foi recuperado.');
     }
 }
 
 // Adiciona evento de clique ao botão "Enviar resultados por email"
 document.getElementById('btnEnviarEmail').addEventListener('click', function() {
-    // Obtém o texto dos resultados
-    // Transforma o objeto somaPorInteligencia em texto JSON
-    function converterObjetoParaTexto(objeto) {
-    // Transforma o objeto em texto JSON
-    return JSON.stringify(objeto);
-}
+    const emailInput = document.getElementById('emailInput');
+    const email = emailInput.value.trim() || getParameterByName('email');
+    
+    if (!email) {
+        alert('Email vazio. Por favor, digite um email válido.');
+        return;
+    }
 
-// Use a função para converter o objeto em texto
-var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
-
-
-
-    // Obtém as aptidões da URL
-    var aptidoes = JSON.parse(getParameterByName('aptidoes'));
-
-    // Recupera o email do parâmetro ou do cookie
-    const email = getParameterByName('email');
-
-    // Envia os resultados por email
+    const resultadosTexto = JSON.stringify(somaPorInteligencia);
+    const aptidoes = JSON.parse(getParameterByName('aptidoes'));
     enviarResultadosPorEmail(email, resultadosTexto, aptidoes);
 });
+
+// Código para cálculo das aptidões
+const aptidoes = JSON.parse(getParameterByName('aptidoes'));
+const somaPorInteligencia = {};
+
+for (const questao in aptidoes) {
+    const inteligencia = questao.split('_')[0];
+    if (!somaPorInteligencia[inteligencia]) {
+        somaPorInteligencia[inteligencia] = 0;
+    }
+    somaPorInteligencia[inteligencia] += aptidoes[questao];
+}
+
+const somaTotal = Object.values(somaPorInteligencia).reduce((total, valor) => total + valor, 0);
+const labels = Object.keys(somaPorInteligencia);
+const valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / somaTotal));
+
+const corPorAptidao = {
+    'Cinestésica': '#FF69B4',
+    'Espacial': '#ADFF2F',
+    'Interpessoal': '#800080',
+    'Intrapessoal': '#FFFF00',
+    'Linguística': '#40E0D0',
+    'Matemática': '#D3D3D3',
+    'Musical': '#0000FF'
+};
+
+const backgroundColors = labels.map(label => corPorAptidao[label] || '#B0B0B0');
+
+let resultadoAptidoesHtml = '<h2>Teste Vocacional:</h2><br><p>Resultado do teste:</p>';
+resultadoAptidoesHtml += '<div class="row">';
+labels.forEach((inteligencia, index) => {
+  resultadoAptidoesHtml += `<div class="col"><p><strong>${inteligencia}:</strong> ${valores[index]}%</p></div>`;
+});
+resultadoAptidoesHtml += '</div>';
+
+document.getElementById('resultadoAptidoes').innerHTML = resultadoAptidoesHtml;
+
+const divPai = document.querySelector('.row');
+const aptidoesArray = labels.map((nome, index) => ({ nome, resultado: valores[index] }));
+aptidoesArray.sort((a, b) => b.resultado - a.resultado);
+aptidoesArray.forEach(aptidao => {
+    const container = document.getElementById(aptidao.nome);
+    if (container) {
+        divPai.appendChild(container);
+    }
+});
+
+function hideOtherIntelligences() {
+    aptidoesArray.slice(3).forEach(aptidao => {
+        const container = document.getElementById(aptidao.nome);
+        if (container) {
+            container.style.display = 'none';
+        }
+    });
+}
+
+function showOtherIntelligences() {
+    aptidoesArray.slice(3).forEach(aptidao => {
+        const container = document.getElementById(aptidao.nome);
+        if (container) {
+            container.style.display = 'block';
+        }
+    });
+}
+
+hideOtherIntelligences();
+
+document.getElementById('btnOutrasInteligencias').addEventListener('click', function() {
+    const buttonText = this.textContent;
+    if (buttonText === 'Mostrar outras inteligências') {
+        showOtherIntelligences();
+        this.textContent = 'Ocultar Inteligências';
+    } else {
+        hideOtherIntelligences();
+        this.textContent = 'Mostrar outras inteligências';
+    }
+});
+
+const ctx = document.getElementById('grafico').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Resultado do seu perfil',
+            data: valores,
+            backgroundColor: backgroundColors,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 0
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }]
+        },
+        plugins: {
+            datalabels: {
+                anchor: 'end',
+                align: 'end',
+                color: 'white',
+                font: {
+                    weight: 'bold'
+                },
+                formatter: function(value) {
+                    return value + '%';
+                },
+                textStrokeColor: 'black',
+                textStrokeWidth: 2
+            }
+        }
+    }
+});
+
 
 
 </script>
@@ -538,6 +526,9 @@ var resultadosTexto = converterObjetoParaTexto(somaPorInteligencia);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 
 </body>
 
