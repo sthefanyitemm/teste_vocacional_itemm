@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agil</title>
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <!-- Bootstrap Icons -->
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+/>
+<style>
+         @media screen and (min-width: 1280px) {
+        .logotipo{
+            width: 80%;
+            height: 17%;
+            margin-top: 10px;
+            margin-left: 20px;
+
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4" style="background-image: url('/static/logoVagas.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; margin-top: 15px; border-radius:15px;">
+                <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%; color: white; margin-top: 15px;" type="button" class="btn btn-light " onclick="window.location.href='/'"><i class="bi bi-arrow-left"></i> Home</button>
+               <div class="pt-5">
+                <h1 class="vagatitle" style="margin-top:115px ; margin-left:50px ; margin-right:50px ;font-family: fantasy; font-size: 75px;"> </h1>
+                <p class="vagaparagrafo" style="margin-left:50px ; margin-right:50px ; margin-bottom: 525px;" ></p>
+                
+               </div>
+           
+            </div>
+            <div class="col-6" style="margin: 10;">
+                <h1 style="margin-top: 30px;margin-left: 30px;"><strong>Vagas!</strong></h1>
+                <p style="margin-top: 50px; margin-left: 30px; ">Se você está interessado em se candidatar às vagas disponíveis para jovem aprendiz e estágio, você está no lugar certo! Basta acessar os botões abaixo e fazer o seu cadastro.</p>
+                <button style="margin-top: 30px;margin-left: 30px;border-radius: 10px;" class="btn btn-warning"  onclick="window.location.href='https://itemm.agilsist.com.br/cadastroaprendizinicial.aspx'"  >Link para cadastro Jovem Aprendiz</button>
+                <button style="margin-top: 30px;border-radius: 10px; margin-left: 5px;" class="btn btn-info" onclick="window.location.href='https://itemm.agilsist.com.br/cadastroestagiarioinicial.aspx'" >Link para cadastro Estagiário</button>
+                <button style="margin-top: 30px;margin-left: 30px;" id="verResultados" class="btn btn-secondary">Ver resultados</button>
+            </div>
+            <div class=" col-2 pt-3 logo">
+                <img class="logotipo"   decoding="async"  src="{{ url_for('static', filename='Logotipo.png') }}"  alt="">
+            </div>
+    
+ 
+    
+    <script>
+        // Função para extrair parâmetros da URL
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        
+        // Recuperar os parâmetros da URL
+        var nome = getParameterByName('nome');
+        var idade = getParameterByName('idade');
+        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+        var soma = getParameterByName('soma');
+        var email = getParameterByName('email');
+
+        // Lógica para definir o comportamento do botão "Ver resultados"
+        document.getElementById('verResultados').onclick = function() {
+            window.location.href = '/resultados?soma=' + encodeURIComponent(soma) + '&aptidoes=' + encodeURIComponent(JSON.stringify(aptidoes)) + '&email=' + encodeURIComponent(email);
+        };
+        
+        // Exemplo de como usar os parâmetros na página (opcional)
+        console.log('Nome:', nome);
+        console.log('Idade:', idade);
+        console.log('Aptidões:', aptidoes);
+        console.log('Soma:', soma);
+        console.log('Email:', email);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <style>
+      .container {
+        margin-bottom: 20px;
+      }
+    </style>
+    
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  />
+
+
+   <!-- JavaScript Bootstrap -->
+   <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous"
+   ></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/pdf-lib"></script>
+   <script src="https://cdn.jsdelivr.net/npm/fetch-ponyfill"></script>
+   <script src="https://cdn.jsdelivr.net/npm/canvas"></script>
+
+   <!----Google Fonts-->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+
+<!--Style pag containers-->
+   <style>
+  
+  .container:not(#featured-container):nth-child(odd) {
+    background-color: rgba(236, 241, 247, 1);
+}
+
+.container:not(#featured-container):nth-child(even) {
+    background-color: white;
+}
+
+#grafico{
+  margin-top: -40px;
+  margin-left: -15px;
+}
+
+</style>
+
+
+
+
+</head>
+<body>
+  <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%; color: black; margin-top: 15px;" type="button" class="btn btn-light " onclick="window.location.href='/'"><i class="bi bi-arrow-left"></i> Home</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-7">
+        <h1>Confira o resultado do seu teste!</h1>
+        <h1>Suas maiores características são:</h1>
+       <div style="background-color: rgba(236, 241, 247, 1); padding: 23px; ">
+        <p style="margin-top: 30px; text-align: justify;">O teste identificou algumas perguntas que abordam vários aspectos de afinidades. Com base nas suas respostas, apontamos as áreas que mais se encaixam com o seu perfil. Ressaltamos a importância da sinceridade ao responder para obter resultados mais precisos.</p>
+        <button style="margin-left: 250px;"  type="button" class="btn btn-secondary" onclick="window.location.href = 'perguntas';">REFAZER O TESTE</button>
+       </div>
+      </div>
+      <div class="col-5">
+        <div style="position: relative;">
+          <!-- Imagem 1 -->
+          <img decoding="async" width="95%" height="339px" src="{{ url_for('static', filename='PROFILE.png') }}" class="attachment-large size-large wp-image-981" alt="">
+          <!-- Imagem 2 -->
+          <img  decoding="async" width="100px" height="70px" src="{{ url_for('static', filename='logoresultado.png') }}" style="position: absolute; top: 0;  left: 0;  margin-left: 320px; margin-top: 15px;" alt="">
+      </div>
+      </div>
+      <div class="col-12">
+        <div id="resultadoSoma"></div>
+        <div class="pt-5" id="resultadoAptidoes">
+          <h3>Teste Vocacional</h3>
+          <p style="margin-left: 5px;">Resultado do seu perfil</p>
+        </div>
+      <div style="margin-top: 75px; "><canvas id="grafico" width="200" height="35"></canvas>
+        
+      </div>
+      </div>
+      <h2 style="margin-top: 100px; margin-bottom: 30px;"> <strong >Saiba mais sobre as Múltiplas Inteligências:</strong></h2>
+    </div>
+ 
+    <div class="container " id="Cinestésica">
+      <div class="row">
+        <div class="col-8">
+          <strong>INTELGIÊNCIA FÍSICO-CINESTÉTICA </strong>
+          <p>A Inteligência físico-cinestésica está presente em pessoas que possuem equilíbrio, velocidade, flexibilidade e expressão corporal. Sua principal habilidade é a capacidade de controlar os movimentos do corpo, coordenação motora fina e motora grossa. Dentre as profissões que se alinham a esse perfil estão: Atleta, dançarino(a), fisioterapeuta, cirurgião(ã), bombeiro(a), especialista em robótica, operador de máquinas CNC, técnico em manutenção de sistemas automatizados e mecânico industrial.</p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 35px;" decoding="async" style="border-radius: 10px;" width="100" height="100" src="{{ url_for('static', filename='cinestesica.png') }}" class="attachment-large size-large wp-image-981" alt="">
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" id="Espacial">
+      <div class="row" >
+        <div class="col-8">
+          <strong>INTELIGÊNCIA ESPACIAL </strong>
+          <p>A Inteligência Espacial está relacionada a pessoas com uma boa percepção visual e espacial, ou seja, com habilidade de interpretar e criar imagens através da cor, da forma e da textura. Essa inteligência pode ser definida como a capacidade de entender o mundo de forma tridimensional, física e mental. Sua maior habilidade é a criatividade. Dentre as profissões que se alinham a esse perfil estão: Arquitetos; Design Gráfico, Games e de Interiores; Esteticistas; Design de Moda; Jogos Digitais; Engenheiro de Produção; Fotógrafos; Astrônomos; Artes Visuais.</p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 40px;" decoding="async" style="border-radius: 10px;" width="80" height="90" src="{{ url_for('static', filename='espacial.png') }}" class="attachment-large size-large wp-image-982" alt="">
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" id="Interpessoal">
+      <div class="row" >
+        <div class="col-8">
+          <strong>INTELIGÊNCIA INTERPESSOAL </strong>
+          <p>A Inteligência Interpessoal está relacionada ao domínio da comunicação e persuasão. Pessoas com essa habilidade possui a facilidade de compreender o outro através do tom de voz e expressões faciais, além de possuir o poder de se expressar e interagir em público com facilidade. A empatia é uma das maiores qualidades dessa inteligência, assim como o espírito de liderança em situações em grupo. Dentre as profissões que se alinham a esse perfil estão: Gerente de Projetos; Psicólogos; Advogados; Assistentes Sociais; Médicos; Professores; Consultor de Negócios; Gestão de Recursos Humanos; Relações Públicas.</p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 40px;" decoding="async" style="border-radius: 10px;" width="75" height="80" src="{{ url_for('static', filename='interpessoal.png') }}" class="attachment-large size-large wp-image-980" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="Intrapessoal">
+      <div class="row" >
+        <div class="col-8">
+          <strong>INTELIGÊNCIA INTRAPESSOAL </strong>
+          <p>A inteligência intrapessoal está relacionada a pessoa que possui o autoconhecimento, ou seja, a conexão consigo mesmo. São pessoas que entendem seus próprios temperamentos, desejos, motivações e capacidades, usando-as em seu favor e bem-estar. Essa inteligência facilita a entrada da pessoa em qualquer campo profissional, pois ela beneficia suas relações sociais, levando-as a tomarem decisões certas e coerentes. As pessoas que possuem a inteligência intrapessoal são organizadas, ambiciosas com seus objetivos, disciplinadas e com alto foco e concentração nas atividades que realiza.  
+
+            Dentre as profissões que se alinham a esse perfil estão: 
+            
+            Administração; Marketing; Coaching e Mentoring; Psicólogos Organizacionais; Jornalistas; Publicitários; Advogados; Assistente Sociais; Advogados.</p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 70px;" decoding="async" style="border-radius: 10px;"  width="80" height="90" src="{{ url_for('static', filename='intrapessoal.png') }}" class="attachment-large size-large wp-image-980" alt="">								</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" id="Linguística">
+      <div class="row" >
+        <div class="col-8">
+          <strong>INTELIGÊNCIA LINGUÍSTICA </strong>
+          <p>A Inteligência Linguística está relacionada a pessoa que consegue se comunicar, aprender novas línguas e fazer uso da linguagem verbal e escrita de maneira diferenciada e tem domínio da língua de caráter morfológico, sintático e semântico. São pessoas com capacidade de persuasão. 
+
+            Dentre as profissões que se alinham a esse perfil estão: 
+            
+            escritor(a), jornalista, advogado(a), professor(a) de línguas, tradutor(a), escritor técnico, redator de conteúdo digital, gerente de mídia social, especialista em SEO. </p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 40px;" decoding="async" style="border-radius: 10px;"  width="80" height="90" src="{{ url_for('static', filename='linguistica.png') }}" class="attachment-large size-large wp-image-980" alt="">								</a>
+    </div>
+  </div>
+</div>
+
+    <div class="container" id="Musical">
+      <div class="row" >
+        <div class="col-8">
+          <strong>INTELIGÊNCIA MUSICAL </strong>
+          <p>A Inteligência Musical demonstra grande habilidade de reconhecer, aprender, interpretar e diferenciar notas, timbres, melodias e ritmos. Essa inteligência está muito presente em pessoas que estão envolvidas com música, dança, artistas e produtores musicais. 
+
+            Dentre as profissões que se alinham a esse perfil estão: 
+            
+            compositor(a), cantor(a), instrumentista, professor(a) de música, produtor(a) musical, engenheiro de som para produção audiovisual, desenvolvedor de software de música e especialista em experiência do usuário para plataformas de música online. </p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 40px;" decoding="async" style="border-radius: 10px;"  width="80" height="90" src="{{ url_for('static', filename='musical.png') }}"  class="attachment-large size-large wp-image-980" alt="">								</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="Matemática">
+      <div class="row" >
+        <div class="col-8">
+          <strong>INTELIGÊNCIA LÓGICO-MATEMÁTICA </strong>
+          <p>Inteligência Lógico-Matemática 
+
+            A Inteligência Lógico-Matemática está ligada a capacidade que o ser humano tem para raciocínios dedutivos e conceitos matemáticos com elevada facilidade para resolver cálculos gerando destaque nas áreas de exatas e programação. Possuem também aptidão em resolução de problemas, da identificação de padrões e verificação de hipóteses. 
+            
+            Dentre as profissões que se alinham a esse perfil estão: 
+            
+            cientista, engenheiro(a), programador(a), matemático(a), analista financeiro(a), engenheiro de dados, cientista de dados, especialista em inteligência artificial e desenvolvedor de software. 
+            
+              </p>
+        </div>
+        <div class="col-4">
+          <img style="margin-left: 120px; margin-top: 40px;" decoding="async" style="border-radius: 10px;"  width="100" height="100" src="{{ url_for('static', filename='matematico.png') }}" class="attachment-large size-large wp-image-980" alt="">								</a>
+          <div class="banner-content">
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" style="border-radius: 15px;" id="btnOutrasInteligencias">Mostrar outras inteligências</button>
+
+
+
+ 
+
+ <section  id="cursos"  >
+  <div class="container" id="featured-container" >
+    <div class="col-12" >
+     
+      <h2 style="margin-top: 50px;"  class="subtitle secondary-color">
+       <strong> Conheça nossos cursos gratuitos:</strong>
+      </h2>
+      <p>Acesse os cursos clicando nos quadrantes abaixo ou consulte todos os cursos disponíveis em nossa plataforma</p>
+    </div>
+    <div class="col-12" id="featured-images">
+      <div class="row g-3">
+        <div class="col-12 col-md-3">
+          <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha/authenticate/">
+              <img decoding="async" width="198" height="310" src="{{ url_for('static', filename='cursoexcel.png') }}" class="attachment-large size-large wp-image-98" alt="">								</a>
+          <div class="banner-content">
+           
+          
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha-pacote-office/authenticate/">
+              <img decoding="async" width="202" height="310" src="{{ url_for('static', filename='cursopoffice.png') }}" class="attachment-large size-large wp-image-982" alt="">								</a>
+          <div class="banner-content">
+            
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha-itemm-pacote-office/authenticate/">
+              <img decoding="async" width="198" height="310" src="{{ url_for('static', filename='cursolibras.png') }}" class="attachment-large size-large wp-image-980" alt="">								</a>
+          <div class="banner-content pb-3 ">
+            
+          </div>
+        </div>
+    
+          <div class="col-12 col-md-3">
+            <a href="https://itemm.ead.guru/ead/enroll/projeto-trilha-itemm-programacao-neur/authenticate/">
+                <img decoding="async" width="198" height="310" src="{{ url_for('static', filename='cursopnl.png') }}" class="attachment-large size-large wp-image-980" alt="">								</a>
+            <div class="banner-content pb-3 ">
+         
+            </div>
+          </div>
+     
+          <div class=" ">
+
+          </div>
+        </div>
+
+   
+      </div class="pb-5 ">
+      <button style="margin-left: 433px; margin-bottom: 125px;" type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/projeto-trilha/'">Ver todos os cursos</button>    
+
+    </div>
+<div class="container pt-5" id="featured-container">
+<div class="row">
+<div class="col-7 pt-5 "style="background-image: url('{{ url_for("static", filename="logoVagas.png") }}'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; border-radius: 15%; margin-top:-100px; margin-bottom:-70px; width:50%">
+<div class="col-3">
+
+
+</div>
+
+</div>
+<div style="background-color: rgba(236, 241, 247, 1); border-radius: 50%; padding-left: -100px; padding-right: -100px; margin-left: -100px;" class="col-3">
+  <h1 class="font-effect-outline" style="margin-top: 50px; padding-left: 50px; font-family: Georgia, serif; font-size: 3vw; color: white;">VAGAS!</h1>
+ </h1>
+  
+  <p style="margin-top: 20px;padding-left: 40px;">Confira nossas vagas!<br>Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários.</p>
+  <button style="margin-left: 90px; margin-top: 10px; padding-left: 17px; text-align: center;"  type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
+
+</div>
+
+<div class="container pt-4" id="featured-container">
+  <div class="row" >
+<div class="col-4" >
+  
+</div>
+<div class="col-4 pt-4">
+  <button style="margin-left: 185px;margin-top: 10px;" type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/'">Home</button>
+
+</div>
+<div class="col-4" >
+  <form style="margin-right: 30px;" id="emailForm">
+    <input id="emailInput" placeholder="Digite seu e-mail: " style=" margin-left: 12px;border-radius: 10px;padding-left: 10px;">
+    <button  style="margin-top: 10px; border-radius: 15px; " type="button" id="btnEnviarEmail" class="btn btn-secondary">Enviar resultados por email</button>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </div>
+</div>
+  <script>
+    // Função para recuperar parâmetro da URL
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) {
+        // Tenta recuperar do cookie se não encontrar nos parâmetros da URL
+        const cookieValue = getCookie(name);
+        if (cookieValue !== null) {
+            return cookieValue;
+        }
+        return null;
+    }
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+// Função para obter o valor de um cookie pelo seu nome
+function setSessionCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+// Função para recuperar o valor de um parâmetro da URL pelo seu nome
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Recupera o estado de login e o email do cookie de sessão
+const loggedIn = getCookie('loggedIn') === 'true'; // Verifica se o usuário está logado
+let email = getParameterByName('email'); // Recupera o email
+
+// Exibe o estado de login e o email no console
+console.log("Usuário logado:", loggedIn);
+console.log("Email do usuário:", email);
+
+// Exibe o input ou o botão com base na presença do email
+if (!email) {
+    document.getElementById('emailInput').style.display = 'block';
+}
+document.getElementById('btnEnviarEmail').style.display = 'block';
+
+// Função para enviar resultados por email
+function enviarResultadosPorEmail(email, resultadosTexto, aptidoes) {
+    if (email) {
+        console.log('Email:', email);
+        console.log('Resultados:', resultadosTexto);
+        console.log('Aptidões:', aptidoes);
+
+        const data = {
+            email: email,
+            resultadosTexto: resultadosTexto,
+            aptidoes: aptidoes
+        };
+
+        $.ajax({
+            url: '/enviar_resultados_por_email',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(response) {
+                alert('Resultados enviados por email com sucesso!');
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro ao enviar resultados por email:', error);
+                alert('Erro ao enviar resultados por email. Por favor, tente novamente mais tarde.');
+            }
+        });
+    } else {
+        alert('Email vazio. Por favor, digite um email válido.');
+        console.error('O endereço de e-mail não foi recuperado.');
+    }
+}
+
+// Adiciona evento de clique ao botão "Enviar resultados por email"
+document.getElementById('btnEnviarEmail').addEventListener('click', function() {
+    const emailInput = document.getElementById('emailInput');
+    const email = emailInput.value.trim() || getParameterByName('email');
+    
+    if (!email) {
+        alert('Email vazio. Por favor, digite um email válido.');
+        return;
+    }
+
+    const resultadosTexto = JSON.stringify(somaPorInteligencia);
+    const aptidoes = JSON.parse(getParameterByName('aptidoes'));
+    enviarResultadosPorEmail(email, resultadosTexto, aptidoes);
+});
+
+// Código para cálculo das aptidões
+const aptidoes = JSON.parse(getParameterByName('aptidoes'));
+const somaPorInteligencia = {};
+
+for (const questao in aptidoes) {
+    const inteligencia = questao.split('_')[0];
+    if (!somaPorInteligencia[inteligencia]) {
+        somaPorInteligencia[inteligencia] = 0;
+    }
+    somaPorInteligencia[inteligencia] += aptidoes[questao];
+}
+
+const somaTotal = Object.values(somaPorInteligencia).reduce((total, valor) => total + valor, 0);
+const labels = Object.keys(somaPorInteligencia);
+const valores = labels.map(inteligencia => Math.round((somaPorInteligencia[inteligencia] * 100) / somaTotal));
+
+const corPorAptidao = {
+    'Cinestésica': '#FF69B4',
+    'Espacial': '#ADFF2F',
+    'Interpessoal': '#800080',
+    'Intrapessoal': '#FFFF00',
+    'Linguística': '#40E0D0',
+    'Matemática': '#D3D3D3',
+    'Musical': '#0000FF'
+};
+
+const backgroundColors = labels.map(label => corPorAptidao[label] || '#B0B0B0');
+
+let resultadoAptidoesHtml = '<h2>Teste Vocacional:</h2><br><p>Resultado do teste:</p>';
+resultadoAptidoesHtml += '<div class="row">';
+labels.forEach((inteligencia, index) => {
+  resultadoAptidoesHtml += `<div class="col"><p><strong>${inteligencia}:</strong> ${valores[index]}%</p></div>`;
+});
+resultadoAptidoesHtml += '</div>';
+
+document.getElementById('resultadoAptidoes').innerHTML = resultadoAptidoesHtml;
+
+const divPai = document.querySelector('.row');
+const aptidoesArray = labels.map((nome, index) => ({ nome, resultado: valores[index] }));
+aptidoesArray.sort((a, b) => b.resultado - a.resultado);
+aptidoesArray.forEach(aptidao => {
+    const container = document.getElementById(aptidao.nome);
+    if (container) {
+        divPai.appendChild(container);
+    }
+});
+
+function hideOtherIntelligences() {
+    aptidoesArray.slice(3).forEach(aptidao => {
+        const container = document.getElementById(aptidao.nome);
+        if (container) {
+            container.style.display = 'none';
+        }
+    });
+}
+
+function showOtherIntelligences() {
+    aptidoesArray.slice(3).forEach(aptidao => {
+        const container = document.getElementById(aptidao.nome);
+        if (container) {
+            container.style.display = 'block';
+        }
+    });
+}
+
+hideOtherIntelligences();
+
+document.getElementById('btnOutrasInteligencias').addEventListener('click', function() {
+    const buttonText = this.textContent;
+    if (buttonText === 'Mostrar outras inteligências') {
+        showOtherIntelligences();
+        this.textContent = 'Ocultar Inteligências';
+    } else {
+        hideOtherIntelligences();
+        this.textContent = 'Mostrar outras inteligências';
+    }
+});
+
+const ctx = document.getElementById('grafico').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Resultado do seu perfil',
+            data: valores,
+            backgroundColor: backgroundColors,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 0
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }]
+        },
+        plugins: {
+            datalabels: {
+                anchor: 'end',
+                align: 'end',
+                color: 'white',
+                font: {
+                    weight: 'bold'
+                },
+                formatter: function(value) {
+                    return value + '%';
+                },
+                textStrokeColor: 'black',
+                textStrokeWidth: 2
+            }
+        }
+    }
+});
+
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
+</body>
+
+</html>
+  

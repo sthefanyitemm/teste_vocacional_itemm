@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html  lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Respostas</title>
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+
+    <script src="//qiao.github.io/ProgressCircle.js/ProgressCircle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+   
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+    <!-- JavaScript Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <style>
+        /* Estilos CSS */
+        #grafico_progresso {
+            width: 100%; /* Utilize 100% da largura disponível */
+            height: auto; /* Altura automática */
+            max-width: 300px; /* Largura máxima */
+            margin: 0 auto; /* Centraliza horizontalmente */
+        }
+
+    
+
+        .btn {
+            padding: 10px 20px; /* Reduz padding para dispositivos menores */
+            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+        }
+
+        /* Estilo para o rótulo selecionado */
+        .radio-label.selected {
+            background-color: rgba(97, 206, 112, 1);
+            color: #fff;
+        }
+
+        .radio-label:not(:last-child) {
+            margin-right: 50px; /* Altere o valor conforme necessário */
+        }
+        #respondidas {
+        margin-left: -50px;
+    }
+    .grafico{
+               
+                top: 10px;
+
+            }
+            body {
+        padding-bottom: 1500px;
+            }
+                .radio-label {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        .radio-label.selected {
+            color: green; }/* c
+        }
+    
+
+    @media screen and (min-width:390)and (max-width: 392px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px 7px;
+        border: 1px solid #ccc;
+        border-radius: 100px;
+        margin-right: 5px;
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
+
+    .logo{
+           margin-left: 30px;
+           margin-top: -60px;
+       }
+     
+       .logotipo{
+           margin-left: 235px;
+           margin-top: -320px;
+           width:75px ;
+           height:60px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
+
+    body {
+        padding-bottom: 1000px;
+    }
+    .grafico{
+           position:absolute;
+           top: 110px;
+           margin-left: 0px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 125px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+     
+       .notas{
+          padding-top:200px 
+       }
+       .voltaavanca{
+        padding-bottom: 700px;
+       }
+       .pergunta{
+        margin-bottom: 750px;
+       }
+     
+       
+
+@media screen and (min-width: 330px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 7px 2px;
+        border: 1px solid #ccc;
+        border-radius: 60px;
+        margin: 5px;
+    
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
+
+    .logo{
+           margin-left: 30px;
+           margin-top: -60px;
+       }
+     
+       .logotipo{
+           margin-left: 235px;
+           margin-top: -320px;
+           width:75px ;
+           height:60px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
+
+    body {
+        padding-bottom: 1000px;
+    }
+    .grafico{
+           position:absolute;
+           top: 110px;
+           margin-left: -10px;
+           margin-bottom: 20px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 150px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+       .pergunta{
+        margin-bottom: 150px;
+       }
+       .notas{
+          padding-top:250px 
+       }
+       .voltaavanca{
+        padding-bottom: 200px;
+       }
+       .pergunta{
+        margin-bottom: 50px;
+       }
+       .pnotas{
+       margin-top: 50px;
+       }
+}
+            @media screen and (min-width: 375px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 2px 1px;
+        border: 1px solid #ccc;
+        border-radius: 60px;
+      
+        margin-right: 10px;
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
+
+    .logo{
+           margin-left: 30px;
+           margin-top: -60px;
+       }
+     
+       .logotipo{
+           margin-left: 200px;
+           margin-top: -400px;
+           width:75px ;
+           height:60px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
+
+    body {
+        padding-bottom: 1000px;
+    }
+    .grafico{
+           position:absolute;
+           top: 110px;
+           margin-left: 0px;
+           margin-bottom: 20px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 150px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+       .pergunta{
+        margin-bottom: 0px;
+       }
+       .notas{
+          margin-top:270px 
+       }
+       .voltaavanca{
+
+        margin-top: -50px;
+        padding-bottom: 200px;
+       }
+       .pergunta{
+        margin-bottom: 50px;
+       }
+       .pnotas{
+       margin-top: 50px;
+       }
+}
+
+            @media screen and (min-width: 412px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+      
+        padding: 10px 2px;
+        border: 1px solid #ccc;
+        border-radius: 60px;
+       
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
+
+    .logo{
+           margin-left: 30px;
+           margin-top: -60px;
+       }
+     
+       .logotipo{
+           margin-left: 205px;
+           margin-top: -300px;
+           width:100px ;
+           height:70px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
+
+    body {
+        padding-bottom: 800px;
+    }
+    .grafico{
+           position:absolute;
+           top: 110px;
+           margin-left: 0px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 125px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+       .pergunta{
+        margin-bottom: 250px;
+       }
+       .pergunta{
+        margin-bottom: 250px;
+       }
+       .notas{
+          margin-top:100px 
+       }
+       .pnotas{
+       font-size:10px ;
+       }
+       .pnotas{
+       margin-top: 0px;
+       }
+       #progresso_svg{
+    margin-top: -110px;
+    margin-left: 30px;
+    width:50;
+height:50
+    
+}
+#respondidas{
+    margin-left: 110px;
+    margin-top: 10px;
+}
+.pergunta{
+    margin-top: 100px;
+   }
+
+}
+
+/* Estilos para dispositivos maiores */
+@media screen and (min-width: 540px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 3px 1px;
+        border: 1px solid #ccc;
+        border-radius: 60px;
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
+
+    .logo{
+           margin-left: 30px;
+           margin-top: -60px;
+       }
+     
+       .logotipo{
+           margin-left: 320px;
+           margin-top: -300px;
+           width:100px ;
+           height:70px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
+
+    body {
+        padding-bottom: 50px;
+    }
+    .grafico{
+           position:absolute;
+           top: 90px;
+           margin-left: 50px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 125px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+       .notas{
+         
+          margin-top:100px;
+       }
+       .pergunta{
+        margin-top:0px;
+       }
+       .pnotas{
+       margin-top: 0px;
+       }
+       .voltaavanca{
+
+margin-top: -30px;
+}
+#progresso_svg{
+    margin-top: -90px;
+    padding-left: 150px;
+    width:150;
+height:100
+    
+}
+#respondidas{
+    margin-left: 180px;
+    margin-top: 10px;
+}
+.pergunta{
+    margin-top: 100px;
+   }
+}
+   /* Estilos para dispositivos maiores */
+@media screen and (min-width: 760px) {
+    .radio-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px 10px;
+        border: 1px solid #ccc;
+        border-radius: 60px;
+        margin-right: 5px;
+        background-color: rgba(217, 217, 217, 1);
+        font-size: 0.9rem;
+    }
+
+    .logo{
+           margin-left: 30px;
+           margin-top: -50px;
+       }
+     
+       .logotipo{
+           margin-left: 520px;
+           margin-top: -350px;
+           width:100px ;
+           height:70px
+          
+       }
+    /* Adicione outros estilos conforme necessário */
+
+    body {
+        padding-bottom: 120px;
+    }
+    .grafico{
+           position:absolute;
+           top: 90px;
+           margin-left: -10px;
+       }
+       .perguntas{
+           position:absolute;
+           top: 125px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+       }
+       .notas{
+          padding-top:200px 
+       }
+       .pergunta{
+        margin-bottom: 300px;
+       }
+       .pnotas{
+       margin-top: 0px;
+       }
+       .voltaavanca{
+
+
+margin-top: -100px;
+padding-bottom: 400px;
+}
+.pergunta{
+    margin-top: 265px;
+   }
+   #progresso_svg{
+    margin-top: -90px;
+    padding-left: 175px;
+    margin-left: 0;
+    width:150;
+height: 250px;
+    
+}
+
+#respondidas{
+    padding-left: 225px;
+    margin-top: -25px;
+}
+#botaoVoltar{
+ margin-top: -50px;
+ margin-bottom: 0;
+
+}
+
+}     
+@media screen and (max-width: 853px) {
+    
+    .respostan {
+        display: none !important;
+    }
+   .respostass{
+    display: none !important;
+   }
+   
+
+}
+
+    
+        @media screen and (min-width: 820px) {
+        
+            .radio-label {  
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px 12px; /* Reduz padding para dispositivos menores */
+            border: 1px solid #ccc;
+            border-radius: 60px;
+            /* Reduz a margem para dispositivos menores */
+            background-color: rgba(217, 217, 217, 1);
+            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+              /* Mantenha o mesmo padding para dispositivos maiores */
+            }
+            .respostass{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:20px
+            }
+            .logo{
+                margin-left: 420px;
+                margin-top: -75px;
+              
+            }
+            .logotipo{
+                margin-left: -20px;
+                
+                width:100px ;
+                height:70px
+              
+            }
+            body{
+                padding-bottom: 600px;
+                
+            }
+            .grafico{
+                position:relative;
+                margin-left: -50px;
+             
+            }
+         
+            .notas{
+               padding-top:0px 
+            }
+            .perguntas{
+
+        padding-top:200px;
+            }
+            #respondidas{
+                margin-left:50px ;
+                margin-top: -40px;
+            }
+       
+          .respostas{
+            margin-top: -20px;
+            margin-left: 20px;
+          }
+          .pergunta{
+        margin-bottom: 100px;
+       }
+       .pnotas{
+       margin-top: 0px;
+       }
+
+#progresso_svg{
+    margin-left: -25px;
+    margin-top: -135px;
+    width:150;
+height: 250px;
+}
+   .pergunta{
+    margin-top: 100px;
+   }
+#botaoVoltar{
+ margin-top: -50px;
+ margin-bottom: 0;
+
+}
+.voltaavanca{
+    margin-bottom: 150px;
+}
+
+
+}
+
+    
+        /* Media query para dispositivos maiores */
+        @media screen and (min-width: 1024px) {
+            .radio-label {  
+            display: inline-block;
+            cursor: pointer;
+            margin-left: 2px;
+            padding: 6px 8px; /* Reduz padding para dispositivos menores */
+            border: 1px solid #ccc;
+            border-radius: 60px;
+            /* Reduz a margem para dispositivos menores */
+            background-color: rgba(217, 217, 217, 1);
+            font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+              /* Mantenha o mesmo padding para dispositivos maiores */
+            }
+            .respostass{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:150px
+            }
+            .logo{
+                margin-left: 0px;
+                margin-top: 50px;
+            }
+            .logotipo{
+                margin-left: -20px;
+                margin-top: 20px;
+                width:180px ;
+                height:160px
+              
+            }
+            body{
+                padding-bottom: 200px;
+                
+            }
+            .grafico{
+                position:relative;
+                left: 0px;
+               
+            }
+            .notas{
+               padding-top:30px 
+            }
+            .perguntas{
+        padding-bottom:0px;
+            }
+            #respondidas{
+                margin-left:50px ;
+            }
+            .pergunta{
+        margin-bottom: 0px;
+       }
+       .pnotas{
+       margin-top: 0px;
+       }
+       .voltaavanca{
+
+margin-top: 10px;
+padding-top: 50px;
+}
+.respostas{
+    margin-top: 60px;
+   
+}
+#progresso_svg{
+    margin-left: -25px;
+    padding-left: -200px;
+    margin-top: -10px;
+    width:150;
+height: 250px;
+}
+.pergunta{
+    margin-top: 10px;
+   }
+}
+        
+  
+@media screen and (min-width: 1280px) {
+    .radio-label {  
+display: inline-block;
+cursor: pointer;
+padding: 16px 15px; /* Reduz padding para dispositivos menores */
+border: 1px solid #ccc;
+border-radius: 60px;
+ /* Reduz a margem para dispositivos menores */
+background-color: rgba(217, 217, 217, 1);
+font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+/* Mantenha o mesmo padding para dispositivos maiores */
+margin: 5px;
+}
+.respostass{
+                display: inline-block; justify-content:space-between;margin-top:15px ; margin-left:230px
+            }
+            .logo{
+                margin-left: 90px;
+                margin-left: -20px;
+                margin-top: 50px;
+            }
+            .logotipo{
+
+                height:150px
+            }
+            body{
+                padding-bottom: 5px;
+                padding-bottom: 0px;
+
+            }
+            .grafico{
+                position:relative;
+                top: 10px;
+                top: 0px;
+                margin-left: -40px;
+
+            }
+
+
+            .perguntas{
+position:absolute;
+top: 25px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+margin-left: 100px;
+padding:100px;
+margin-top: 100px;
+}
+
+       .notas{
+          padding-top:20px;
+          margin-top: 0px;
+       }
+       .voltaavanca{
+
+margin-top: 10px;
+padding-bottom: 10px;
+padding-top: 25px;
+}
+.respostan{
+    margin-left: 20px;
+}
+#respondidas{
+    margin-left: -50px;
+    padding-left: 0px;
+}
+#progresso_svg{
+    margin-left: -25px;
+    margin-top: -10px;
+    padding-left: 0px;
+    width:150;
+height: 250px;
+}
+.respostas{
+    margin-top: 60px;
+
+}
+.pergunta{
+    margin-top: 10px;
+   }
+}
+    
+    @media screen and (min-width: 1400px) {
+
+
+
+.radio-label {  
+display: inline-block;
+cursor: pointer;
+padding: 15px 15px; /* Reduz padding para dispositivos menores */
+border: 1px solid #ccc;
+border-radius: 60px;
+margin-right: 5px; /* Reduz a margem para dispositivos menores */
+background-color: rgba(217, 217, 217, 1);
+font-size: 0.9rem; /* Reduz tamanho do texto para dispositivos menores */
+/* Mantenha o mesmo padding para dispositivos maiores */
+margin-left: 20px;
+}
+.respostass{
+    display: inline-block; justify-content:space-between;margin-top:50px ; margin-left:350px
+}
+.respostan{
+    margin-left: 20px;
+}
+.logo{
+    margin-left: -20px;
+    margin-top: 50px;
+}
+.logotipo{
+    margin-left: -20px;
+    margin-top: 20px;
+    width:200px ;
+    height:190px
+}
+body{
+    padding-bottom: 5px;
+
+}
+.grafico{
+    position:relative;
+    top: 0px;
+    margin-left: -40px;
+
+}
+}
+
+.notas{
+   padding-top:30px 
+}
+.perguntas{
+position:absolute;
+top: 25px; /* Adicionei "px" aqui */
+z-index: 1;
+min-height: 300px;
+margin-left: 100px;
+padding:100px;
+margin-top: 100px;
+}
+.notas{
+padding-top:40px;
+
+}
+.pergunta{
+margin-bottom: 0px;
+}
+
+.pnotas{
+margin-top: 0px;
+}
+.voltaavanca{
+
+margin-top: 10px;
+padding-top: 100px;
+}
+#respondidas{
+margin-left: -6px;
+  padding-left: 0px;
+}
+#progresso_svg{
+margin-left: -25px;
+width:200;
+height:150;
+padding-left: 0px;
+}
+.respostas{
+margin-top: 100px;
+margin-left: 25px;
+}
+.titlepergunta{
+margin-left: 25px;
+margin-top: 20px;
+}
+.titletop{
+margin-right: -20px;
+font-size: larger;
+}
+
+
+        
+    </style>
+      
+
+
+   
+
+    
+</head>
+<body style="background-color: rgba(121, 217, 252, 0.14); padding-top: -40px;">
+    <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%;" type="button" class="btn btn-light" onclick="window.location.href='/';"><i class="bi bi-arrow-left"></i> Home</button>
+
+    <div  class="container">
+        <div class="row padding-left: 60px;">
+            <div  id="grafico_progresso" class="col-12 col-xl-4 col-lg-4 col-md-12 grafico col-sm-12" style="padding: 40px;">
+                <svg id="progresso_svg" >
+                    <circle id="progresso_circle" cx="100" cy="100" r="90" fill="none" stroke="#00CED1" stroke-width="20" stroke-dasharray="0, 564" stroke-dashoffset="0">
+                        <animate attributeName="stroke-dasharray" attributeType="XML" from="0, 564" to="564, 564" dur="3s" fill="freeze" />
+                    </circle>
+                </svg>
+                <div class="progresso-info" style="width: 100%; max-width: 300px; margin: 0 auto; ">
+                    <p id="progresso"></p>
+                    <p id="respondidas" style="color: blue;"></p>
+                </div> 
+
+                <div class="logo">
+                    <img class="logotipo" decoding="async" src="{{ url_for('static', filename='Logotipo.png') }}" alt="">
+                </div>
+            </div>
+            <div id="perguntas"  class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12" style="background-color: white;">
+                <div class="pergunta" id="pergunta" style="padding: 3px; ">
+                </div>
+            </div>
+        </div>
+    </div>
+   <script>
+    var perguntas = [
+  // Grupo I
+  { pergunta: "Eu consigo manter o ritmo de uma música com um instrumento de percussão.", valor: 0, aptidao: "Musical" },
+  { pergunta: "Eu consigo me lembrar com detalhes importantes de lugares que visitei", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Eu percebo como as pessoas se sentem em seus relacionamentos", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Eu geralmente sei como me sinto em relação às coisas e a meus sentimentos", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Eu sempre quero saber como as coisas funcionam", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Minhas melhores idéias surgem em uma caminhada ou corrida", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Sou ótimo em jogos de palavras cruzadas, anagramas e cruzadinhas", valor: 0, aptidao: "Linguística" },
+  // Grupo II
+  { pergunta: "Aprendo novos esportes com facilidade", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Eu tenho um interesse grande em saber mais sobre eu mesmo", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Línguas e estudos sociais são mais fáceis para min do que ciências exatas", valor: 0, aptidao: "Linguística" },
+  { pergunta: "Matemática e ciências são minhas matérias preferidas na escola", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Para eu Geometria é mais fácil do que outras matérias da escola", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Quando sei alguma coisa, gosto de ensinar para outras pessoas", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Toco um instrumento musical", valor: 0, aptidao: "Musical" },
+  // Grupo III
+  { pergunta: "Eu organizo as coisas em minha mesa de trabalho com categoria e padrão", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Eu prefiro passar a noite em casa do que em uma festa animada", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Eu tenho facilidade para resolver quebra cabeça", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Gosto de passar meu tempo ao ar livre", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Minha coleção musical está entre as coisas mais preciosas para mim", valor: 0, aptidao: "Musical" },
+  { pergunta: "Prefiro praticar esportes em equipes", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Meus livros estão entre as coisas mais preciosas para mim", valor: 0, aptidao: "Linguística" },
+  // Grupo IV
+  { pergunta: "Eu acho difícil ficar sentado quieto por muito tempo", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Eu acredito que quase tudo tem uma explicação racional", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Eu consigo facilmente me orientar em locais pouco conhecidos", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Eu consigo perceber quando uma nota musical está desafinada", valor: 0, aptidao: "Musical" },
+  { pergunta: "Eu me sinto confortável em meio a uma multidão", valor: 0, aptidao: "Interpessoal" },
+  { pergunta: "Penso em ter meu próprio negócio e ser meu chefe", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "Eu percebo erros gramaticais quando outras pessoas falam, nem sempre as corrijo", valor: 0, aptidao: "Linguística" },
+  // Grupo V
+  { pergunta: "As pessoas costumam me ver como solitário", valor: 0, aptidao: "Intrapessoal" },
+  { pergunta: "As pessoas dizem que eu tenho uma voz agradável", valor: 0, aptidao: "Musical" },
+  { pergunta: "Costumo desafiar meus amigos em jogos estratégicos", valor: 0, aptidao: "Matemática" },
+  { pergunta: "Costumo gesticular bastante quando estou conversando com as pessoas", valor: 0, aptidao: "Cinestésica" },
+  { pergunta: "Eu consigo visualizar imagens claramente quando fecho os olhos", valor: 0, aptidao: "Espacial" },
+  { pergunta: "Eu me lembro de frases de efeito ou citações e uso-as como em conversas", valor: 0, aptidao: "Linguística" },
+  { pergunta: "Tenho pelo menos, três amigos íntimos", valor: 0, aptidao: "Interpessoal" }
+];
+
+var aptidoes = {
+  "Musical": 0,
+  "Espacial": 0,
+  "Interpessoal": 0,
+  "Intrapessoal": 0,
+  "Matemática": 0,
+  "Cinestésica": 0,
+  "Linguística": 0
+};
+
+var perguntaAtualIndex = 0;
+var somaRespostas = 0;
+var progresso = 0;
+var texto = "Respondidas: 0/35";
+
+function botao_clicado(resposta) {
+    somaRespostas += parseInt(resposta);
+
+    var perguntaAtual = perguntas[perguntaAtualIndex];
+    perguntaAtual.valor = parseInt(resposta);
+
+    aptidoes[perguntaAtual.aptidao] += perguntaAtual.valor;
+
+    perguntaAtualIndex++;
+    if (perguntaAtualIndex < perguntas.length) {
+        exibir_pergunta();
+        addProgress();
+    } else {
+        // Corrigindo o redirecionamento
+        window.location.replace("/login?soma=" + somaRespostas + "&aptidoes=" + JSON.stringify(aptidoes));
+    }
+}
+
+// Função para votar na pergunta anterior
+function votar_pergunta_anterior() {
+    if (perguntaAtualIndex > 0) {
+        perguntaAtualIndex--;
+        var perguntaAnterior = perguntas[perguntaAtualIndex];
+        var valorRespostaAnterior = perguntaAnterior.valor;
+        somaRespostas -= valorRespostaAnterior;
+        exibir_pergunta();
+        regressarProgresso(); // Chamando a função regressarProgresso() ao voltar para a pergunta anterior
+    } else {
+        console.log("Não há perguntas anteriores.");
+    }
+}
+
+function exibir_pergunta() {
+    var perguntaAtual = perguntas[perguntaAtualIndex];
+
+    document.getElementById("pergunta").innerHTML = `
+  
+        <div class= "notas"> 
+            <h6 class"titletopo"> Atribua notas de 0 a 6, de acordo com as suas aptidões - sendo 6 a que mais combina com você e 0 a que menos.</h6>
+            <br>
+            <h4 class="titlepergunta" ><strong>${perguntaAtual.pergunta}</strong></h4>
+        </div>
+        <div class=" respostas"  >
+            <!-- HTML -->
+            <label class="radio-label" for="resposta0" onclick="selectRadio('resposta0')">0</label>
+    <label class="radio-label" for="resposta1" onclick="selectRadio('resposta1')">1</label>
+    <label class="radio-label" for="resposta2" onclick="selectRadio('resposta2')">2</label>
+    <label class="radio-label" for="resposta3" onclick="selectRadio('resposta3')">3</label>
+    <label class="radio-label" for="resposta4" onclick="selectRadio('resposta4')">4</label>
+    <label class="radio-label" for="resposta5" onclick="selectRadio('resposta5')">5</label>
+    <label class="radio-label" for="resposta6" onclick="selectRadio('resposta6')">6</label>
+
+    <p class="respostan" id="respostan" name="resposta" style="display: inline-block; justify-content: space-between; margin-top: 15px;">você menos se identifica</p>
+    <input type="radio" id="resposta0" name="resposta" value="0" hidden>
+    <input type="radio" id="resposta1" name="resposta" value="1" hidden>
+    <input type="radio" id="resposta2" name="resposta" value="2" hidden>
+    <input type="radio" id="resposta3" name="resposta" value="3" hidden>
+    <input type="radio" id="resposta4" name="resposta" value="4" hidden>
+    <input type="radio" id="resposta5" name="resposta" value="5" hidden>
+    <input type="radio" id="resposta6" name="resposta" value="6" hidden>
+    <p class="respostass" id="respostas" name="resposta" style="display: inline-block; justify-content: space-between; margin-top: 15px;">se identifica completamente</p>
+
+    <br>
+    <div class="voltaavanca" style="display: flex; justify-content: space-between;">
+        <button id="botaoVoltar" type="button" class="btn btn-secondary" onclick="votar_pergunta_anterior()">Voltar</button>
+        <button id="botaoAvancar" type="button" class="btn btn-success" onclick="botao_clicado(document.querySelector('input[name=resposta]:checked').value)" hidden>Avançar</button>
+    </div>
+    `;
+  
+    
+}
+
+var progresso = 0; // Inicializa o progresso
+var texto = ""; // Inicializa o texto de "Respondidas"
+
+function criar_grafico_progresso(marginTop = '0px', marginLeft = '0px', marginRight = '0px', marginBottom = '0px') {
+    var graficoProgressoDiv = document.getElementById('grafico_progresso');
+
+    if (graficoProgressoDiv) {
+        // Remover o canvas existente
+        graficoProgressoDiv.innerHTML = '';
+
+        // Criar o SVG
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute('class', 'transform -rotate-90');
+        svg.setAttribute('width', '200');
+        svg.setAttribute('height', '200');
+
+        // Criar o primeiro círculo
+        var circle1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle1.setAttribute('cx', '100');
+        circle1.setAttribute('cy', '100');
+        circle1.setAttribute('r', '90');
+        circle1.setAttribute('stroke', '#D1FAE5');
+        circle1.setAttribute('stroke-width', '20');
+        circle1.setAttribute('fill', 'transparent');
+        svg.appendChild(circle1);
+
+        // Criar o segundo círculo com stroke-dasharray e stroke-dashoffset
+        var circle2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle2.setAttribute('id', 'progresso_circle');
+        circle2.setAttribute('cx', '100');
+        circle2.setAttribute('cy', '100');
+        circle2.setAttribute('r', '90');
+        circle2.setAttribute('stroke', '#10B981');
+        circle2.setAttribute('stroke-width', '20');
+        circle2.setAttribute('fill', 'transparent');
+        circle2.setAttribute('stroke-dasharray', '564'); // Comprimento total do círculo
+        circle2.setAttribute('stroke-dashoffset', '564');
+        svg.appendChild(circle2);
+
+        // Adicionar o SVG ao div
+        graficoProgressoDiv.appendChild(svg);
+
+        // Adicionar o texto
+        var textoDiv = document.createElement('div');
+        textoDiv.setAttribute('class', 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center');
+        textoDiv.innerHTML = '<div class="text-3xl font-semibold text-green-600" id="progresso">0/35</div>' +
+                             '<div  class="text-sm text-zinc-600 mt-1" id="respondidas">Respondidas: 0/35</div>';
+        graficoProgressoDiv.appendChild(textoDiv);
+
+        // Definindo as margens
+        graficoProgressoDiv.style.marginTop = marginTop;
+        graficoProgressoDiv.style.marginLeft = marginLeft;
+        graficoProgressoDiv.style.marginRight = marginRight;
+        graficoProgressoDiv.style.marginBottom = marginBottom;
+    } else {
+        console.error("O elemento 'grafico_progresso' não foi encontrado.");
+    }
+}
+
+function addProgress() {
+        progresso += 0.0286; // Ajustado para um total de 35 tarefas
+        atualizarGraficoProgresso();
+    }
+
+    function regressarProgresso() {
+        progresso -= 0.0286; // Ajustado para um total de 35 tarefas
+        atualizarGraficoProgresso();
+    }
+    function atualizarGraficoProgresso() {
+    var respondidasElement = document.getElementById('respondidas');
+    var progressoElement = document.getElementById('progresso');
+    if (progressoElement && respondidasElement) {
+            progressoElement.innerText = texto;
+            // Removendo a duplicidade de "Respondidas"
+            respondidasElement.innerText = "Respondidas:";
+            var span = document.createElement("span");
+            span.style.color = "green";
+            span.innerText = " " + Math.round(progresso * 35) + "/35";
+            respondidasElement.appendChild(span);
+        }
+    
+    // Atualizar o círculo de progresso
+    var circle = document.getElementById('progresso_circle');
+    var circleLength = 564; // Comprimento total do círculo
+    var novoDashOffset = circleLength - (progresso * circleLength);
+
+    circle.setAttribute('stroke-dashoffset', novoDashOffset);
+
+    
+}
+
+    window.onload = function() {
+	 exibir_pergunta();
+        atualizarGraficoProgresso();
+    };
+
+
+    function selectRadio(id) {
+    console.log(`Radio button ${id} clicked`);
+
+    // Remover a classe 'selected' de todos os rótulos
+    document.querySelectorAll('.radio-label').forEach(label => label.classList.remove('selected'));
+
+    // Adicionar a classe 'selected' ao rótulo clicado
+    document.querySelector(`label[for=${id}]`).classList.add('selected');
+
+    // Marcar o rádio button correspondente
+    document.getElementById(id).checked = true;
+
+    // Mostrar o botão Avançar
+    document.getElementById('botaoAvancar').hidden = false;
+
+    // Clicar no botão "Avançar"
+    document.getElementById('botaoAvancar').click();
+}
+
+
+function adjustPadding() {
+    var featuredImages = document.getElementById('perguntas');
+    var windowHeight = window.innerHeight;
+    var paddingToSet = (windowHeight <= 915) ? '800px' : '';
+    var paddingToSet2 = '';
+
+    if (windowHeight >= 1366 && windowHeight < 1368) {
+        paddingToSet2 = '750px';
+    } else if (windowHeight <= 852 && windowHeight < 915) {
+        paddingToSet2 = '700px';
+    }
+
+    // Verifica se paddingToSet2 está definido e não é uma string vazia
+    if (paddingToSet2 !== '') {
+        featuredImages.style.paddingBottom = paddingToSet2;
+    } else {
+        featuredImages.style.paddingBottom = paddingToSet;
+    }
+}
+
+
+</script>
+
+</body>
+</html>

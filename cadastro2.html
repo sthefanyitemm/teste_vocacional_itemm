@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/2c33/a0f2/eb5f4a0a251eeccadb49f43de864a97c?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c7CI3r6lN0eelfUdhQqOCPyOAAY6YIHIUDXc~16dZGkUnaHR1B3vgUNx3IRNaO-cgfHz0qgUQD5HIfIYRDSJOjjXLz1HG5q8dg19cwav1Zu1CYtPPsp5-icit4XZrfjOpAdCTndxzBfMvv0zLAbWC2nxvEztx-kpfuGxlSpzb1ZBJTToanheaSAHuxoNyMyMMd6XZc8Pkn7WJrxSmIkTE6CEmrZk8~LJIpjuqO-lNcr7TYIBo5vo-S9BVOMY3tthB28auz0jMAvpi9aZllj0Ecq288ek6n2KGMQgpsSdlSW1tw1XPjldOluAIkwykRzMqpPEHJ6nIiZAZ1BAhUKK6g__" type="image/x-icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Icons -->
+<link>
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+/>
+    <style>
+        .rounded-input {
+            border-radius: 15px; /* Define o raio de arredondamento das bordas */
+            border: 1px solid #ccc; /* Adiciona uma borda para melhorar a aparência */
+            padding: 5px; /* Adiciona um espaçamento interno ao redor do texto */
+        }
+
+        @media screen and (min-width: 1280px) {
+        .logotipo{
+            width: 80%;
+            height: 17%;
+            margin-top: 10px;
+
+        }
+    }
+
+    </style>
+    
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="col-4" style="background-image: url('/static/logoVagas.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; margin-top: 15px; border-radius:15px;">           
+                <button style="background-color: rgba(236, 241, 247, 0); border: none; border-radius: 50%; color: white; margin-top: 15px;" type="button" class="btn btn-light " onclick="window.location.href='/'"><i class="bi bi-arrow-left"></i> Home</button>
+               <div class="pt-5">
+                <h1 class="vagatitle" style="margin-top:115px ; margin-left:50px ; margin-right:50px ;font-family: fantasy; font-size: 75px;"> Vagas!</h1>
+                <p class="vagaparagrafo" style="margin-left:50px ; margin-right:50px ;" >Confira nossas vagas! Clicando no botão abaixo, você terá acesso a oportunidades em diversas cidades do Brasil para jovens aprendizes e estagiários</p>
+                <button style="margin-left:50px ; margin-right:50px ;" type="button" class="btn btn-success" onclick="window.location.href='https://itemm.com.br/vagas/'">Vagas</button>
+               </div>
+           
+            </div>
+            <div class="col-6">
+                <h1 style="margin: 35px;"><strong>Cadastre-se</strong></h1>
+                <div class="form-group" style="margin: 40px;">
+                    {% block content %}
+                    <form id="cadastro-form" action="/cadastros" method="POST">
+                        <p> <strong>Nome Completo: </strong> <br> <input id="nomeInput" style="width: 415px; margin-top: 10px;padding-left: 10px;" type="text" name="nome" placeholder="DIGITE AQUI" class="rounded-input" /></p>
+                        <div class="row">
+                            <div class="form-group col-md-6 ">
+                               <p><strong>Data:</strong></p>
+                                <input style="margin-top: -5px; " type="date" name="date" id="data" class="rounded-input">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="margin-left: -35px;" for="sexo"><strong>Sexo:</strong></label>
+                                
+                                <select style="margin-left: -45px;" class="form-control rounded-input"  style="width: 200px;" name="sexo" id="sexo">
+                                    <option value="">selecionar</option>
+                                    <option value="F">Feminino</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="O">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p style="margin-top:15px;"><strong>Telefone/WhatsApp:</strong> <input style="width: 260px;padding-left: 10px;" type="text" name="telefone" placeholder="(99)99999-9999" class="rounded-input" /></p>
+                        {% if error_message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="form-group col-md-6 pt-3">
+                                <p><strong>E-mail:</strong> <input type="text" name="email" placeholder="Digite seu e-mail" class="rounded-input" autocomplete="current-password" required/></p>
+                            </div>
+                            <div class="form-group col-md-6 pt-3">
+                                <p style="margin-left: -15px;"><strong>Senha:</strong> <input type="password" id="senha" name="senha" placeholder="DIGITE AQUI" class="rounded-input password-like"  required /></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 ">
+                                <label for="estado"><strong>Estado:</strong></label>
+                                <select class="form-control rounded-input" name="estado" id="estado" style="width: 190px;"> 
+                                    <option>Selecionar</option>
+                                    {% if estados %}
+                                    {% for estado in estados %}
+                                    <option value="{{ estado.UF_ID }}">{{ estado.UF_NOME }}</option>
+                                    {% endfor %}
+                                    {% else %}
+                                    <option value="" disabled selected>Nenhum estado disponível</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label style="margin-left: -15px;" for="cidade"><strong>Cidade:</strong></label>
+                                <select style="margin-left: -15px;" class="form-control rounded-input" name="cidade" id="cidade" style="width: 200px;">
+                                    <option>Selecionar</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <p><input type="checkbox" id="lgpd" checked="checked" name="lgpd"> Li e concordo com a LGPD - Lei Geral de Proteção de Dados.
+                            <a style="font-size: 11px;" href="#" id="openModal"> Abrir termo de LGPD- Lei Geral de Portação de Dados</a>
+                        </p>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Documento </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="{{ url_for('static', filename='documento.pdf') }}" style="width:100%;height:500px;"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p><input type="checkbox" name="confirm" id="confirm"/> Autorizo o envio de e-mails com vagas correspondentes ao meu perfil.</p>
+                      
+                        <div class="d-flex" style="gap: 10px;">
+                            <input style="margin-bottom:15px; margin-top: 15px;" class="btn btn-success" type="submit" id="submit" value="Concluir cadastro e descobrir resultado do teste" disabled />
+                            <button onclick="window.location.href = '/resultados?soma=&aptidoes=' + encodeURIComponent(JSON.stringify(aptidoes)) + '&email=' + encodeURIComponent(email);" class="btn btn-secondary">Ver resultados</button>
+                        </div>
+                      
+                    </form>
+                  
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="col-2 pt-3">
+                <img style="margin-left: 15px;" decoding="async" width="100" height="100" src="{{ url_for('static', filename='Logotipo.png') }}" class="logotipo" alt="">
+            </div>
+        </div>
+    </div>
+  <!-- Script para dropdown  cidade/estado -->  
+<script>
+
+var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+var email = formData.get('email');
+
+document.getElementById('estado').addEventListener('change', function() {
+        var estadoId = this.value;
+        fetch(`/cidade/${estadoId}`)
+            .then(response => response.json())
+            .then(data => {
+                var cidadeSelect = document.getElementById('cidade');
+                cidadeSelect.innerHTML = ''; // Limpa as opções existentes
+                data.cidadeestado.forEach(function(cidade) {
+                    var option = document.createElement('option');
+                    option.value = cidade.id;
+                    option.text = cidade.name;
+                    cidadeSelect.appendChild(option);
+                });
+            });
+    });
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var cadastroForm = document.getElementById('cadastro-form');
+    if (cadastroForm) {
+        cadastroForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+
+            // Atraso de 5 segundos antes de enviar o formulário
+            setTimeout(function() {
+                fetch('/cadastros', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        console.log('Formulário enviado com sucesso!');
+                        // Função para recuperar parâmetro da URL
+                        function getParameterByName(name, url) {
+                            if (!url) url = window.location.href;
+                            name = name.replace(/[\[\]]/g, "\\$&");
+                            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                                results = regex.exec(url);
+                            if (!results) return null;
+                            if (!results[2]) return '';
+                            return decodeURIComponent(results[2].replace(/\+/g, " "));
+                        }
+
+                        // Obtém o parâmetro 'soma' da URL
+                        var aptidoes = JSON.parse(getParameterByName('aptidoes'));
+                        
+                        // Se 'somaRespostas' não for nulo, redireciona para a página de resultados
+                        if (aptidoes !== null) {
+                            // Criar um cookie de sessão com o email do usuário
+                            var email = formData.get('email'); // Obtém o email do formulário
+                            document.cookie = "loggedIn=true; email=" + email + "; path=/";
+                            console.log("Cookie de sessão criado com sucesso para o email: " + email);
+
+                            // Redirecionar para a página de resultados com o email como parâmetro na URL
+                            window.location.href = "/login?soma=" + "&aptidoes=" + JSON.stringify(aptidoes) + "&email=" + email;
+                        } else {
+                            console.error('Erro: Resultado não calculado!.');
+                        }
+
+                    } else {
+                        throw new Error('Erro ao processar o formulário: ' + response.statusText);
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Erro ao enviar formulário:', error);
+                    alert('Erro ao enviar formulário. Por favor, verifique este e-mail parece já estar cadastrado no nosso sistema!.');
+                });
+            }, 100); // 5000 milissegundos = 5 segundos de atraso
+        });
+    } else {
+        console.error('Elemento de formulário de cadastro não encontrado.');
+    }
+});
+// Função para obter parâmetros da URL
+// Função para obter parâmetros da URL
+// Função para obter parâmetros da URL
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Função para preencher os campos com os dados da URL
+window.onload = function() {
+    var nome = getParameterByName('nome');
+    var data = getParameterByName('idade');
+    
+    document.getElementById('nomeInput').value = nome;
+    document.getElementById('data').value = data;
+}
+// Função para preencher os campos com os dados da URL
+
+
+
+
+
+
+           function convertPasswordFieldToText() {
+        var passwordInput = document.getElementById("senha");
+        passwordInput.type = "text"; // Altera temporariamente o tipo de entrada para 'text'
+    }
+
+      // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
+    
+
+</script>
+    
+    
+
+  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Script para abrir o modal -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+// Função para abrir o modal quando o botão é clicado
+$(document).ready(function(){
+    $("#openModal").click(function(){
+        $("#myModal").modal('show');
+    });
+
+    // Definir inicialmente o estado do checkbox LGPD como não marcado
+    $("#lgpd").prop("checked", false);
+
+    // Script para habilitar/desabilitar o botão de envio com base na seleção do checkbox LGPD
+    $("#lgpd").change(function(){
+        var isChecked = $(this).prop("checked");
+        $("#submit").prop("disabled", !isChecked);
+    });
+});
+
+// Função para converter campo de senha em texto
+function convertPasswordFieldToText() {
+    var passwordInput = document.getElementById("senha");
+    passwordInput.type = "text"; // Altera temporariamente o tipo de entrada para 'text'
+}
+
+// Evento de envio do formulário - chama a função convertPasswordFieldToText
+document.getElementById("cadastro-form").addEventListener("submit", convertPasswordFieldToText);
+</script>
+
+
+
+
+</body>
+</html>
